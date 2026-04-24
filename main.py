@@ -1,7 +1,7 @@
 
 from sys import exit
 import pygame
-import intro
+from images import sheetfixer
 
 pygame.init()
 
@@ -11,8 +11,12 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
+
 test_surface = pygame.surface.Surface((150, 200))
-test_surface.fill((255,255,255))
+test_surface.fill('orange')
+
+# module changes image grids into individual sprites
+char_sprites = sheetfixer('graphics/player_sprites.png')
 
 while True:
     # searches for inputs from player
@@ -23,8 +27,12 @@ while True:
             exit()
 
     # draws elements
+    screen.fill('silver')
+    screen.blit(test_surface, (100,75))
+    rect = char_sprites[1].get_rect()
+    rect.center = 178, 178
+    screen.blit(char_sprites[1], rect)
 
-    screen.blit(test_surface, (200,100))
 
     # updates the game
     pygame.display.update()
