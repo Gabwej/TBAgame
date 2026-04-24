@@ -17,6 +17,9 @@ test_surface.fill('orange')
 
 # module changes image grids into individual sprites
 char_sprites = sheetfixer('graphics/player_sprites.png')
+monster_sprites1 = sheetfixer('graphics/monster_sprites_1.png')
+monster_sprites2 = sheetfixer('graphics/monster_sprites_2.png')
+monster_sprites3 = sheetfixer('graphics/monster_sprites_3.png')
 
 while True:
     # searches for inputs from player

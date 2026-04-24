@@ -18,6 +18,8 @@ def sheetfixer(name):
             y = row * sprite_height
 
             sprite = sheet.subsurface((x,y,sprite_width,sprite_height)).copy()
+            if name == 'graphics/monster_sprites_1.png' or name == 'graphics/monster_sprites_2.png' or name == 'graphics/monster_sprites_3.png':
+                sprite = pygame.transform.flip(sprite, True, False)
             sprites.append(sprite)
 
     return sprites
