@@ -3,6 +3,7 @@ from sys import exit
 import pygame
 from images import sheetfixer
 from button import Button
+from intro import Intro, StateA, StateB
 
 pygame.init()
 
@@ -12,25 +13,21 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
-# library of buttons and fonts
-font = pygame.font.Font('graphics/PixelPurl.ttf', 32)
+# library of buttons and images
 
 images = []
 
-buttons = [
-    Button((600, 200, 100, 100), "test text", test, font)
-]
+buttons = []
 
 
-test_surface = pygame.surface.Surface((150, 200))
-test_surface = pygame.surface.Surface((150, 200))
-test_surface.fill('orange')
-
-# module changes image grids into individual sprites
+# module changes image grids into individual sprites and stores them in different lists (15 items each)
 char_sprites = sheetfixer('graphics/player_sprites.png')
 monster_sprites1 = sheetfixer('graphics/monster_sprites_1.png')
 monster_sprites2 = sheetfixer('graphics/monster_sprites_2.png')
 monster_sprites3 = sheetfixer('graphics/monster_sprites_3.png')
+
+current_state = Intro()
+print(current_state, type(current_state))
 
 while True:
     # searches for inputs from player (event loop)
@@ -39,18 +36,16 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        for button in buttons:
-            button.handle_event(event)
+
+        new_state = current_state.handle_input(event)
+
+        if new_state:
+            current_state = new_state
 
     # draws elements
-    screen.fill('silver')
-    for button in buttons:
-        button.draw(screen)
 
-    screen.blit(test_surface, (100,75))
-    rect = char_sprites[1].get_rect()
-    rect.center = 178, 178
-    screen.blit(char_sprites[1], rect)
+    current_state.update()
+    current_state.draw(screen)
 
     # I can do the following later:
     # def progression() which checks an index like "self.index = 1"
