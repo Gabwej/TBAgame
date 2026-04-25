@@ -1,9 +1,9 @@
 
 from sys import exit
 import pygame
-from images import sheetfixer
-from tools import Button
-from intro import Intro, Background
+from intro import Intro
+from images import load_all_sprites, Assets
+from ui_base import Base
 
 pygame.init()
 
@@ -13,13 +13,10 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
-# module changes image grids into individual sprites and stores them in different lists (15 items each)
-char_sprites = sheetfixer('graphics/player_sprites.png')
-monster_sprites1 = sheetfixer('graphics/monster_sprites_1.png')
-monster_sprites2 = sheetfixer('graphics/monster_sprites_2.png')
-monster_sprites3 = sheetfixer('graphics/monster_sprites_3.png')
+load_all_sprites()
 
-current_state = Intro()
+# current_state = Intro()
+current_state = Base()
 print(current_state, type(current_state))
 
 # this is the loop that is actively updating everything every frame

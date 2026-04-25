@@ -75,13 +75,17 @@ class Button:
 
 # this makes all my surfaces that are not images
 class Panel:
-    def __init__(self, rect, color=	(255,228,181), text="", text_color=	(128,0,0), typewriter=True):
+    def __init__(self, rect, color=	(255,228,181), text="", text_color=	(128,0,0),
+                 typewriter=True, size = 32, outline=(222,184,135), radius=0):
         self.rect = pygame.Rect(rect)
         self.color = color
 
         self.text = text
-        self.font = pygame.font.Font('graphics/RetroByte.ttf', 32)
+        self.size = size
+        self.font = pygame.font.Font('graphics/RetroByte.ttf', size)
         self.text_color = text_color
+        self.outline = outline
+        self.radius = radius
 
         self.padding = 20
 
@@ -95,8 +99,8 @@ class Panel:
                 self.visible_chars += self.speed
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect, border_radius=12)
-        pygame.draw.rect(screen, (222,184,135), self.rect, 5, border_radius=12)
+        pygame.draw.rect(screen, self.color, self.rect, border_radius= self.radius)
+        pygame.draw.rect(screen, self.outline, self.rect, 5, border_radius= self.radius)
 
         if self.text and self.font:
             if self.typewriter:
@@ -118,10 +122,11 @@ class Panel:
 
         for raw_line in raw_lines:
             words = raw_line.split(" ")
+            words = [word + " " for word in words]
             current_line = ""
 
             for word in words:
-                test_line = current_line + word + " "
+                test_line = current_line + word
                 test_surface = self.font.render(test_line, True, self.text_color)
 
                 if test_surface.get_width() > max_width:
@@ -136,3 +141,22 @@ class Panel:
             rendered_line = self.font.render(line, True, self.text_color)
             screen.blit(rendered_line, (x, y))
             y += self.font.get_height()
+
+# this class implements images easier and gives me the ability to resize images (game changer :O)
+class ImageObject:
+    def __init__(self, path, rect, size=None):
+        if isinstance(path, str):
+            self.image = pygame.image.load(path).convert_alpha()
+        else:
+            self.image = path
+
+        if size:
+            self.image = pygame.transform.scale(self.image, size)
+
+        self.rect = self.image.get_rect(topleft=rect)
+
+        self.visible = True
+
+    def draw(self, screen):
+        if self.visible:
+            screen.blit(self.image, self.rect)
