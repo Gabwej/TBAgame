@@ -1,18 +1,15 @@
-import pygame
-from button import Button
+from tools import Button, Panel
 
+
+# This is the intro to the game, which includes an easy menu, quick backstory and character select screen
 class Intro:
     def __init__(self):
         self.buttons = [
-            Button((200, 200, 200, 80), "Button A", self.go_to_a),
-            Button((500, 200, 200, 80), "Button B", self.go_to_b)
+            Button((365, 400, 270, 80), "Start", self.go_to_a),
         ]
 
     def go_to_a(self):
-        return StateA()
-
-    def go_to_b(self):
-        return StateB()
+        return Background()
 
     def handle_input(self, event):
         for button in self.buttons:
@@ -29,13 +26,18 @@ class Intro:
             button.draw(screen)
 
 
-class StateA:
+class Background:
     def __init__(self):
         self.buttons = [
-            Button((200, 200, 200, 80), "Button A Back", self.go_back)
+            Button((365, 400, 270, 80), "Next", self.to_character_picker, locked=True),
         ]
 
-    def go_back(self):
+        self.panels = [
+            Panel((65, 100, 870, 200), text= "Long before time had a name this land was full of mystical beings. "
+            "\nYou are on a journey through this vast kingdom where you hope  to find your life's purpose" )
+        ]
+
+    def to_character_picker(self):
         return Intro()
 
     def handle_input(self, event):
@@ -52,25 +54,6 @@ class StateA:
         for button in self.buttons:
             button.draw(screen)
 
-class StateB:
-    def __init__(self):
-        self.buttons = [
-            Button((500, 200, 200, 80), "Button B Back", self.go_back)
-        ]
-
-    def go_back(self):
-        return Intro()
-
-    def handle_input(self, event):
-        for button in self.buttons:
-            new_state = button.handle_event(event)
-            if new_state:
-                return new_state
-
-    def update(self):
-        pass
-
-    def draw(self, screen):
-        screen.fill((0, 0, 50))
-        for button in self.buttons:
-            button.draw(screen)
+        for panel in self.panels:
+            panel.update()
+            panel.draw(screen)
