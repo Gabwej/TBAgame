@@ -1,7 +1,9 @@
 To do:
 - fix file for characters and enemies (classes)
-- create progression system
+- create progression system [kinda check?]
 - create battle system
 - implement pressable surfaces [check]
-- create layouts for several scenarios
+- create Base ui layout for battles and dialog
 - create an inventory and shop mechanic
+- make document that stores all battle scenarios
+-make document that stores all dialog scenarios
