@@ -1,8 +1,4 @@
-from pydoc import text
-
-from pygame import color
-
-from tools import Button, Panel, ImageObject
+from tools import Button, Panel, ImageObject, Sounds
 from images import Assets
 
 # this is the base for the rest of the games ui

@@ -2,10 +2,12 @@
 from sys import exit
 import pygame
 from intro import Intro
-from images import load_all_sprites, Assets
+from images import load_all_sprites
+from tools import load_sounds
 from ui_base import Base
 
 pygame.init()
+pygame.mixer.init()
 
 # the display for the game (not to be meddled with)
 size = (1000, 600)
@@ -14,6 +16,7 @@ pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
 load_all_sprites()
+load_sounds()
 
 current_state = Intro()
 # current_state = Base()

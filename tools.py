@@ -1,5 +1,17 @@
 import pygame
 
+class Sounds:
+    hover = None
+    press = None
+
+def load_sounds():
+
+    Sounds.hover = pygame.mixer.Sound("sounds/hover.mp3")
+    Sounds.press = pygame.mixer.Sound("sounds/press.mp3")
+
+    Sounds.hover.set_volume(0.3)
+    Sounds.press.set_volume(0.3)
+
 # this is the blueprint for my buttons, I can create any shape with text
 # and unique actions that effect the game state
 class Button:
@@ -15,6 +27,7 @@ class Button:
         self.font = pygame.font.Font('graphics/RetroByte.ttf', 32)
         self.hovered = False
         self.locked = locked
+        self.was_hovered = False
 
         # makes color correcting easier
         self.color = color
@@ -24,14 +37,21 @@ class Button:
     # this makes my buttons send the next game state if clicked
     def handle_event(self, event):
         if not self.locked:
-            if self.rect.collidepoint(pygame.mouse.get_pos()):
-                self.hovered = True
-            else:
-                self.hovered = False
+            mouse_over = self.rect.collidepoint(pygame.mouse.get_pos())
+
+            if mouse_over and not self.was_hovered:
+                Sounds.hover.play()
+
+            self.hovered = mouse_over
+            self.was_hovered = mouse_over
+        else:
+            self.hovered = False
+            self.was_hovered = False
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if not self.locked:
                 if self.rect.collidepoint(event.pos):
+                    Sounds.press.play()
                     return self.action()
 
 

@@ -1,4 +1,4 @@
-from tools import Button, Panel, ImageObject
+from tools import Button, Panel, ImageObject, Sounds
 from images import Assets
 
 # This is the intro to the game, which includes an easy menu, quick backstory and character select screen
@@ -88,10 +88,10 @@ class CharacterPicker:
     def __init__(self):
         self.buttons = [
             Button((365, 460, 270, 80), "Start Game", self.start_game, locked=True),
-            Button((80, 350, 150, 80), "Warrior", lambda: self.select_panel(1), ),
-            Button((310, 350, 150, 80), "Ranger", lambda: self.select_panel(2), ),
-            Button((540, 350, 150, 80), "Mage", lambda: self.select_panel(3), ),
-            Button((770, 350, 150, 80), "Rouge", lambda: self.select_panel(4), ),
+            Button((80, 350, 150, 80), "Warrior", lambda: self.select_panel(1, 		(95,158,160)), ),
+            Button((310, 350, 150, 80), "Ranger", lambda: self.select_panel(2, (60,179,113)), ),
+            Button((540, 350, 150, 80), "Mage", lambda: self.select_panel(3, 	(100,149,237)), ),
+            Button((770, 350, 150, 80), "Rouge", lambda: self.select_panel(4, (143,188,143)), ),
         ]
 
         self.panels = [
@@ -117,12 +117,14 @@ class CharacterPicker:
     def start_game(self):
         return Intro()
 
-    def select_panel(self,index):
+    def select_panel(self,index, color):
         for panel in self.panels[1:]:
             panel.color = (255, 228, 181)
 
-        self.panels[index].color = (218,165,32)
+        self.panels[index].color = color
+        self.selected_color = color
         self.buttons[0].locked=False
+    # add return color here later for battle ui
 
     def handle_input(self, event):
         for button in self.buttons:
