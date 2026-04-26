@@ -144,7 +144,7 @@ class Panel:
 
 # this class implements images easier and gives me the ability to resize images (game changer :O)
 class ImageObject:
-    def __init__(self, path, rect, size=None):
+    def __init__(self, path, rect, size=None, visible = True):
         if isinstance(path, str):
             self.image = pygame.image.load(path).convert_alpha()
         else:
@@ -155,7 +155,7 @@ class ImageObject:
 
         self.rect = self.image.get_rect(topleft=rect)
 
-        self.visible = True
+        self.visible = visible
 
     def draw(self, screen):
         if self.visible:
