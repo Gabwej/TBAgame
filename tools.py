@@ -9,8 +9,8 @@ def load_sounds():
     Sounds.hover = pygame.mixer.Sound("sounds/hover.mp3")
     Sounds.press = pygame.mixer.Sound("sounds/press.mp3")
 
-    Sounds.hover.set_volume(0.3)
-    Sounds.press.set_volume(0.3)
+    Sounds.hover.set_volume(0.1)
+    Sounds.press.set_volume(0.1)
 
 # this is the blueprint for my buttons, I can create any shape with text
 # and unique actions that effect the game state
