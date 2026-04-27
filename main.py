@@ -5,9 +5,11 @@ from intro import Intro
 from images import load_all_sprites
 from tools import load_sounds
 from ui_base import Base
+from stat_storage import RunStats
 
 pygame.init()
 pygame.mixer.init()
+stats = RunStats()
 
 # the display for the game (not to be meddled with)
 size = (1000, 600)

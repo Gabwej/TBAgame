@@ -6,10 +6,15 @@ class Base:
     def __init__(self):
         # fix so text comes from other file
         self.buttons = [
+            # the fight button, makes this button attack[0] and buttonD attack[3), ButtonE becomes back and brings you to previous state
             Button((20, 400, 270, 80), "Button A", self.go_to_a),
+            # inventory button, locks buttons A-D and E becomes back, creates buttons (will make ui)
             Button((310, 400, 270, 80), "Button B", self.go_to_b),
+            # simple check button, updates info panel to enemy info, locks A-D and E is back
             Button((20, 500, 270, 80), "Button C", self.go_to_c),
+            # run button (locked = True) for difficult monsters until half health or something
             Button((310, 500, 270, 80), "Button D", self.go_to_d),
+            # next button, only visible when needed (in battle next and during dialoge at needed point)
             Button((665, 500, 270, 80), "Button E", self.go_to_d, locked=True),
         ]
 
@@ -66,7 +71,7 @@ class StateA:
             Button((310, 400, 270, 80), "Button B", self.go_to_b),
             Button((20, 500, 270, 80), "Button C", self.go_to_c),
             Button((310, 500, 270, 80), "Button D", self.go_to_d),
-            Button((665, 500, 270, 80), "Button E", self.go_to_d, locked=True),
+            Button((665, 500, 270, 80), "next", self.battle.next_log, locked=True),
         ]
 
         self.panels = [
