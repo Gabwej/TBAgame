@@ -1,9 +1,14 @@
 import random
+from currency import Currency
+
 
 class Attack:
-    def __init__(self, name, effects):
+    def __init__(self, name, effects, cooldown=0, start_cooldown=0):
         self.name = name
         self.effects = effects
+
+        self.cooldown = cooldown
+        self.start_cooldown = start_cooldown
 
     def use(self, user, target):
         total_damage = 0
@@ -21,7 +26,13 @@ class Attack:
                 logs.append(f"{target.name} was defeated!")
                 break
 
+        self.current_cooldown = self.cooldown
+
         return total_damage, logs
+
+    def is_ready(self):
+        return self.current_cooldown == 0
+
 
 # our base for custom effects for attacks
 class Effect:
@@ -30,6 +41,7 @@ class Effect:
 
     def tick(self, target):
         pass
+
 
 # classic attacks that only do damage
 class DamageEffect(Effect):
@@ -45,6 +57,7 @@ class DamageEffect(Effect):
 
         return damage, logs
 
+
 # special selfheal type attack
 class HealEffect(Effect):
     def __init__(self, amount):
@@ -55,9 +68,10 @@ class HealEffect(Effect):
         target.hp += healed
 
         if stats:
-            stats,total_healing += healed
+            stats.total_healing += healed
 
         return 0, [f"{target.name} heals {healed} HP!"]
+
 
 # This attack gives stacks of poison (that will later do things in the status effect stage in battles)
 class PoisonEffect(Effect):
@@ -76,6 +90,7 @@ class PoisonEffect(Effect):
             target.take_damage(damage, ignore_defense=True)
             target.status_effects["poison"] -= 1
 
+
 # The classic burn effect! this one is higher damage but gets effected by defense
 class BurnEffect(Effect):
     def __init__(self, stacks):
@@ -89,9 +104,10 @@ class BurnEffect(Effect):
         stacks = target.status_effects.get("burn", 0)
         if stacks > 0:
             # here is the damage calculation (fix later if issues arise)
-            damage = max(1,target.max_hp * 0.1)
+            damage = max(1, target.max_hp * 0.1)
             target.take_damage(damage, defense_mult=0.5)
             target.status_effects["burn"] -= 1
+
 
 # the annoying bleed! small damage that is a linear damage curve
 class BleedEffect(Effect):
@@ -108,6 +124,7 @@ class BleedEffect(Effect):
             damage = int(target.max_hp * 0.05 * stacks)
             target.take_damage(damage, ignore_defense=True)
             target.status_effects["bleed"] -= 1
+
 
 # generally weaker damage but also makes you weaker
 class WitherEffect(Effect):
@@ -131,6 +148,7 @@ class WitherEffect(Effect):
         target.defense_debuff = max(0, target.defense_debuff - 1)
         target.attack_debuff = max(0, target.attack_debuff - 1)
 
+
 # the stun effets
 
 class StunEffect(Effect):
@@ -141,6 +159,7 @@ class StunEffect(Effect):
         target.status_effects["stun"] = self.turns
         return 0, [f"{target.name} is stunned!"]
 
+
 class FreezeEffect(Effect):
     def __init__(self, turns=1):
         self.turns = turns
@@ -148,6 +167,7 @@ class FreezeEffect(Effect):
     def apply(self, user, target):
         target.status_effects["freeze"] = self.turns
         return 0, [f"{target.name} is frozen!"]
+
 
 # the buff effect
 
@@ -160,6 +180,7 @@ class BuffEffect(Effect):
     def apply(self, user, target):
         user.add_buff(self.stat, self.amount, self.turns)
         return 0, [f"{user.name} gains +{self.amount} {self.stat} for {self.turns} turns!"]
+
 
 # this is the base class for all entities, the stats the player and enemies have in common
 class Entity:
@@ -190,6 +211,13 @@ class Entity:
         self.buffs = []
 
         self.sprite = sprite
+
+
+    def reduce_cooldowns(self):
+        if hasattr(self, "attacks"):
+            for attack in self.attacks:
+                if attack.current_cooldown > 0:
+                    attack.current_cooldown -= 1
 
     def post_battle_cleanup(self):
         self.buffs = []
@@ -252,12 +280,10 @@ class Entity:
         logs = []
         disabled = None
 
-
         if self.status_effects.get("stun", 0) > 0:
             self.status_effects["stun"] -= 1
             logs.append(f"{self.name} is stunned!")
             disabled = "stunned"
-
 
         if self.status_effects.get("freeze", 0) > 0:
             self.status_effects["freeze"] -= 1
@@ -269,7 +295,6 @@ class Entity:
             if not self.is_alive():
                 return logs, disabled
 
-
         if self.status_effects.get("poison", 0) > 0:
             stacks = self.status_effects["poison"]
 
@@ -280,7 +305,6 @@ class Entity:
 
             if not self.is_alive():
                 return logs, disabled
-
 
         if self.status_effects.get("burn", 0) > 0:
             stacks = self.status_effects["burn"]
@@ -296,7 +320,6 @@ class Entity:
             if not self.is_alive():
                 return logs, disabled
 
-
         if self.status_effects.get("bleed", 0) > 0:
             stacks = self.status_effects["bleed"]
 
@@ -310,7 +333,6 @@ class Entity:
 
             if not self.is_alive():
                 return logs, disabled
-
 
         if self.status_effects.get("wither", 0) > 0:
             stacks = self.status_effects["wither"]
@@ -343,11 +365,11 @@ class Entity:
         return logs, disabled
 
 
-
 # this is out player base, which is then turned into the active player based on input (CharacterSelect)
 class Player(Entity):
     def __init__(self, name, hp, attack, defense, sprite=None):
         super().__init__(name, hp, attack, defense, sprite)
+        self.currency = Currency(0)
 
         self.inventory = {}
 
@@ -373,13 +395,15 @@ class Player(Entity):
 
 # our enemy base which gets used for the active enemy
 class Enemy(Entity):
-    def __init__(self, name, hp, attack, defense, sprite=None):
+    def __init__(self, name, hp, attack, defense, teir, sprite=None):
         super().__init__(name, hp, attack, defense, sprite)
+
+        self.tier = tier
 
 
 class Buff:
     def __init__(self, stat, amount, turns):
-        self.stat = stat          # "attack" or "defense"
+        self.stat = stat  # "attack" or "defense"
         self.amount = amount
         self.turns = turns
 

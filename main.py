@@ -1,4 +1,3 @@
-
 from sys import exit
 import pygame
 from intro import Intro
@@ -12,16 +11,15 @@ pygame.mixer.init()
 stats = RunStats()
 
 # the display for the game (not to be meddled with)
-size = (1000, 600)
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode((1000, 600))
 pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
 load_all_sprites()
 load_sounds()
 
-current_state = Intro()
-# current_state = Base()
+#current_state = Intro()
+current_state = Base()
 print(current_state, type(current_state))
 
 # this is the loop that is actively updating everything every frame

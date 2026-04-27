@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="Fifth commit&#10;* Added a to do list">
-      <change afterPath="$PROJECT_DIR$/graphics/RetroByte.ttf" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(">
+      <change afterPath="$PROJECT_DIR$/currency.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity_list.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button.py" beforeDir="false" afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/PixelPurl.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/battle_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/battle_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity_classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/intro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,30 +57,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.button.executor": "Run",
-    "Python.images.executor": "Run",
-    "Python.intro.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Gabbe/PycharmProjects/Game/graphics",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.button.executor&quot;: &quot;Run&quot;,
+    &quot;Python.images.executor&quot;: &quot;Run&quot;,
+    &quot;Python.intro.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tools.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ui_base.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gabbe/PycharmProjects/Game/sounds&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\graphics" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game" />
     </key>
@@ -97,7 +105,9 @@
       <workItem from="1776874021285" duration="1059000" />
       <workItem from="1776875225253" duration="7699000" />
       <workItem from="1777032289987" duration="20907000" />
-      <workItem from="1777102855368" duration="12194000" />
+      <workItem from="1777102855368" duration="44923000" />
+      <workItem from="1777195689289" duration="10716000" />
+      <workItem from="1777276134446" duration="37468000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -141,7 +151,70 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1777051016674</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="seventh commit&#10;* made functioning buttons that effect the state of the game&#10;-note-&#10;needed alot of help with this part from artificial intelligence&#10;I think I understand most of it though :)">
+      <option name="closed" value="true" />
+      <created>1777117164960</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1777117164960</updated>
+    </task>
+    <task id="LOCAL−00008" summary="eighth commit&#10;* made buttons better looking&#10;-note-&#10;made hover effect and outlines (plus accessibility for future buttons like inventory)">
+      <option name="closed" value="true" />
+      <created>1777120149844</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1777120149844</updated>
+    </task>
+    <task id="LOCAL−00009" summary="ninth commit&#10;* implemented panels that can show typewriter text&#10;* added locking capability to buttons for later gameplay options&#10;-note-&#10;the text is still kinda weird and ai had to rewrite most of the text to make it work">
+      <option name="closed" value="true" />
+      <created>1777138553151</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1777138553151</updated>
+    </task>
+    <task id="LOCAL−00010" summary="tenth commit&#10;* big stuff happened&#10;* optimized images.py to flip more images&#10;* optimized image files to not turn blurry when upscaling&#10;* created a layout for both the intro part of the game and started on the battle and main game layout&#10;-note-&#10;- still need to polish stuff&#10;- this is turning quite big and my programs are already kinda sad,&#10;  unsure if this can even run on trinket pygame&#10;- still need to make layout for shop and inventory plus character select screen">
+      <option name="closed" value="true" />
+      <created>1777154816232</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1777154816233</updated>
+    </task>
+    <task id="LOCAL−00011" summary="eleventh commit&#10;* small but useful&#10;* created ui for CharcaterPicker()&#10;* made buttons that effect other things than the current state (good for battles later &#10;-note-&#10;- Check to do for what I still need to make&#10;- I am at a bit of a crossroads where I have several things to make but unsure what is smartest (I really don't wanna make the character and enemy classes :( )">
+      <option name="closed" value="true" />
+      <created>1777209572643</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1777209572643</updated>
+    </task>
+    <task id="LOCAL−00012" summary="eleventh commit &#10;* small but useful&#10;* created ui for CharcaterPicker()&#10;* made buttons that effect other things than the current state (good for battles later &#10;-note-&#10;- same commit, just forgot to do list">
+      <option name="closed" value="true" />
+      <created>1777209763875</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1777209763875</updated>
+    </task>
+    <task id="LOCAL−00013" summary="twelfth commit &#10;* added sounds!&#10;* now all buttons that are unlocked have hover and press sounds&#10;* changed colors for character select screen so each character has unique colors, will save color to make battle screen more personal&#10;-note-&#10;- the ui and sound systems are looking good now, takes a long time to make it look good tbh&#10;- will implement background sounds later, updated to do :(">
+      <option name="closed" value="true" />
+      <created>1777216466973</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1777216466973</updated>
+    </task>
+    <task id="LOCAL−00014" summary="thirteenth commit &#10;* fixed a bit with character select panels (color fix)&#10;* added entity_classes.py which stores both character- and attack classes (I have officially lost the plot man)&#10;* &#10;-note-&#10;- This project has now become: 1. I lack feature, 2. I lack knowledge of how to add it, 3. I ask chat, 4. I spend an hour finetuning, 5. repeat&#10;- next up is the battle loop system&#10;- added create text on button hover to to do">
+      <option name="closed" value="true" />
+      <created>1777293605583</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1777293605583</updated>
+    </task>
+    <task id="LOCAL−00015" summary="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(">
+      <option name="closed" value="true" />
+      <created>1777313992531</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1777313992531</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,12 +226,34 @@
     <MESSAGE value="Third commit&#10;* created module to extract sprites&#10;- going to start building fundamental files that store parts of the game and interactable buttons" />
     <MESSAGE value="Fourth commit&#10;* fixed sprite sizes and flipped enemy sprites" />
     <MESSAGE value="Fifth commit&#10;* Added a to do list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fifth commit&#10;* Added a to do list" />
+    <MESSAGE value="seventh commit&#10;* made functioning buttons that effect the state of the game&#10;-note-&#10;needed alot of help with this part from artificial intelligence&#10;I think I understand most of it though :)" />
+    <MESSAGE value="eighth commit&#10;* made buttons better looking&#10;-note-&#10;made hover effect and outlines (plus accessibility for future buttons like inventory)" />
+    <MESSAGE value="ninth commit&#10;* implemented panels that can show typewriter text&#10;* added locking capability to buttons for later gameplay options&#10;-note-&#10;the text is still kinda weird and ai had to rewrite most of the text to make it work" />
+    <MESSAGE value="tenth commit&#10;* big stuff happened&#10;* optimized images.py to flip more images&#10;* optimized image files to not turn blurry when upscaling&#10;* created a layout for both the intro part of the game and started on the battle and main game layout&#10;-note-&#10;- still need to polish stuff&#10;- this is turning quite big and my programs are already kinda sad,&#10;  unsure if this can even run on trinket pygame&#10;- still need to make layout for shop and inventory plus character select screen" />
+    <MESSAGE value="eleventh commit&#10;* small but useful&#10;* created ui for CharcaterPicker()&#10;* made buttons that effect other things than the current state (good for battles later &#10;-note-&#10;- Check to do for what I still need to make&#10;- I am at a bit of a crossroads where I have several things to make but unsure what is smartest (I really don't wanna make the character and enemy classes :( )" />
+    <MESSAGE value="eleventh commit &#10;* small but useful&#10;* created ui for CharcaterPicker()&#10;* made buttons that effect other things than the current state (good for battles later &#10;-note-&#10;- same commit, just forgot to do list" />
+    <MESSAGE value="twelfth commit &#10;* added sounds!&#10;* now all buttons that are unlocked have hover and press sounds&#10;* changed colors for character select screen so each character has unique colors, will save color to make battle screen more personal&#10;-note-&#10;- the ui and sound systems are looking good now, takes a long time to make it look good tbh&#10;- will implement background sounds later, updated to do :(" />
+    <MESSAGE value="thirteenth commit &#10;* fixed a bit with character select panels (color fix)&#10;* added entity_classes.py which stores both character- and attack classes (I have officially lost the plot man)&#10;* &#10;-note-&#10;- This project has now become: 1. I lack feature, 2. I lack knowledge of how to add it, 3. I ask chat, 4. I spend an hour finetuning, 5. repeat&#10;- next up is the battle loop system&#10;- added create text on button hover to to do" />
+    <MESSAGE value="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/battle_loop.py</url>
+          <line>149</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777041923779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1777116635000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777113484013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$button.coverage" NAME="button Coverage Results" MODIFIED="1777056191050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1777321240462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777209061233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1777152680595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$button.coverage" NAME="button Coverage Results" MODIFIED="1777119826890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

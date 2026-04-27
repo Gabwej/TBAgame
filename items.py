@@ -1,5 +1,6 @@
 import random
 
+
 class Item:
     def __init__(self, item_id, name, description, use_text):
         self.item_id = item_id
@@ -8,7 +9,8 @@ class Item:
         self.use_text = use_text
 
     def use(self, user, target, battle, stats=None):
-        return 0,[]
+        return 0, []
+
 
 class Potion(Item):
     def __init__(self):
@@ -28,6 +30,7 @@ class Potion(Item):
 
         return 0, [f"{user.name} heals {heal} HP!"]
 
+
 class Cleanse(Item):
     def __init__(self):
         super().__init__(
@@ -46,6 +49,7 @@ class Cleanse(Item):
 
         return 0, [f"{user.name} is cleansed of all effects!"]
 
+
 class EscapeRope(Item):
     def __init__(self):
         super().__init__(
@@ -58,6 +62,7 @@ class EscapeRope(Item):
     def use(self, user, target, battle, stats=None):
         battle.escape_unlocked = True
         return 0, ["Escape route is now available!"]
+
 
 class Bomb(Item):
     def __init__(self):
@@ -76,6 +81,7 @@ class Bomb(Item):
             f"{target.name} takes {damage} damage!",
             f"{target.name} is burning!"
         ]
+
 
 class MysteryVial(Item):
     def __init__(self):
@@ -103,6 +109,7 @@ class MysteryVial(Item):
 
         return 0, [f"{target.name} is affected by {effect}!"]
 
+
 class AdrenalineShot(Item):
     def __init__(self):
         super().__init__(
@@ -116,4 +123,3 @@ class AdrenalineShot(Item):
         user.add_buff("attack", 10, 3)
 
         return 0, [f"{user.name} gains +10 attack for 3 turns!"]
-

@@ -1,5 +1,7 @@
 from tools import Button, Panel, ImageObject, Sounds
 from images import Assets
+from entity_classes import Entity, Attack, DamageEffect
+
 
 # this is the base for the rest of the games ui
 class Base:
@@ -7,19 +9,19 @@ class Base:
         # fix so text comes from other file
         self.buttons = [
             # the fight button, makes this button attack[0] and buttonD attack[3), ButtonE becomes back and brings you to previous state
-            Button((20, 400, 270, 80), "Button A", self.go_to_a),
+            Button((20, 400, 270, 80), "Button A", self.go_to_attack),
             # inventory button, locks buttons A-D and E becomes back, creates buttons (will make ui)
             Button((310, 400, 270, 80), "Button B", self.go_to_b),
             # simple check button, updates info panel to enemy info, locks A-D and E is back
             Button((20, 500, 270, 80), "Button C", self.go_to_c),
             # run button (locked = True) for difficult monsters until half health or something
-            Button((310, 500, 270, 80), "Button D", self.go_to_d),
+            Button((310, 500, 270, 80), "Button D", self.go_to_d, locked=True),
             # next button, only visible when needed (in battle next and during dialoge at needed point)
             Button((665, 500, 270, 80), "Button E", self.go_to_d, locked=True),
         ]
 
         self.panels = [
-            Panel((0, 380, 600, 220), color= (139,69,19), outline=(160,82,45)),
+            Panel((0, 380, 600, 220), color=(139, 69, 19), outline=(160, 82, 45)),
             Panel((600, 0, 400, 600), text="This is an example text of how longer texts look here"
                                            "\n \nLook at that, how cool \nYou can even just do one for just one page break"),
         ]
@@ -30,8 +32,8 @@ class Base:
             ImageObject(Assets.sprites["monster3"][7], (440, 240), (128, 128)),
         ]
 
-    def go_to_a(self):
-        return StateA()
+    def go_to_attack(self):
+        return AttackPanel()
 
     def go_to_b(self):
         return StateB()
@@ -64,10 +66,15 @@ class Base:
             button.draw(screen)
 
 
-class StateA:
+class AttackPanel:
     def __init__(self):
         self.buttons = [
-            Button((20, 400, 270, 80), "Button A", self.go_back),
+            Button(
+                (20, 400, 270, 80),
+                f"{attack.name} ({attack.current_cooldown})" if attack.current_cooldown > 0 else attack.name,
+                lambda: self.use_attack(attack),
+                locked=not attack.is_ready()
+            ),
             Button((310, 400, 270, 80), "Button B", self.go_to_b),
             Button((20, 500, 270, 80), "Button C", self.go_to_c),
             Button((310, 500, 270, 80), "Button D", self.go_to_d),
@@ -77,7 +84,8 @@ class StateA:
         self.panels = [
             Panel((0, 380, 600, 220), color=(139, 69, 19), outline=(160, 82, 45)),
             Panel((600, 0, 400, 600), text="This is an example text of how longer texts look here"
-                                           "\n \nLook at that, how cool \nYou can even just do one for just one page break", typewriter=False),
+                                           "\n \nLook at that, how cool \nYou can even just do one for just one page break",
+                  typewriter=False),
         ]
 
         self.images = [
@@ -110,6 +118,7 @@ class StateA:
         for button in self.buttons:
             button.draw(screen)
 
+
 class StateB:
     def __init__(self):
         self.buttons = [
@@ -139,6 +148,7 @@ class StateB:
 
         for button in self.buttons:
             button.draw(screen)
+
 
 class StateC:
     def __init__(self):
@@ -170,6 +180,7 @@ class StateC:
         for button in self.buttons:
             button.draw(screen)
 
+
 class StateD:
     def __init__(self):
         self.buttons = [
@@ -178,7 +189,6 @@ class StateD:
 
     def go_back(self):
         pass
-
 
     def handle_input(self, event):
         for button in self.buttons:
@@ -201,6 +211,7 @@ class StateD:
 
         for button in self.buttons:
             button.draw(screen)
+
 
 class StateE:
     def __init__(self):

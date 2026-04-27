@@ -1,5 +1,6 @@
 from entity_classes import Entity
 
+
 class Battle:
     def __init__(self, player, enemy):
         self.player = player
@@ -76,6 +77,7 @@ class Battle:
 
     def player_start(self):
         logs, disabled = self.player.process_status()
+        self.player.reduce_cooldowns()
 
         for log in logs:
             self.add_log(log)
@@ -122,6 +124,8 @@ class Battle:
             return
 
         logs, disabled = self.enemy.process_status()
+
+        self.enemy.reduce_cooldowns()
 
         for log in logs:
             self.add_log(log)
@@ -172,9 +176,16 @@ class Battle:
             self.stats.battles_won += 1
             self.add_log(f"{self.enemy.name} has fallen!")
             self.waiting = True
-            self.state = "end"
+
+            gold = get_enemy_gold(self.enemy)
+            self.player.currency.add(gold)
+
+            self.add_log(f"You gained {gold} gold!")
+
             healed = self.player.post_battle_heal()
             self.add_log(f"You recovered {healed} HP after the fight!")
 
             self.player.post_battle_cleanup()
+
+            self.state = "end"
             return

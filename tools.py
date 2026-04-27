@@ -1,25 +1,27 @@
 import pygame
 
+
 class Sounds:
     hover = None
     press = None
 
-def load_sounds():
 
+def load_sounds():
     Sounds.hover = pygame.mixer.Sound("sounds/hover.mp3")
     Sounds.press = pygame.mixer.Sound("sounds/press.mp3")
 
     Sounds.hover.set_volume(0.1)
     Sounds.press.set_volume(0.1)
 
+
 # this is the blueprint for my buttons, I can create any shape with text
 # and unique actions that effect the game state
 class Button:
     def __init__(self, rect, text, action,
-                 color= (255,248,220),
-                 text_color = (139,69,19),
-                 outline_color = (222,184,135),
-                 locked = False):
+                 color=(255, 248, 220),
+                 text_color=(139, 69, 19),
+                 outline_color=(222, 184, 135),
+                 locked=False):
 
         self.rect = pygame.Rect(rect)
         self.text = text
@@ -53,7 +55,6 @@ class Button:
                 if self.rect.collidepoint(event.pos):
                     Sounds.press.play()
                     return self.action()
-
 
     # this draws all my buttons
     def draw(self, screen):
@@ -93,10 +94,11 @@ class Button:
 
         screen.blit(text_surface, text_rect)
 
+
 # this makes all my surfaces that are not images
 class Panel:
-    def __init__(self, rect, color=	(255,228,181), text="", text_color=	(128,0,0),
-                 typewriter=True, size = 32, outline=(222,184,135), radius=0):
+    def __init__(self, rect, color=(255, 228, 181), text="", text_color=(128, 0, 0),
+                 typewriter=True, size=32, outline=(222, 184, 135), radius=0):
         self.rect = pygame.Rect(rect)
         self.color = color
 
@@ -119,8 +121,8 @@ class Panel:
                 self.visible_chars += self.speed
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect, border_radius= self.radius)
-        pygame.draw.rect(screen, self.outline, self.rect, 5, border_radius= self.radius)
+        pygame.draw.rect(screen, self.color, self.rect, border_radius=self.radius)
+        pygame.draw.rect(screen, self.outline, self.rect, 5, border_radius=self.radius)
 
         if self.text and self.font:
             if self.typewriter:
@@ -162,9 +164,10 @@ class Panel:
             screen.blit(rendered_line, (x, y))
             y += self.font.get_height()
 
+
 # this class implements images easier and gives me the ability to resize images (game changer :O)
 class ImageObject:
-    def __init__(self, path, rect, size=None, visible = True):
+    def __init__(self, path, rect, size=None, visible=True):
         if isinstance(path, str):
             self.image = pygame.image.load(path).convert_alpha()
         else:
