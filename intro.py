@@ -1,6 +1,7 @@
 from tools import Button, Panel, ImageObject, Sounds
 from images import Assets
-
+from ending import EndScreen
+from entity_classes import Player
 
 # This is the intro to the game, which includes an easy menu, quick backstory and character select screen
 class Intro:
@@ -117,8 +118,16 @@ class CharacterPicker:
             ImageObject(Assets.sprites["player"][0], (781, 161), (128, 128)),
         ]
 
+# update later when characters are done and battle system works
     def start_game(self):
-        return Intro()
+        player = Player("Test", 100, 10, 5)
+
+        player.stats["total_damage"] = 123
+        player.stats["total_healing"] = 45
+        player.stats["battles_won"] = 3
+        player.stats["events"] = 7
+
+        return EndScreen(player, "lose")
 
     def select_panel(self, index, color):
         default_color = (255, 228, 181)

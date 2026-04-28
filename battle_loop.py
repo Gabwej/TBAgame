@@ -166,6 +166,9 @@ class Battle:
         self.state = "player_start"
 
     def cleanup(self):
+        if not self.enemy.is_alive() and self.player.is_alive():
+            self.player.stats["battles_won"] += 1
+
         if not self.player.is_alive():
             self.add_log("Player died!")
             self.waiting = True

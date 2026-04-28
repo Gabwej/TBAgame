@@ -26,12 +26,17 @@ class Attack:
                 logs.append(f"{target.name} was defeated!")
                 break
 
+        if hasattr(user, "stats"):
+            user.stats["total_damage"] += total_damage
+
         self.current_cooldown = self.cooldown
 
         return total_damage, logs
 
     def is_ready(self):
         return self.current_cooldown == 0
+
+
 
 
 # our base for custom effects for attacks
@@ -67,8 +72,8 @@ class HealEffect(Effect):
         healed = min(self.amount, target.max_hp - target.hp)
         target.hp += healed
 
-        if stats:
-            stats.total_healing += healed
+        if hasattr(user, "stats"):
+            user.stats["total_healing"] += healed
 
         return 0, [f"{target.name} heals {healed} HP!"]
 
@@ -372,6 +377,13 @@ class Player(Entity):
         self.currency = Currency(0)
 
         self.inventory = {}
+
+        self.stats = {
+            "total_damage": 0,
+            "total_healing": 0,
+            "battles_won": 0,
+            "events": 0
+        }
 
     def add_item(self, item, count=1):
         if item.item_id in self.inventory:
