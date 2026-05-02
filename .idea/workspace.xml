@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)">
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +105,7 @@
       <workItem from="1777195689289" duration="10716000" />
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
-      <workItem from="1777720369094" duration="24402000" />
+      <workItem from="1777720369094" duration="25619000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -230,7 +226,14 @@
       <option name="presentableId" value="LOCAL−00017" />
       <updated>1777738676164</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL−00018" summary="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks">
+      <option name="closed" value="true" />
+      <created>1777747349357</created>
+      <option name="number" value="LOCAL−00018" />
+      <option name="presentableId" value="LOCAL−00018" />
+      <updated>1777747349357</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +256,8 @@
     <MESSAGE value="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(" />
     <MESSAGE value="sixteenth commit &#10;* added a game over screen&#10;* added total_X stats to track stuff&#10;&#10;-note-&#10;- nothin'" />
     <MESSAGE value="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)" />
-    <option name="LAST_COMMIT_MESSAGE" value="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)" />
+    <MESSAGE value="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks" />
+    <option name="LAST_COMMIT_MESSAGE" value="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

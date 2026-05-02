@@ -147,3 +147,54 @@ class FreezeEffect(Effect):
         target.status_effects["freeze"] = self.amount
         return 0, [f"{target.name} is frozen!"]
 
+
+class LifestealEffect(Effect):
+    def __init__(self, percent, icon=None):
+        super().__init__(icon)
+        self.percent = percent  # 0.3 = 30%
+
+    def apply(self, user, target, attack):
+        damage, logs = target.take_damage(
+            user.get_attack(),
+            attacker=user,
+            can_crit=True,
+            cannot_miss=False
+        )
+
+        heal = int(damage * self.percent)
+        user.hp = min(user.max_hp, user.hp + heal)
+
+        if hasattr(user, "stats"):
+            user.stats["total_healing"] += heal
+
+        logs.append(f"{user.name} steals {heal} HP!")
+
+        return damage, logs
+
+class ConditionalEffect(Effect):
+    def __init__(self, condition, effect, fail_text=None):
+        super().__init__(effect.icon)
+        self.condition = condition  # function(user, target) -> bool
+        self.effect = effect
+        self.fail_text = fail_text
+
+    def apply(self, user, target, attack):
+        if self.condition(user, target):
+            return self.effect.apply(user, target, attack)
+
+        if self.fail_text:
+            return 0, [self.fail_text]
+
+        return 0, []
+
+    def target_has_status(status):
+        return lambda user, target: target.status_effects.get(status, 0) > 0
+
+    def user_hp_below(percent):
+        return lambda user, target: user.hp / user.max_hp <= percent
+
+    def target_hp_below(percent):
+        return lambda user, target: target.hp / target.max_hp <= percent
+
+    def always():
+        return lambda user, target: True
