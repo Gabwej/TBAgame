@@ -16,8 +16,8 @@ clock = pygame.time.Clock()
 load_all_sprites()
 SoundManager.load()
 
-current_state = Intro()
-#current_state = Base()
+#current_state = Intro()
+current_state = Base()
 print(current_state, type(current_state))
 
 # this is the loop that is actively updating everything every frame

@@ -24,3 +24,15 @@ Button(
         test_btn.icon = Assets.icons[27][11]
 
         self.buttons.append(test_btn)
+
+
+class BuffEffect(Effect):
+    def __init__(self, stat, amount, turns, icon=None):
+        super().__init__(icon)
+        self.amount = amount
+        self.stat = stat
+        self.turns = turns
+
+    def apply(self, user, target):
+        user.add_buff(self.stat, self.amount, self.turns)
+        return 0, [f"{user.name} gains +{self.amount} {self.stat} for {self.turns} turns!"]

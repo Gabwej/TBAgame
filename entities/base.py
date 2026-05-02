@@ -1,5 +1,14 @@
 import random
 
+class Buff:
+    def __init__(self, stat, amount, turns):
+        self.stat = stat
+        self.amount = amount
+        self.turns = turns
+
+    def tick(self):
+        self.turns -= 1
+        return self.turns <= 0
 
 # this is the base class for all entities, the stats the player and enemies have in common
 class Entity:
@@ -19,6 +28,13 @@ class Entity:
         self.crit_multiplier = crit_multiplier
         self.dodge_chance = dodge_chance
 
+        self.resistances = {
+            "physical": 1.0,
+            "burn": 1.0,
+            "poison": 1.0,
+            "bleed": 1.0,
+        }
+
         self.status_effects = {
             "burn": 0,
             "poison": 0,
@@ -31,6 +47,8 @@ class Entity:
 
         self.sprite = sprite
 
+    def is_alive(self):
+        return self.hp > 0
 
     def reduce_cooldowns(self):
         if hasattr(self, "attacks"):
@@ -63,12 +81,13 @@ class Entity:
         return max(0, self.defense - self.defense_debuff + bonus)
 
     def take_damage(self, amount, ignore_defense=False, defense_mult=1.0,
-                    can_crit=False, attacker=None, stats=None):
+                    can_crit=False, attacker=None, stats=None, cannot_miss=False, damage_type="physical"):
 
         logs = []
 
+
         # checks if you dodged
-        if attacker and random.random() < self.dodge_chance:
+        if attacker and not cannot_miss and random.random() < self.dodge_chance:
             logs.append(f"{self.name} dodged the attack!")
             return 0, logs
 
@@ -83,6 +102,9 @@ class Entity:
             if random.random() < attacker.crit_chance:
                 damage = int(damage * attacker.crit_multiplier)
                 logs.append("Critical hit!")
+
+        mult = self.resistances.get(damage_type, 1.0)
+        damage = int(damage * mult)
 
         self.hp = max(0, self.hp - damage)
 
@@ -102,14 +124,14 @@ class Entity:
         if self.status_effects.get("stun", 0) > 0:
             self.status_effects["stun"] -= 1
             logs.append(f"{self.name} is stunned!")
-            disabled = "stunned"
+            disabled = True
 
         if self.status_effects.get("freeze", 0) > 0:
             self.status_effects["freeze"] -= 1
 
             damage, _ = self.take_damage(2, ignore_defense=True)
             logs.append(f"{self.name} is frozen and takes {damage} damage!")
-            disabled = "frozen"
+            disabled = True
 
             if not self.is_alive():
                 return logs, disabled
@@ -117,7 +139,7 @@ class Entity:
         if self.status_effects.get("poison", 0) > 0:
             stacks = self.status_effects["poison"]
 
-            damage, _ = self.take_damage(int(stacks ** 1.5), ignore_defense=True)
+            damage, _ = self.take_damage(int(stacks ** 1.5), ignore_defense=True, damage_type="poison")
             logs.append(f"{self.name} takes {damage} poison damage!")
 
             self.status_effects["poison"] -= 1
@@ -130,7 +152,8 @@ class Entity:
 
             damage, _ = self.take_damage(
                 max(1, int(self.max_hp * 0.1)),
-                defense_mult=0.5
+                defense_mult=0.5,
+                damage_type="burn"
             )
             logs.append(f"{self.name} takes {damage} burn damage!")
 
@@ -144,7 +167,8 @@ class Entity:
 
             damage, _ = self.take_damage(
                 int(self.max_hp * 0.05 * stacks),
-                ignore_defense=True
+                ignore_defense=True,
+                damage_type="bleed"
             )
             logs.append(f"{self.name} bleeds for {damage} damage!")
 
@@ -182,14 +206,3 @@ class Entity:
             logs.append(f"{self.name}'s buffs wear off.")
 
         return logs, disabled
-
-
-    class Buff:
-        def __init__(self, stat, amount, turns):
-            self.stat = stat  # "attack" or "defense"
-            self.amount = amount
-            self.turns = turns
-
-        def tick(self):
-            self.turns -= 1
-            return self.turns <= 0

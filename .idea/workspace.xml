@@ -4,52 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="sixteenth commit &#10;* added a game over screen&#10;* added total_X stats to track stuff&#10;&#10;-note-&#10;- nothin'">
-      <change afterPath="$PROJECT_DIR$/assets/sounds.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entities/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entities/enemy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entities/player.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/Summer8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/icons32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/landscape2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/landscape3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/landscape4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/landscape5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/landscape6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/ocean6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/summer1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/summer2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/systems/currency.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/systems/inventory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Game.iml" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battle_loop.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/currency.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ending.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ending.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity_classes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/entity_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/intro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/items/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stat_storage.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +109,7 @@
       <workItem from="1777195689289" duration="10716000" />
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
-      <workItem from="1777720369094" duration="18128000" />
+      <workItem from="1777720369094" duration="24402000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -262,7 +223,14 @@
       <option name="presentableId" value="LOCAL−00016" />
       <updated>1777388946911</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL−00017" summary="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)">
+      <option name="closed" value="true" />
+      <created>1777738676164</created>
+      <option name="number" value="LOCAL−00017" />
+      <option name="presentableId" value="LOCAL−00017" />
+      <updated>1777738676164</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +252,8 @@
     <MESSAGE value="thirteenth commit &#10;* fixed a bit with character select panels (color fix)&#10;* added entity_classes.py which stores both character- and attack classes (I have officially lost the plot man)&#10;* &#10;-note-&#10;- This project has now become: 1. I lack feature, 2. I lack knowledge of how to add it, 3. I ask chat, 4. I spend an hour finetuning, 5. repeat&#10;- next up is the battle loop system&#10;- added create text on button hover to to do" />
     <MESSAGE value="fourteenth commit &#10;* worked on the worst things, backend battle stuff, check notes&#10;* added inventory, items work as attacks&#10;* entity classes are kinda done, the blueprints for attacks and such is done&#10;* added effects to the game like freeze, burn and poison&#10;&#10;-note-&#10;- gotta be honest here, ive worked hand in hand with chat here for god knows how many hours (maybe 7-8) and now the only one who knows how it works is chat.&#10;- for every one thing I implement I think about two new things that are needed, My longing for when this gets done is growing by the minute&#10;- I havent even studied for my upcoming, more important, tests :(" />
     <MESSAGE value="sixteenth commit &#10;* added a game over screen&#10;* added total_X stats to track stuff&#10;&#10;-note-&#10;- nothin'" />
-    <option name="LAST_COMMIT_MESSAGE" value="sixteenth commit &#10;* added a game over screen&#10;* added total_X stats to track stuff&#10;&#10;-note-&#10;- nothin'" />
+    <MESSAGE value="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)" />
+    <option name="LAST_COMMIT_MESSAGE" value="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -299,7 +268,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1777738341191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1777745192723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1777152680595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
