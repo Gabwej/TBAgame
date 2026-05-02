@@ -1,4 +1,6 @@
-# use the color codes so the hover effect works
+
+
+\n
 
 TURN TYPEWRITER off for panels that should be static
 
@@ -36,3 +38,28 @@ class BuffEffect(Effect):
     def apply(self, user, target):
         user.add_buff(self.stat, self.amount, self.turns)
         return 0, [f"{user.name} gains +{self.amount} {self.stat} for {self.turns} turns!"]
+
+
+    "Attack name": Attack(
+        name="Attack name",
+        description="Does a small amount of physical damage. \n0 cooldown, 0 cast time",
+        effects=[
+            DamageEffect(15),
+            BurnEffect(2),
+            PoisonEffect(3),
+            BleedEffect(2),
+            WitherEffect(2),
+            FreezeEffect(1),
+            StunEffect(1),
+            HealEffect(20),
+            BuffEffect("attack", 5, 3),
+            BuffEffect("defense", 3, 2),
+            LifeStealEffect(0.3),  # 30% of damage dealt returned as HP
+        ],
+        cooldown=0,
+        start_cooldown=0,
+        cast_time=0,
+        cannot_miss=False,  #  ignores dodge
+        icon=Assets.icons[0][0],
+        sound=None  # sound, maybe later
+    ),

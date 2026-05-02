@@ -125,6 +125,16 @@ class WitherEffect(Effect):
         target.defense_debuff = max(0, target.defense_debuff - 1)
         target.attack_debuff = max(0, target.attack_debuff - 1)
 
+class BuffEffect(Effect):
+    def __init__(self, stat, amount, turns, icon=None):
+        super().__init__(icon)
+        self.stat = stat
+        self.amount = amount
+        self.turns = turns
+
+    def apply(self, user, target, attack):
+        user.add_buff(self.stat, self.amount, self.turns)
+        return 0, [f"{user.name} gains +{self.amount} {self.stat} for {self.turns} turns!"]
 
 # the stun effects
 
@@ -133,7 +143,7 @@ class StunEffect(Effect):
         super().__init__(icon)
         self.amount = amount
 
-    def apply(self, user, target):
+    def apply(self, user, target, attack):
         target.status_effects["stun"] = self.amount
         return 0, [f"{target.name} is stunned!"]
 
@@ -143,33 +153,31 @@ class FreezeEffect(Effect):
         super().__init__(icon)
         self.amount = amount
 
-    def apply(self, user, target):
+    def apply(self, user, target, attack):
         target.status_effects["freeze"] = self.amount
         return 0, [f"{target.name} is frozen!"]
 
 
-class LifestealEffect(Effect):
+class LifeStealEffect(Effect):
     def __init__(self, percent, icon=None):
         super().__init__(icon)
-        self.percent = percent  # 0.3 = 30%
+        self.percent = percent
 
     def apply(self, user, target, attack):
-        damage, logs = target.take_damage(
-            user.get_attack(),
-            attacker=user,
-            can_crit=True,
-            cannot_miss=False
-        )
+        # lifesteal depends on previous damage dealt in SAME attack
+        # so we store it temporarily on the attack
 
-        heal = int(damage * self.percent)
+        if not hasattr(attack, "damage_dealt"):
+            return 0, []
+
+        heal = int(attack.damage_dealt * self.percent)
+
         user.hp = min(user.max_hp, user.hp + heal)
 
         if hasattr(user, "stats"):
             user.stats["total_healing"] += heal
 
-        logs.append(f"{user.name} steals {heal} HP!")
-
-        return damage, logs
+        return 0, [f"{user.name} steals {heal} HP!"]
 
 class ConditionalEffect(Effect):
     def __init__(self, condition, effect, fail_text=None):

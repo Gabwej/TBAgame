@@ -13,7 +13,7 @@ class Base:
         self.buttons = [
             # the fight button, makes this button attack[0] and buttonD attack[3), ButtonE comes back and brings you to previous state
             Button((20, 400, 270, 80), "Button A", self.go_to_attack, hover_panel_data={
-            "text": "This is the longest text i could possibly add, any longer than this and it becomes kinda weird tbh",
+            "text": "A simple slash \nDoes a small amount of physical damage. \n0 start_cooldown, 0 cooldown, 0 cast time",
             }),
             # inventory button, locks buttons A-D and E comes back, creates buttons (will make ui)
             Button((310, 400, 270, 80), "Attack B", lambda: None),
