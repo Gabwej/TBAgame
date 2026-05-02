@@ -1,17 +1,5 @@
 import pygame
-
-
-class Sounds:
-    hover = None
-    press = None
-
-
-def load_sounds():
-    Sounds.hover = pygame.mixer.Sound("sounds/hover.mp3")
-    Sounds.press = pygame.mixer.Sound("sounds/press.mp3")
-
-    Sounds.hover.set_volume(0.1)
-    Sounds.press.set_volume(0.1)
+from assets.sounds import SoundManager
 
 
 # this is the blueprint for my buttons, I can create any shape with text
@@ -21,7 +9,9 @@ class Button:
                  color=(255, 248, 220),
                  text_color=(139, 69, 19),
                  outline_color=(222, 184, 135),
-                 locked=False):
+                 locked=False,
+                 hover_panel_data=None,
+                 ):
 
         self.rect = pygame.Rect(rect)
         self.text = text
@@ -36,13 +26,21 @@ class Button:
         self.text_color = text_color
         self.outline_color = outline_color
 
+        self.hover_panel_data = hover_panel_data
+        self.icon = None
+
+    def get_hover_panel(self):
+        if self.hovered and self.hover_panel_data and not self.locked:
+            return self.hover_panel_data
+        return None
+
     # this makes my buttons send the next game state if clicked
     def handle_event(self, event):
         if not self.locked:
             mouse_over = self.rect.collidepoint(pygame.mouse.get_pos())
 
             if mouse_over and not self.was_hovered:
-                Sounds.hover.play()
+                SoundManager.play("hover")
 
             self.hovered = mouse_over
             self.was_hovered = mouse_over
@@ -53,7 +51,7 @@ class Button:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if not self.locked:
                 if self.rect.collidepoint(event.pos):
-                    Sounds.press.play()
+                    SoundManager.play("press")
                     return self.action()
 
     # this draws all my buttons
@@ -90,7 +88,21 @@ class Button:
         )
 
         text_surface = self.font.render(self.text, True, self.text_color)
+
+        text_x_offset = 0
+
+        # draw icon if exists
+        if self.icon:
+            icon_rect = self.icon.get_rect()
+            icon_rect.centery = self.rect.centery
+            icon_rect.x = self.rect.x + 10
+
+            screen.blit(self.icon, icon_rect)
+            text_x_offset = 16  # 👈 shift text
+
+        # draw text
         text_rect = text_surface.get_rect(center=self.rect.center)
+        text_rect.x += text_x_offset
 
         screen.blit(text_surface, text_rect)
 
@@ -115,6 +127,8 @@ class Panel:
         self.visible_chars = 0
         self.speed = 1
 
+        self.icon = None
+
     def update(self):
         if self.typewriter:
             if self.visible_chars < len(self.text):
@@ -136,7 +150,20 @@ class Panel:
         x = self.rect.x + self.padding
         y = self.rect.y + self.padding
 
-        max_width = self.rect.width - self.padding * 2
+        text_x_offset = 0
+
+        # icon first (layout decision before text)
+        if self.icon:
+            icon_rect = self.icon.get_rect()
+            icon_rect.x = x
+            icon_rect.centery = self.rect.y + self.rect.height // 2
+
+            screen.blit(self.icon, icon_rect)
+            text_x_offset = 16
+
+        x += text_x_offset
+
+        max_width = self.rect.width - self.padding * 2 - text_x_offset
 
         final_lines = []
 

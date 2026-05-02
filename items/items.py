@@ -1,5 +1,5 @@
 import random
-
+import pygame
 
 class Item:
     def __init__(self, item_id, name, description, use_text):

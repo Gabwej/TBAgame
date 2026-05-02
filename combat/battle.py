@@ -1,5 +1,6 @@
-from entity_classes import Entity
-
+from entities.player import Player
+from entities.enemy import Enemy
+import random
 
 class Battle:
     def __init__(self, player, enemy):
@@ -26,7 +27,7 @@ class Battle:
 
         damage, logs = item.use(self.player, self.enemy, self, self.stats)
 
-        self.stats.total_damage += damage
+        self.player.stats["total_damage"] += damage
         self.log.extend(logs)
 
         self.player.remove_item(item_id, 1)
@@ -180,7 +181,7 @@ class Battle:
             self.add_log(f"{self.enemy.name} has fallen!")
             self.waiting = True
 
-            gold = get_enemy_gold(self.enemy)
+            gold = random.randint(*self.enemy.money_drop)
             self.player.currency.add(gold)
 
             self.add_log(f"You gained {gold} gold!")

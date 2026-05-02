@@ -1,5 +1,5 @@
 
-from tools import Button, Panel, ImageObject, Sounds
+from ui.tools import Button, Panel, ImageObject
 
 
 def build_game_over_text(player, result):
@@ -16,10 +16,10 @@ def build_game_over_text(player, result):
         f"{intro}\n\n"
         "These were your stats:\n\n"
         f"Character played as: {player.name}\n"
-        f"Total damage done: {player.stats['total_damage']}\n"
-        f"Total health healed: {player.stats['total_healing']}\n"
-        f"Battles won: {player.stats['battles_won']}\n"
-        f"Events experienced: {player.stats['events']}\n"
+        f"Total damage done: {player.stats.get("total_damage", 0)}\n"
+        f"Total health healed: {player.stats.get("total_healing", 0)}\n"
+        f"Battles won: {player.stats.get("battles_won", 0)}\n"
+        f"Events experienced: {player.stats.get("events", 0)}\n"
     )
 
 class EndScreen:
@@ -40,7 +40,7 @@ class EndScreen:
             ]
 
         self.images = [
-            ImageObject("graphics/landscape1.png", (0, 0), (1000, 600))
+            ImageObject("graphics/Summer8.png", (0, 0), (1000, 600))
         ]
 
 

@@ -1,14 +1,12 @@
 from sys import exit
 import pygame
-from intro import Intro
-from images import load_all_sprites
-from tools import load_sounds
-from ui_base import Base
-from stat_storage import RunStats
+from assets.images import load_all_sprites
+from ui.ui_base import Base
+from ui.intro import Intro
+from assets.sounds import SoundManager
 
 pygame.init()
 pygame.mixer.init()
-stats = RunStats()
 
 # the display for the game (not to be meddled with)
 screen = pygame.display.set_mode((1000, 600))
@@ -16,7 +14,7 @@ pygame.display.set_caption('A Certain Text Based Adventure')
 clock = pygame.time.Clock()
 
 load_all_sprites()
-load_sounds()
+SoundManager.load()
 
 current_state = Intro()
 #current_state = Base()

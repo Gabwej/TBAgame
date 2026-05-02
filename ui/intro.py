@@ -1,7 +1,7 @@
-from tools import Button, Panel, ImageObject, Sounds
-from images import Assets
-from ending import EndScreen
-from entity_classes import Player
+from ui.tools import Button, Panel, ImageObject
+from assets.images import Assets
+from ui.ending import EndScreen
+from entities.player import Player
 
 # This is the intro to the game, which includes an easy menu, quick backstory and character select screen
 class Intro:
@@ -95,7 +95,7 @@ class CharacterPicker:
             Button((80, 350, 150, 80), "Warrior", lambda: self.select_panel(1, (95, 158, 160)), ),
             Button((310, 350, 150, 80), "Ranger", lambda: self.select_panel(2, (60, 179, 113)), ),
             Button((540, 350, 150, 80), "Mage", lambda: self.select_panel(3, (100, 149, 237)), ),
-            Button((770, 350, 150, 80), "Rouge", lambda: self.select_panel(4, (143, 188, 143)), ),
+            Button((770, 350, 150, 80), "Rogue", lambda: self.select_panel(4, (143, 188, 143)), ),
         ]
 
         self.panels = [
