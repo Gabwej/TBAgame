@@ -18,7 +18,7 @@ CHARACTERS = {
         "Slash",
         "Heavy Slash",
         "Flesh Wound",
-        "Defencive Stance"
+        "Defensive Stance"
     ],
     "sprite": Assets.sprites["player"][4]
 },

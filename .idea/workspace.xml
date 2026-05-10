@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later">
-      <change afterPath="$PROJECT_DIR$/entities/characters.py" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/characters.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/characters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/enemy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/entity_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/entity_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +112,7 @@
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
       <workItem from="1777720369094" duration="39491000" />
-      <workItem from="1778402781269" duration="5420000" />
+      <workItem from="1778402781269" duration="15918000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -253,7 +254,14 @@
       <option name="presentableId" value="LOCAL−00020" />
       <updated>1778405584597</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL−00021" summary="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(">
+      <option name="closed" value="true" />
+      <created>1778412158022</created>
+      <option name="number" value="LOCAL−00021" />
+      <option name="presentableId" value="LOCAL−00021" />
+      <updated>1778412158022</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +288,8 @@
     <MESSAGE value="twentieth commit&#10;* fixed lifesteal and buffs (now they work prolly)&#10;* added many cool attacks (check em out in attacks)&#10;&#10;-note-&#10;- prolly gonna add more attacks later&#10;- tomorrow it's time for characters&#10;- prolly gonna have to fix inventory system later (unsure)" />
     <MESSAGE value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
     <MESSAGE value="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later" />
-    <option name="LAST_COMMIT_MESSAGE" value="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later" />
+    <MESSAGE value="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

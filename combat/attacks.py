@@ -117,8 +117,8 @@ ATTACKS = {
         icon=Assets.icons[6][1],
         sound=None  # sound, maybe later
     ),
-    "Defencive Stance": Attack(
-        name="Defencive Stance",
+    "Defensive Stance": Attack(
+        name="Defensive Stance",
         description="Lock arms and pray. (10 def) \n4 cooldown, 0 cast time",
         effects=[
             BuffEffect("defense", 10, 2),
@@ -391,7 +391,7 @@ ATTACKS = {
         name="Golem Summon",
         description="He protecc. (20 def) \n6 cooldown, 2 cast time",
         effects=[
-            BuffEffect("defense", 20, 2),
+            BuffEffect("defense", 20, 5),
         ],
         cooldown=6,
         start_cooldown=3,
@@ -471,7 +471,7 @@ ATTACKS = {
         name="Trash Talk",
         description="Rude dude.. (5 wither, 1 stun) \n3 cooldown, 1 cast time",
         effects=[
-            WitherEffect(2),
+            WitherEffect(5),
             StunEffect(1),
         ],
         cooldown=3,
@@ -511,4 +511,94 @@ ATTACKS = {
         icon=Assets.icons[16][5],
         sound=None  # sound, maybe later
     ),
+    "Blob": Attack(
+        name="Blob",
+        description="Throw goo! (3 dmg) \n0 cooldown, 0 cast time",
+        effects=[
+            DamageEffect(3, 1.5),
+        ],
+
+        icon=Assets.icons[22][12],
+        sound=None  # sound, maybe later
+    ),
+    "Stare": Attack(
+        name="Stare",
+        description="Mama always told me.. (5 dmg, 1 stun) \n3 cooldown, 0 cast time",
+        effects=[
+            DamageEffect(5),
+            StunEffect(1),
+        ],
+        cooldown=3,
+        sound=None  # sound, maybe later
+    ),
+    "Body Slam": Attack(
+        name="Body Slam",
+        description="No weapon, no problem (10 dmg) \n0 cooldown, 0 cast time",
+        effects=[
+            DamageEffect(10, 1.5),
+        ],
+        sound=None  # sound, maybe later
+    ),
+    "Natures Gift": Attack(
+        name="Natures Gift",
+        description="A soothing melody (20 hp) \n3 cooldown, 0 cast time",
+        effects=[
+            HealEffect(20),
+        ],
+        cooldown=3,
+        start_cooldown=1,
+        icon=Assets.icons[23][5],
+        sound=None  # sound, maybe later
+    ),
+    "Leaf Storm": Attack(
+        name="Leaf Storm",
+        effects=[
+            DamageEffect(5, 0.7),
+            DamageEffect(5, 0.4),
+            DamageEffect(5, 0.4),
+            BleedEffect(2),
+        ],
+        cooldown=3,
+        sound=None  # sound, maybe later
+    ),
+    "Punch": Attack(
+        name="Punch",
+        effects=[
+            DamageEffect(5, 1.5),
+        ],
+        sound=None  # sound, maybe later
+    ),
+    "Spore Cloud": Attack(
+        name="Spore Cloud",
+        description="Open a window.. (3 poison, 1 stun) \n3 cooldown, 0 cast time",
+        effects=[
+            PoisonEffect(3),
+            StunEffect(1),
+        ],
+        cooldown=3,
+        icon=Assets.icons[22][12],
+        sound=None  # sound, maybe later
+    ),
+    "Headbutt": Attack(
+        name="Headbutt",
+        effects=[
+            DamageEffect(15),
+
+        ],
+    ),
+    "Ice Cold Gaze": Attack(
+        name="Ice Cold Gaze",
+        description="Chills the core (2 Freeze, 1 Wither) \n4 cooldown, 1 cast time",
+        effects=[
+            WitherEffect(1),
+            FreezeEffect(2),
+        ],
+        cooldown=4,
+        start_cooldown=1,
+        cast_time=1,
+        cannot_miss=True,
+        icon=Assets.icons[22][2],
+        sound=None  # sound, maybe later
+    ),
+
 }

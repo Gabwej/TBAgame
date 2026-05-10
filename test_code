@@ -40,6 +40,8 @@ class BuffEffect(Effect):
         return 0, [f"{user.name} gains +{self.amount} {self.stat} for {self.turns} turns!"]
 
 
+# base for attack
+
     "Attack name": Attack(
         name="Attack name",
         description="Does a small amount of physical damage. \n0 cooldown, 0 cast time",
@@ -63,3 +65,36 @@ class BuffEffect(Effect):
         icon=Assets.icons[0][0],
         sound=None  # sound, maybe later
     ),
+
+# enemy base
+
+    "enemy_id": {
+    "name": "Enemy Name",
+
+    "hp": 100,
+    "attack": 10,
+    "defense": 5,
+
+    "crit_chance": 0.1,
+    "crit_multiplier": 1.5,
+    "dodge_chance": 0.05,
+
+    "tier": 1,
+
+    "money_drop": (5, 15),
+
+    "attacks": [
+        "Slash",
+        "Heavy Slash",
+    ],
+
+    "sprite": Assets.sprites["monster1"][0],
+
+    "description": "Put description here.",
+
+    # optional
+    # "resistances": {
+    #     "burn": 0.5,
+    #     "poison": 1.5
+    # }
+},
