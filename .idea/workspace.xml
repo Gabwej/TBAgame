@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now">
+      <change afterPath="$PROJECT_DIR$/sounds/attacks/BowAttack1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/attacks/BowAttack2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/attacks/Fireball.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/attacks/SwordAttack1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/attacks/SwordAttack2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/battle.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/Beach.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestDay.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestDayRain.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestNight.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestNightRain.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/Sea.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/nature/SeaRain.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sounds/theme.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +75,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Gabbe/PycharmProjects/Game/graphics",
+    "last_opened_file_path": "C:/Users/Gabbe/PycharmProjects/Game/sounds/attacks",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,11 +86,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Gabbe\PycharmProjects\Game\graphics" />
+      <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds\attacks" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds" />
+      <recent name="C:\Users\Gabbe\PycharmProjects\Game\graphics" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds\nature" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\items" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\ui" />
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\assets" />
@@ -109,6 +121,7 @@
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
       <workItem from="1777720369094" duration="39491000" />
+      <workItem from="1778402781269" duration="2038000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -267,6 +280,7 @@
     <MESSAGE value="sixteenth commit &#10;* added a game over screen&#10;* added total_X stats to track stuff&#10;&#10;-note-&#10;- nothin'" />
     <MESSAGE value="seventeenth commit (structure changes)&#10;* added icons for future attacks and effects &#10;* added panel_on_hover for descriptions and stuff (needs work)&#10;* fixed folder and file layouts for fewer headaches (big)&#10;* added new backgrounds for upcoming events and such&#10;&#10;-note-&#10;- I needed the ui to feel more alive and the buttons need to be clean and small so a large description window was absolutely needed (for about every button that is to be used)&#10;- backend needed better structure, I think stuff works, but I am unsure (sadge)&#10;- I am still building the battle system (nothing works yet because ui is not fully built and structure problems are everywhere in battle_loop)" />
     <MESSAGE value="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks" />
+    <MESSAGE value="twentieth commit&#10;* fixed lifesteal and buffs (now they work prolly)&#10;* added many cool attacks (check em out in attacks)&#10;&#10;-note-&#10;- prolly gonna add more attacks later&#10;- tomorrow it's time for characters&#10;- prolly gonna have to fix inventory system later (unsure)" />
     <MESSAGE value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
     <option name="LAST_COMMIT_MESSAGE" value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
   </component>
