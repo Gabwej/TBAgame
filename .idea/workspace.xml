@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now">
-      <change afterPath="$PROJECT_DIR$/sounds/attacks/BowAttack1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/attacks/BowAttack2.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/attacks/Fireball.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/attacks/SwordAttack1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/attacks/SwordAttack2.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/battle.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/Beach.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestDay.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestDayRain.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestNight.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/ForestNightRain.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/Sea.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/nature/SeaRain.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sounds/theme.mp3" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later">
+      <change afterPath="$PROJECT_DIR$/entities/characters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/player.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +111,7 @@
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
       <workItem from="1777720369094" duration="39491000" />
-      <workItem from="1778402781269" duration="2038000" />
+      <workItem from="1778402781269" duration="5420000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -256,7 +246,14 @@
       <option name="presentableId" value="LOCAL−00019" />
       <updated>1777748294176</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL−00020" summary="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later">
+      <option name="closed" value="true" />
+      <created>1778405584597</created>
+      <option name="number" value="LOCAL−00020" />
+      <option name="presentableId" value="LOCAL−00020" />
+      <updated>1778405584597</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +279,8 @@
     <MESSAGE value="nineteenth commit&#10;* modified attack system&#10;&#10;-note-&#10;- I will add like 2 more status effects and then ill actually start making all the attacks" />
     <MESSAGE value="twentieth commit&#10;* fixed lifesteal and buffs (now they work prolly)&#10;* added many cool attacks (check em out in attacks)&#10;&#10;-note-&#10;- prolly gonna add more attacks later&#10;- tomorrow it's time for characters&#10;- prolly gonna have to fix inventory system later (unsure)" />
     <MESSAGE value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
-    <option name="LAST_COMMIT_MESSAGE" value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
+    <MESSAGE value="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later" />
+    <option name="LAST_COMMIT_MESSAGE" value="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

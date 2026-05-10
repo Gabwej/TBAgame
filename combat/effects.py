@@ -15,13 +15,18 @@ class Effect:
 
 # classic attacks that only do damage
 class DamageEffect(Effect):
-    def __init__(self, amount, icon=None):
+    def __init__(self, amount, scaling=1.0, icon=None):
         super().__init__(icon)
+
         self.amount = amount
+        self.scaling = scaling
 
     def apply(self, user, target, attack):
+
+        scaled_damage = self.amount + int(user.get_attack() * self.scaling)
+
         damage, logs = target.take_damage(
-            self.amount,
+            scaled_damage,
             attacker=user,
             can_crit=True,
             cannot_miss=attack.cannot_miss

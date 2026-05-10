@@ -91,7 +91,7 @@ ATTACKS = {
         name="Slash",
         description="Put in some power? (10 dmg). \n0 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, scaling=0.8),
         ],
         icon=Assets.icons[16][12],
         sound=None  # sound, maybe later
@@ -132,7 +132,7 @@ ATTACKS = {
         name="Quick Shot",
         description="If only you aimed... (10 dmg) \n0 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, scaling=0.8),
         ],
         icon=Assets.icons[16][0],
         sound=None  # sound, maybe later
@@ -141,7 +141,7 @@ ATTACKS = {
         name="Piercing Shot",
         description="Very sharp. (5 dmg, 3 bleed) \n2 cooldown, 0 cast time",
         effects=[
-            DamageEffect(5),
+            DamageEffect(5,1.0),
             BleedEffect(3),
         ],
         cooldown=2,
@@ -153,7 +153,7 @@ ATTACKS = {
         name="Heavy Shot",
         description="Uses blunt arrows? (25 dmg, 1 stun). \n3 cooldown, 0 cast time",
         effects=[
-            DamageEffect(25),
+            DamageEffect(25, 1.5),
             StunEffect(1),
         ],
         cooldown=3,
@@ -178,7 +178,7 @@ ATTACKS = {
         name="Stick Slap",
         description="Bonk em! (5 dmg) \n0 cooldown, 0 cast time",
         effects=[
-            DamageEffect(5),
+            DamageEffect(5, scaling=0.8),
         ],
         cannot_miss=True,  #  ignores dodge
         icon=Assets.icons[23][10],
@@ -188,7 +188,7 @@ ATTACKS = {
         name="Fireball",
         description="I cast fireball! (15 dmg, 2 burn). \n1 cooldown, 1 cast time",
         effects=[
-            DamageEffect(15),
+            DamageEffect(15, 1.3),
             BurnEffect(2),
         ],
         cooldown=1,
@@ -200,9 +200,9 @@ ATTACKS = {
         name="Magic Missile",
         description="I cast: (3x shots 5-10 dmg) \n3 cooldown, 1 cast time",
         effects=[
-            DamageEffect(10),
-            DamageEffect(7),
-            DamageEffect(5),
+            DamageEffect(10, 0.4),
+            DamageEffect(7, 0.4),
+            DamageEffect(5, 0.5),
         ],
         cooldown=3,
         start_cooldown=2,
@@ -227,7 +227,7 @@ ATTACKS = {
         name="Simple Stab",
         description="Stab em! (10 dmg, 1 bleed) \n0 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, 1.0),
             BleedEffect(1),
         ],
         icon=Assets.icons[13][13],
@@ -237,7 +237,7 @@ ATTACKS = {
         name="Coated Stab",
         description="Like stab but bad. (10 dmg, 2 poison) \n2 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, 0.9),
             PoisonEffect(2),
         ],
         cooldown=2,
@@ -248,7 +248,7 @@ ATTACKS = {
         name="Smoke Bomb",
         description="Hey whats this? (10 dmg, 2 stun) \n3 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, 0.5),
             StunEffect(2),
         ],
         cooldown=3,
@@ -262,7 +262,7 @@ ATTACKS = {
         name="Bri'ish Stab",
         description="Do em like the torieys! (20 dmg, 4 poison) \n6 cooldown, 2 cast time",
         effects=[
-            DamageEffect(20),
+            DamageEffect(20, 1.5),
             PoisonEffect(4),
         ],
         cooldown=6,
@@ -275,7 +275,7 @@ ATTACKS = {
         name="Bite",
         description="You bite. (7 dmg) \n0 cooldown, 0 cast time",
         effects=[
-            DamageEffect(7),
+            DamageEffect(7, 1),
         ],
         icon=Assets.icons[23][11],
         sound=None  # sound, maybe later
@@ -284,7 +284,7 @@ ATTACKS = {
         name="Evil Bite",
         description="Like Bite but evil. (15 dmg, 2 bleed) \n2 cooldown, 0 cast time",
         effects=[
-            DamageEffect(15),
+            DamageEffect(15, 1.3),
             BleedEffect(2),
         ],
         cooldown=0,
@@ -297,7 +297,7 @@ ATTACKS = {
         name="Vampire Bite",
         description="Call me dracula. (35 dmg, 25% lifesteal) \n4 cooldown, 1 cast time",
         effects=[
-            DamageEffect(35),
+            DamageEffect(35, 0.9),
             LifeStealEffect(0.25),
         ],
         cooldown=4,
@@ -310,7 +310,7 @@ ATTACKS = {
         name="Cross Slash",
         description="Perfect symetry. (20 dmg, 2 bleed) \n3 cooldown, 1 cast time",
         effects=[
-            DamageEffect(20),
+            DamageEffect(20, 1.4),
             BleedEffect(2),
         ],
         cooldown=3,
@@ -323,8 +323,8 @@ ATTACKS = {
         name="Cold Touch",
         description="Freezing man. (3 atk, 2 Freeze) \n5 cooldown, 1 cast time",
         effects=[
-            FreezeEffect(1),
-            BuffEffect("attack", 4, 4),
+            FreezeEffect(2),
+            BuffEffect("attack", 3, 4),
         ],
         cooldown=5,
         start_cooldown=2,
@@ -337,7 +337,7 @@ ATTACKS = {
         name="Brittle Bones",
         description="Drink some milk. (10 dmg, 3 Wither) \n2 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, 0.5),
             WitherEffect(3),
         ],
         cooldown=2,
@@ -362,7 +362,7 @@ ATTACKS = {
         name="Piercing Blood",
         description="Call me Choso? (30 dmg, 5 bleed) \n4 cooldown, 1 cast time",
         effects=[
-            DamageEffect(30),
+            DamageEffect(30, 0.9),
             BleedEffect(5),
         ],
         cooldown=4,
@@ -376,12 +376,12 @@ ATTACKS = {
         name="Empty Lilac",
         description="I am the honored one! (100 dmg, 4 bleed, 1 stun) \n10 cooldown, 3 cast time",
         effects=[
-            DamageEffect(100),
+            DamageEffect(100, 2),
             BleedEffect(4),
             StunEffect(1),
         ],
         cooldown=10,
-        start_cooldown=4,
+        start_cooldown=5,
         cast_time=3,
         cannot_miss=True,  #  ignores dodge
         icon=Assets.icons[19][0],
@@ -404,7 +404,7 @@ ATTACKS = {
         description="In order to create something.. (40 dmg, 50% lifesteal, 15 hp) \n6 cooldown, 2 cast time",
         effects=[
             HealEffect(15),
-            DamageEffect(30),
+            DamageEffect(30, scaling=1.3),
             LifeStealEffect(0.5),  # 30% of damage dealt returned as HP
         ],
         cooldown=6,
@@ -418,7 +418,7 @@ ATTACKS = {
         name="Ultra Blast",
         description="Very vague.. (30 dmg, 3 burn) \n4 cooldown, 0 cast time",
         effects=[
-            DamageEffect(20),
+            DamageEffect(30),
             BurnEffect(3),
         ],
         cooldown=4,
@@ -443,7 +443,7 @@ ATTACKS = {
         name="Roundhouse Kick",
         description="Im up down, left, right! (35 dmg, 2 stun) \n4 cooldown, 1 cast time",
         effects=[
-            DamageEffect(35),
+            DamageEffect(35, 1.1),
             StunEffect(2),
         ],
         cooldown=4,
@@ -456,7 +456,7 @@ ATTACKS = {
         name="Black Flash",
         description="Reach full potential. (10 dmg, 40 atk, 10 def) \n10 cooldown, 2 cast time",
         effects=[
-            DamageEffect(10),
+            DamageEffect(10, 0.5),
             BuffEffect("attack", 40, 3),
             BuffEffect("defense", 10, 3),
         ],
@@ -488,7 +488,7 @@ ATTACKS = {
             PoisonEffect(11),
         ],
         cooldown=10,
-        start_cooldown=3,
+        start_cooldown=5,
         cast_time=3,
         cannot_miss=True,  #  ignores dodge
         icon=Assets.icons[12][5],
@@ -496,13 +496,13 @@ ATTACKS = {
     ),
     "Wombo Combo": Attack(
         name="Wombo Combo",
-        description="Im left, Im right (5 atk, 4 wither, 4x 10 dmg) \n4 cooldown, 1 cast time",
+        description="Im left, Im right (5 atk, 4 wither, 3x 10 dmg) \n4 cooldown, 1 cast time",
         effects=[
             BuffEffect("attack", 5, 3),
             WitherEffect(4),
-            DamageEffect(10),
-            DamageEffect(10),
-            DamageEffect(10),
+            DamageEffect(10, 0.6),
+            DamageEffect(10, 0.5),
+            DamageEffect(10, 0.3),
         ],
         cooldown=4,
         start_cooldown=2,
