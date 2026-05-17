@@ -9,7 +9,7 @@ ENEMIES = {
 "Slime": {
     "name": "Slime",
 
-    "hp": 32,
+    "hp": 62,
     "attack": 6,
     "defense": 3,
 

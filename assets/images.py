@@ -72,11 +72,21 @@ def load_all_sprites():
         size=32
     )
 
-def resolve_icon(icon_id):
-    if icon_id is None:
-        return None
-    return Assets.icons[icon_id[0]][icon_id[1]]
-
 def get_sprite(sprite_id):
     group, index = sprite_id
     return Assets.sprites[group][index]
+
+def get_icon(icon_id):
+    group, index = icon_id
+    return Assets.icons[group][index]
+
+def resolve_icon(icon_id):
+    if not icon_id:
+        return None
+
+    row, col = icon_id
+
+    try:
+        return Assets.icons[row][col]
+    except Exception:
+        return None

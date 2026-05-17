@@ -1,4 +1,4 @@
-from assets.images import get_sprite
+from assets.images import get_sprite, get_icon
 from combat.effects import *
 from entities.base import Buff
 
@@ -23,13 +23,7 @@ class Attack:
         self.current_cooldown = start_cooldown
 
         self.icon_id = icon
-        self.icon = None
 
-        if isinstance(icon, tuple):
-            self.icon_id = icon
-            self.icon = None
-        else:
-            self.icon = icon
         self.description = description
 
         self.cast_time = cast_time
@@ -84,18 +78,12 @@ class Attack:
             [effect for effect in self.effects],
             cooldown=self.cooldown,
             start_cooldown=self.start_cooldown,
-            icon=self.icon,
+            icon=self.icon_id,
             description=self.description,
             cast_time=self.cast_time,
             cannot_miss=self.cannot_miss,
             sound=self.sound
         )
-
-    def resolve_icon(self):
-        if self.icon is None and self.icon_id is not None:
-            self.icon = get_sprite(self.icon_id)
-
-        return self.icon
 
 # this is gonna be the list of attacks everything uses
 from combat.effects import DamageEffect, BurnEffect, PoisonEffect
@@ -148,7 +136,7 @@ ATTACKS = {
         effects=[
             DamageEffect(10, scaling=0.8),
         ],
-        icon=(16, 0),
+        icon=(16, 2),
         sound=None  # sound, maybe later
     ),
     "Piercing Shot": Attack(
@@ -160,7 +148,7 @@ ATTACKS = {
         ],
         cooldown=2,
         cannot_miss=True,  #  ignores dodge
-        icon=(16,0),
+        icon=(16,5),
         sound=None  # sound, maybe later
     ),
     "Heavy Shot": Attack(

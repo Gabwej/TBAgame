@@ -1,4 +1,5 @@
 from combat.attacks import ATTACKS
+from entities import enemy
 from ui.tools import Button, Panel, ImageObject
 from assets.images import Assets
 from ui.ending import EndScreen
@@ -179,7 +180,8 @@ class CharacterPicker:
             hp=enemy_data["hp"],
             attack=enemy_data["attack"],
             defense=enemy_data["defense"],
-            sprite=enemy_data["sprite"]
+            sprite=enemy_data["sprite"],
+            description = enemy_data["description"]
         )
 
         enemy.attacks = [

@@ -1,6 +1,7 @@
+from combat.attacks import Attack
 from ui.ending import EndScreen
 from ui.tools import Button, Panel, ImageObject
-from assets.images import Assets, resolve_icon, get_sprite
+from assets.images import Assets, get_sprite, resolve_icon
 
 
 class BattleBase:
@@ -35,14 +36,48 @@ class BattleBase:
                        locked=not self.battle.waiting_for_continue),
             ]
 
+
         elif self.mode == "attack":
-            self.buttons = [
-                Button((20, 400, 270, 80), "Attack 1", lambda: self.use_attack(0)),
-                Button((310, 400, 270, 80), "Attack 2", lambda: self.use_attack(1)),
-                Button((20, 500, 270, 80), "Attack 3", lambda: self.use_attack(2)),
-                Button((310, 500, 270, 80), "Attack 4", lambda: self.use_attack(3)),
-                Button((665, 500, 270, 80), "Back", self.back_to_main, locked=False),
+            self.buttons = []
+            positions = [
+                (20, 400, 270, 80),
+                (310, 400, 270, 80),
+                (20, 500, 270, 80),
+                (310, 500, 270, 80),
             ]
+            for i, attack in enumerate(self.battle.player.attacks):
+                text = (
+                    f"{attack.name} ({attack.current_cooldown})"
+                    if attack.current_cooldown > 0
+                    else attack.name
+                )
+                btn = Button(
+                    positions[i],
+                    text,
+                    lambda idx=i: self.use_attack(idx),
+                    locked=not attack.is_ready()
+                )
+                self.buttons.append(btn)
+
+            # fill empty slots if fewer than 4 attacks
+            while len(self.buttons) < 4:
+                self.buttons.append(
+                    Button(
+                        positions[len(self.buttons)],
+                        "None",
+                        lambda: None,
+                        locked=True
+                    )
+                )
+            # back button
+
+            self.buttons.append(
+                Button(
+                    (665, 500, 270, 80),
+                    "Back",
+                    self.back_to_main
+                )
+            )
 
         elif self.mode == "inventory":
             self.buttons = [
@@ -91,6 +126,8 @@ class BattleBase:
                 )
             ]
 
+            # try a known icon
+
         elif self.mode == "attack":
             self.panels = [
                 Panel((0, 380, 600, 220),
@@ -123,10 +160,20 @@ class BattleBase:
 
                 Panel(
                     (600, 0, 400, 600),
-                    text=f"{self.battle.enemy.name}\n"
-                         f"HP: {self.battle.enemy.hp}/{self.battle.enemy.max_hp}"
+                    text=
+                    f"--- Enemy ---\n"
+                    f"{self.battle.enemy.name}\n"
+                    f"{self.battle.enemy.description}\n\n"
+                    f"HP: {self.battle.enemy.hp}/{self.battle.enemy.max_hp}\n"
+                    f"ATK: {self.battle.enemy.attack}\n\n"
+                    f"--- PLAYER ---\n"
+                    f"HP: {self.battle.player.hp}/{self.battle.player.max_hp}\n"
+                    f"ATK: {self.battle.player.attack}\n"
+                    f"DEF: {self.battle.player.defense}"
                 )
+
             ]
+            print("ENEMY DESC:", repr(self.battle.enemy.description))
 
         elif self.mode == "run":
             self.panels = [
@@ -214,11 +261,14 @@ class BattleBase:
 
                 if i >= len(self.battle.player.attacks):
                     btn.locked = True
+                    btn.icon = None
                     continue
 
                 atk = self.battle.player.attacks[i]
 
-                btn.text = atk.name
+                btn.text = f"{atk.name}" if atk.is_ready() else f"CD: ({atk.current_cooldown})"
+
+                btn.icon = resolve_icon(atk.icon_id)
 
                 btn.locked = (
                         not atk.is_ready()

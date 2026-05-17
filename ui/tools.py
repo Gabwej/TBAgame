@@ -98,7 +98,7 @@ class Button:
             icon_rect.x = self.rect.x + 10
 
             screen.blit(self.icon, icon_rect)
-            text_x_offset = 16  # 👈 shift text
+            text_x_offset = 16  
 
         # draw text
         text_rect = text_surface.get_rect(center=self.rect.center)

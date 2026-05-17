@@ -11,7 +11,8 @@ class Battle:
 
         self.turn = "player"
 
-        self.logs = []
+        self.logs = [
+        ]
         self.current_log_index = 0
 
         self.waiting_for_continue = False
@@ -80,6 +81,11 @@ class Battle:
 
     def waiting(self):
         return self.waiting_for_continue or len(self.logs) > 0
+
+    def tick_cooldowns(self):
+        for atk in self.player.attacks:
+            if atk.current_cooldown > 0:
+                atk.current_cooldown -= 1
 
     def process_cast(self, entity):
         if entity.pending_action is None:
@@ -221,6 +227,8 @@ class Battle:
 
         # random attack from available
         attack = random.choice(available_attacks)
+
+        self.tick_cooldowns()
 
         if attack.cast_time > 0:
             self.enemy.pending_action = attack
