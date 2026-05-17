@@ -6,7 +6,7 @@ from assets.images import Assets
 # all enemy data goes here
 ENEMIES = {
 
-"slime": {
+"Slime": {
     "name": "Slime",
 
     "hp": 32,
@@ -26,7 +26,7 @@ ENEMIES = {
         "Blob",
     ],
 
-    "sprite": Assets.sprites["monster3"][14],
+    "sprite": ("monster3", 14),
 
     "description": "A normal slime, quite weak, poison wont work!",
 
@@ -57,7 +57,7 @@ ENEMIES = {
         "Body Slam",
     ],
 
-    "sprite": Assets.sprites["monster3"][0],
+    "sprite": ("monster3",0),
 
     "description": "A lonely eye, rather weak",
 },
@@ -83,7 +83,7 @@ ENEMIES = {
         "Leaf Storm"
     ],
 
-    "sprite": Assets.sprites["monster2"][13],
+    "sprite": ("monster2",13),
 
     "description": "A walking tree. It has done nothing wrong. Weak to fire.",
 
@@ -113,7 +113,7 @@ ENEMIES = {
         "Punch"
     ],
 
-    "sprite": Assets.sprites["monster1"][5],
+    "sprite": ("monster1", 5),
 
     "description": "The weakest rank of goblin. Quite bland actually",
 },
@@ -139,7 +139,7 @@ ENEMIES = {
         "stare"
     ],
 
-    "sprite": Assets.sprites["monster3"][10],
+    "sprite": ("monster3", 10),
 
     "description": "A newly born virus. Dont be fooled by it's size. Poison resistant.",
 
@@ -169,7 +169,7 @@ ENEMIES = {
         "Body Slam"
     ],
 
-    "sprite": Assets.sprites["monster3"][6],
+    "sprite": ("monster3", 6),
 
     "description": "A walking undead, Who could have made this? Bleed wont work.",
 
@@ -197,7 +197,7 @@ ENEMIES = {
         "Stick Slap",
     ],
 
-    "sprite": Assets.sprites["player"][14],
+    "sprite": ("player", 14),
 
     "description": "He looks like my uncle. What did he do to you? ",
 },
@@ -222,7 +222,7 @@ ENEMIES = {
         "Headbutt"
     ],
 
-    "sprite": Assets.sprites["monster1"][0],
+    "sprite": ("monster1", 0),
 
     "description": "A weaker halfling. Should not be a problem.",
 
@@ -248,7 +248,7 @@ ENEMIES = {
         "Headbutt"
     ],
 
-    "sprite": Assets.sprites["monster3"][1],
+    "sprite": ("monster3", 1),
 
     "description": "A stronger eye with its gaze locked on you! Weak to bleed",
 
@@ -279,7 +279,7 @@ ENEMIES = {
         "Natures Gift"
     ],
 
-    "sprite": Assets.sprites["monster3"][11],
+    "sprite": ("monster3", 11),
 
     "description": "It has immense strength for its age. Utilizes nature. resistant to poison, weak to burn",
 
@@ -311,7 +311,7 @@ ENEMIES = {
         "Slash"
     ],
 
-    "sprite": Assets.sprites["monster1"][7],
+    "sprite": ("monster1", 7),
 
     "description": "A goblin known for its backhanded tactics, watch out! Weak to bleed, burn.",
 
@@ -341,7 +341,7 @@ ENEMIES = {
         "Heavy Slash",
     ],
 
-    "sprite": Assets.sprites["monster1"][0],
+    "sprite": ("monster1",0),
 
     "description": "Put description here.",
 
@@ -371,9 +371,6 @@ ENEMY_TIERS = {
 
     ],
 
-    4: [
-
-    ]
 }
 
 

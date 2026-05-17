@@ -71,3 +71,12 @@ def load_all_sprites():
         rows=28,
         size=32
     )
+
+def resolve_icon(icon_id):
+    if icon_id is None:
+        return None
+    return Assets.icons[icon_id[0]][icon_id[1]]
+
+def get_sprite(sprite_id):
+    group, index = sprite_id
+    return Assets.sprites[group][index]

@@ -26,15 +26,10 @@ class Base:
             # debuff button (only here when anything has an effect, otherwise invisible)
             # on hover puts up panels for enemy and player showing turn count, not done
             Button((240, 310, 120, 60), "Debuffs", lambda: None, hover_panel_data={
-            "text": "debuff stuff", "rect": (665, 500, 270, 80)
+            "text": "debuff text", "rect": (20, 20, 560, 200)
             } ),
         ]
 
-        # REMOVE, test
-        test_btn = Button((100, 100, 200, 80), "ICON TEST", lambda: None)
-        test_btn.icon = Assets.icons[27][11]
-
-        self.buttons.append(test_btn)
 
         self.panels = [
             Panel((0, 380, 600, 220), color=(139, 69, 19), outline=(160, 82, 45)),

@@ -1,7 +1,13 @@
+from combat.attacks import ATTACKS
 from ui.tools import Button, Panel, ImageObject
 from assets.images import Assets
 from ui.ending import EndScreen
 from entities.player import Player
+
+from combat.battle import Battle
+from ui.battle_base import BattleBase
+from entities.entity_list import ENEMY_TIERS, ENEMIES
+from entities.enemy import Enemy
 
 # This is the intro to the game, which includes an easy menu, quick backstory and character select screen
 class Intro:
@@ -90,12 +96,50 @@ class Background:
 
 class CharacterPicker:
     def __init__(self):
+        self.selected_character = None
+
         self.buttons = [
             Button((365, 460, 270, 80), "Start Game", self.start_game, locked=True),
-            Button((80, 350, 150, 80), "Warrior", lambda: self.select_panel(1, (95, 158, 160)), ),
-            Button((310, 350, 150, 80), "Ranger", lambda: self.select_panel(2, (60, 179, 113)), ),
-            Button((540, 350, 150, 80), "Mage", lambda: self.select_panel(3, (100, 149, 237)), ),
-            Button((770, 350, 150, 80), "Rogue", lambda: self.select_panel(4, (143, 188, 143)), ),
+
+            Button(
+                (80, 350, 150, 80),
+                "Warrior",
+                lambda: self.select_character(
+                    "warrior",
+                    1,
+                    (95, 158, 160)
+                ),
+            ),
+
+            Button(
+                (310, 350, 150, 80),
+                "Ranger",
+                lambda: self.select_character(
+                    "ranger",
+                    2,
+                    (60, 179, 113)
+                ),
+            ),
+
+            Button(
+                (540, 350, 150, 80),
+                "Mage",
+                lambda: self.select_character(
+                    "mage",
+                    3,
+                    (100, 149, 237)
+                ),
+            ),
+
+            Button(
+                (770, 350, 150, 80),
+                "Rogue",
+                lambda: self.select_character(
+                    "rogue",
+                    4,
+                    (143, 188, 143)
+                ),
+            ),
         ]
 
         self.panels = [
@@ -118,16 +162,36 @@ class CharacterPicker:
             ImageObject(Assets.sprites["player"][0], (781, 161), (128, 128)),
         ]
 
+    def select_character(self, character_id, panel_index, color):
+        self.selected_character = character_id
+        self.select_panel(panel_index, color)
+
 # update later when characters are done and battle system works
     def start_game(self):
-        player = Player("Test", 100, 10, 5)
+        from entities.characters import create_player
 
-        player.stats["total_damage"] = 123
-        player.stats["total_healing"] = 45
-        player.stats["battles_won"] = 3
-        player.stats["events"] = 7
+        player = create_player(self.selected_character)
 
-        return EndScreen(player, "lose")
+        enemy_data = ENEMIES["Slime"]
+
+        enemy = Enemy(
+            name=enemy_data["name"],
+            hp=enemy_data["hp"],
+            attack=enemy_data["attack"],
+            defense=enemy_data["defense"],
+            sprite=enemy_data["sprite"]
+        )
+
+        enemy.attacks = [
+            ATTACKS[name].copy()
+            for name in enemy_data["attacks"]
+        ]
+
+        battle = Battle(player, enemy)
+
+        return BattleBase(battle)
+
+        # return EndScreen(player, "lose")
 
     def select_panel(self, index, color):
         default_color = (255, 228, 181)

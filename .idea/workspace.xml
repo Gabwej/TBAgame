@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(">
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this">
+      <change afterPath="$PROJECT_DIR$/ui/battle_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/battle_state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entities/characters.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/characters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/enemy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entities/entity_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/entity_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/intro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,30 +59,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.button.executor": "Run",
-    "Python.images.executor": "Run",
-    "Python.intro.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.tools.executor": "Run",
-    "Python.ui_base.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Gabbe/PycharmProjects/Game/sounds/attacks",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.battle_base.executor&quot;: &quot;Run&quot;,
+    &quot;Python.button.executor&quot;: &quot;Run&quot;,
+    &quot;Python.images.executor&quot;: &quot;Run&quot;,
+    &quot;Python.intro.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_ui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tools.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ui_base.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gabbe/PycharmProjects/Game/sounds/attacks&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds\attacks" />
@@ -112,7 +122,10 @@
       <workItem from="1777276134446" duration="37468000" />
       <workItem from="1777383879782" duration="6310000" />
       <workItem from="1777720369094" duration="39491000" />
-      <workItem from="1778402781269" duration="15918000" />
+      <workItem from="1778402781269" duration="16647000" />
+      <workItem from="1778865381501" duration="12241000" />
+      <workItem from="1778927799097" duration="27235000" />
+      <workItem from="1779013716885" duration="2118000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -261,7 +274,14 @@
       <option name="presentableId" value="LOCAL−00021" />
       <updated>1778412158022</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL−00022" summary="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this">
+      <option name="closed" value="true" />
+      <created>1778425649427</created>
+      <option name="number" value="LOCAL−00022" />
+      <option name="presentableId" value="LOCAL−00022" />
+      <updated>1778425649427</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,25 +309,28 @@
     <MESSAGE value="nineteenth* commit&#10;* added lifesteal, and a base for conditional effects&#10;&#10;-note-&#10;- will start on ALL attacks now" />
     <MESSAGE value="twenty-first commit&#10;* added env-sounds for dialog events&#10;* added sfx for battles&#10;* added theme sound and battle music&#10;&#10;-note-&#10;- Im not using these right now, but they will prolly be used later" />
     <MESSAGE value="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(" />
+    <MESSAGE value="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this" />
+    <option name="LAST_COMMIT_MESSAGE" value="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ui/intro.py</url>
-          <line>121</line>
+          <line>169</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Game$main_ui.coverage" NAME="main_ui Coverage Results" MODIFIED="1778866931592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1777750950962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779016006834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1777152680595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$battle_base.coverage" NAME="battle_base Coverage Results" MODIFIED="1778954365102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$button.coverage" NAME="button Coverage Results" MODIFIED="1777119826890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

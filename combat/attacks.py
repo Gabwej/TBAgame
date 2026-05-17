@@ -1,3 +1,4 @@
+from assets.images import get_sprite
 from combat.effects import *
 from entities.base import Buff
 
@@ -21,7 +22,14 @@ class Attack:
         self.start_cooldown = start_cooldown
         self.current_cooldown = start_cooldown
 
-        self.icon = icon
+        self.icon_id = icon
+        self.icon = None
+
+        if isinstance(icon, tuple):
+            self.icon_id = icon
+            self.icon = None
+        else:
+            self.icon = icon
         self.description = description
 
         self.cast_time = cast_time
@@ -34,18 +42,19 @@ class Attack:
     def use(self, user, target):
         logs = []
 
-        # handle cast time
-        if self.cast_time > 0 and self.current_cast < self.cast_time:
-            self.current_cast += 1
-            logs.append(f"{user.name} is preparing {self.name}...")
-            return 0, logs
-
-        # reset cast
-        self.current_cast = 0
-
         total_damage = 0
         self.damage_dealt = 0
+
         logs.append(f"{user.name} used {self.name}!")
+
+        # full attack dodge check
+        if not self.cannot_miss:
+            import random
+
+            if random.random() < target.dodge_chance:
+                logs.append(f"{target.name} dodged the attack!")
+                self.current_cooldown = self.cooldown
+                return 0, logs
 
         # play sound if exists
         if self.sound:
@@ -59,7 +68,6 @@ class Attack:
             logs.extend(effect_logs)
 
             if not target.is_alive():
-                logs.append(f"{target.name} was defeated!")
                 break
 
 
@@ -83,6 +91,12 @@ class Attack:
             sound=self.sound
         )
 
+    def resolve_icon(self):
+        if self.icon is None and self.icon_id is not None:
+            self.icon = get_sprite(self.icon_id)
+
+        return self.icon
+
 # this is gonna be the list of attacks everything uses
 from combat.effects import DamageEffect, BurnEffect, PoisonEffect
 
@@ -93,7 +107,7 @@ ATTACKS = {
         effects=[
             DamageEffect(10, scaling=0.8),
         ],
-        icon=Assets.icons[16][12],
+        icon=(16, 12),
         sound=None  # sound, maybe later
     ),
     "Heavy Slash": Attack(
@@ -103,7 +117,7 @@ ATTACKS = {
             DamageEffect(25),
         ],
         cooldown=3,
-        icon=Assets.icons[16][13],
+        icon=(16, 13),
         sound=None  # sound, maybe later
     ),
     "Flesh Wound": Attack(
@@ -114,7 +128,7 @@ ATTACKS = {
         ],
         cooldown=1,
         start_cooldown=1,
-        icon=Assets.icons[6][1],
+        icon=(6, 1),
         sound=None  # sound, maybe later
     ),
     "Defensive Stance": Attack(
@@ -125,7 +139,7 @@ ATTACKS = {
         ],
         cooldown=4,
         start_cooldown=2,
-        icon=Assets.icons[20][0],
+        icon=(20, 0),
         sound=None  # sound, maybe later
     ),
     "Quick Shot": Attack(
@@ -134,7 +148,7 @@ ATTACKS = {
         effects=[
             DamageEffect(10, scaling=0.8),
         ],
-        icon=Assets.icons[16][0],
+        icon=(16, 0),
         sound=None  # sound, maybe later
     ),
     "Piercing Shot": Attack(
@@ -146,7 +160,7 @@ ATTACKS = {
         ],
         cooldown=2,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[16][2],
+        icon=(16,0),
         sound=None  # sound, maybe later
     ),
     "Heavy Shot": Attack(
@@ -158,7 +172,7 @@ ATTACKS = {
         ],
         cooldown=3,
         start_cooldown=2,
-        icon=Assets.icons[16][1],
+        icon=(16,1),
         sound=None  # sound, maybe later
     ),
     "Pocket Walnuts": Attack(
@@ -171,7 +185,7 @@ ATTACKS = {
         cooldown=3,
         start_cooldown=1,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[22][0],
+        icon=(22,0),
         sound=None  # sound, maybe later
     ),
     "Stick Slap": Attack(
@@ -181,7 +195,7 @@ ATTACKS = {
             DamageEffect(5, scaling=0.8),
         ],
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[23][10],
+        icon=(23, 10),
         sound=None  # sound, maybe later
     ),
     "Fireball": Attack(
@@ -193,7 +207,7 @@ ATTACKS = {
         ],
         cooldown=1,
         cast_time=1,
-        icon=Assets.icons[0][8],
+        icon=(0,8),
         sound=None  # sound, maybe later
     ),
     "Magic Missile": Attack(
@@ -208,7 +222,7 @@ ATTACKS = {
         start_cooldown=2,
         cast_time=1,
         cannot_miss=False,  #  ignores dodge
-        icon=Assets.icons[11][2],
+        icon=(11,2),
         sound=None  # sound, maybe later
     ),
     "Simple Heal": Attack(
@@ -220,7 +234,7 @@ ATTACKS = {
         ],
         cooldown=5,
         start_cooldown=2,
-        icon=Assets.icons[21][1],
+        icon=(21,1),
         sound=None  # sound, maybe later
     ),
     "Simple Stab": Attack(
@@ -230,7 +244,7 @@ ATTACKS = {
             DamageEffect(10, 1.0),
             BleedEffect(1),
         ],
-        icon=Assets.icons[13][13],
+        icon=(13,13),
         sound=None  # sound, maybe later
     ),
     "Coated Stab": Attack(
@@ -241,7 +255,7 @@ ATTACKS = {
             PoisonEffect(2),
         ],
         cooldown=2,
-        icon=Assets.icons[12][12],
+        icon=(12,12),
         sound=None  # sound, maybe later
     ),
     "Smoke Bomb": Attack(
@@ -255,7 +269,7 @@ ATTACKS = {
         start_cooldown=2,
         cast_time=0,
         cannot_miss=True,
-        icon=Assets.icons[25][11],
+        icon=(25,11),
         sound=None  # sound, maybe later
     ),
     "Bri'ish Stab": Attack(
@@ -268,7 +282,7 @@ ATTACKS = {
         cooldown=6,
         start_cooldown=3,
         cast_time=2,
-        icon=Assets.icons[5][13],
+        icon=(5,13),
         sound=None  # sound, maybe later
     ),
     "Bite": Attack(
@@ -277,7 +291,7 @@ ATTACKS = {
         effects=[
             DamageEffect(7, 1),
         ],
-        icon=Assets.icons[23][11],
+        icon=(23,11),
         sound=None  # sound, maybe later
     ),
     "Evil Bite": Attack(
@@ -290,7 +304,7 @@ ATTACKS = {
         cooldown=0,
         start_cooldown=0,
         cast_time=0,
-        icon=Assets.icons[20][11],
+        icon=(20,11),
         sound=None  # sound, maybe later
     ),
     "Vampire Bite": Attack(
@@ -303,7 +317,7 @@ ATTACKS = {
         cooldown=4,
         start_cooldown=1,
         cast_time=1,
-        icon=Assets.icons[21][11],
+        icon=(21,11),
         sound=None  # sound, maybe later
     ),
     "Cross Slash": Attack(
@@ -316,7 +330,7 @@ ATTACKS = {
         cooldown=3,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[16][12],
+        icon=(16,12),
         sound=None  # sound, maybe later
     ),
     "Cold Touch": Attack(
@@ -330,7 +344,7 @@ ATTACKS = {
         start_cooldown=2,
         cast_time=1,
         cannot_miss=True,
-        icon=Assets.icons[4][5],
+        icon=(4,5),
         sound=None  # sound, maybe later
     ),
     "Brittle Bones": Attack(
@@ -342,7 +356,7 @@ ATTACKS = {
         ],
         cooldown=2,
         start_cooldown=4,
-        icon=Assets.icons[15][6],
+        icon=(15,6),
         sound=None  # sound, maybe later
     ),
     "Pibble Throw": Attack(
@@ -355,7 +369,7 @@ ATTACKS = {
         cooldown=2,
         cast_time=1,
         cannot_miss=False,  # ignores dodge
-        icon=Assets.icons[16][15],
+        icon=(16,15),
         sound=None  # sound, maybe later
     ),
     "Piercing Blood": Attack(
@@ -369,7 +383,7 @@ ATTACKS = {
         start_cooldown=1,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[21][7],
+        icon=(21,7),
         sound=None  # sound, maybe later
     ),
     "Empty Lilac": Attack(
@@ -384,7 +398,7 @@ ATTACKS = {
         start_cooldown=5,
         cast_time=3,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[19][0],
+        icon=(19,0),
         sound=None  # sound, maybe later
     ),
     "Golem Summon": Attack(
@@ -396,7 +410,7 @@ ATTACKS = {
         cooldown=6,
         start_cooldown=3,
         cast_time=2,
-        icon=Assets.icons[16][6],
+        icon=(16,6),
         sound=None  # sound, maybe later
     ),
     "Alchemist Blade": Attack(
@@ -411,7 +425,7 @@ ATTACKS = {
         start_cooldown=3,
         cast_time=2,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[3][13],
+        icon=(3,13),
         sound=None  # sound, maybe later
     ),
     "Ultra Blast": Attack(
@@ -423,7 +437,7 @@ ATTACKS = {
         ],
         cooldown=4,
         start_cooldown=2,
-        icon=Assets.icons[2][14],
+        icon=(2,14),
         sound=None # sound, maybe later
     ),
     "Back Stab": Attack(
@@ -436,7 +450,7 @@ ATTACKS = {
         cooldown=4,
         start_cooldown=2,
         cast_time=1,
-        icon=Assets.icons[22][9],
+        icon=(22,9),
         sound=None  # sound, maybe later
     ),
     "Roundhouse Kick": Attack(
@@ -449,7 +463,7 @@ ATTACKS = {
         cooldown=4,
         start_cooldown=1,
         cast_time=1,
-        icon=Assets.icons[11][6],
+        icon=(11,6),
         sound=None  # sound, maybe later
     ),
     "Black Flash": Attack(
@@ -464,7 +478,7 @@ ATTACKS = {
         start_cooldown=5,
         cast_time=2,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[2][0],
+        icon=(2,0),
         sound=None  # sound, maybe later
     ),
     "Trash Talk": Attack(
@@ -478,7 +492,7 @@ ATTACKS = {
         start_cooldown=0,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[21][8],
+        icon=(21,8),
         sound=None  # sound, maybe later
     ),
     "Acid Ocean": Attack(
@@ -491,7 +505,7 @@ ATTACKS = {
         start_cooldown=5,
         cast_time=3,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[12][5],
+        icon=(12,5),
         sound=None  # sound, maybe later
     ),
     "Wombo Combo": Attack(
@@ -508,7 +522,7 @@ ATTACKS = {
         start_cooldown=2,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
-        icon=Assets.icons[16][5],
+        icon=(16,5),
         sound=None  # sound, maybe later
     ),
     "Blob": Attack(
@@ -518,7 +532,7 @@ ATTACKS = {
             DamageEffect(3, 1.5),
         ],
 
-        icon=Assets.icons[22][12],
+        icon=(22,12),
         sound=None  # sound, maybe later
     ),
     "Stare": Attack(
@@ -547,7 +561,7 @@ ATTACKS = {
         ],
         cooldown=3,
         start_cooldown=1,
-        icon=Assets.icons[23][5],
+        icon=(23,5),
         sound=None  # sound, maybe later
     ),
     "Leaf Storm": Attack(
@@ -576,7 +590,7 @@ ATTACKS = {
             StunEffect(1),
         ],
         cooldown=3,
-        icon=Assets.icons[22][12],
+        icon=(22,12),
         sound=None  # sound, maybe later
     ),
     "Headbutt": Attack(
@@ -597,7 +611,7 @@ ATTACKS = {
         start_cooldown=1,
         cast_time=1,
         cannot_miss=True,
-        icon=Assets.icons[22][2],
+        icon=(22,2),
         sound=None  # sound, maybe later
     ),
 

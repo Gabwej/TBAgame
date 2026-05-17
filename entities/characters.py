@@ -20,7 +20,7 @@ CHARACTERS = {
         "Flesh Wound",
         "Defensive Stance"
     ],
-    "sprite": Assets.sprites["player"][4]
+    "sprite": ("player", 4)
 },
 
 "ranger": {
@@ -39,7 +39,7 @@ CHARACTERS = {
         "Heavy Shot",
         "Pocket Walnuts"
     ],
-    "sprite": Assets.sprites["player"][1]
+    "sprite": ("player", 1)
 },
 
 "mage": {
@@ -58,7 +58,7 @@ CHARACTERS = {
         "Magic Missile",
         "Simple Heal"
     ],
-    "sprite": Assets.sprites["player"][2]
+    "sprite": ("player", 2)
 },
 
 "rogue": {
@@ -77,7 +77,7 @@ CHARACTERS = {
         "Smoke Bomb",
         "Bri'ish Stab"
     ],
-    "sprite": Assets.sprites["player"][0]
+    "sprite": ("player",0)
 },
 
 }

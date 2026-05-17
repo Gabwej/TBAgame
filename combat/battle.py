@@ -1,195 +1,261 @@
-from entities.player import Player
-from entities.enemy import Enemy
 import random
+
+from entities import player
+from ui.ending import EndScreen
+
 
 class Battle:
     def __init__(self, player, enemy):
         self.player = player
         self.enemy = enemy
 
-        self.state = "player_start"
+        self.turn = "player"
 
-        self.log = []
-        self.waiting = False
+        self.logs = []
+        self.current_log_index = 0
 
-        self.escape_unlocked = False
+        self.waiting_for_continue = False
 
-    def use_item(self, item_id):
-        if self.state != "player_action" or self.waiting:
-            return
+        self.battle_over = False
+        self.result = None
+        self.pending_end = None
 
-        entry = self.player.get_item(item_id)
 
-        if not entry:
-            return
-
-        item = entry["item"]
-
-        damage, logs = item.use(self.player, self.enemy, self, self.stats)
-
-        self.player.stats["total_damage"] += damage
-        self.log.extend(logs)
-
-        self.player.remove_item(item_id, 1)
-
-        self.waiting = True
-        self.state = "enemy_start"
-
-    def add_log(self, text):
-        self.log.append(text)
+    # stores all the logs, aka dialog in the fight (makes smoother ui)
+    def add_logs(self, new_logs):
+        self.logs.extend(new_logs)
 
     def get_current_log(self):
-        if self.log:
-            return self.log[0]
+        if not self.logs:
+            return ""
+
+        if self.current_log_index < len(self.logs):
+            return self.logs[self.current_log_index]
+
         return ""
 
     def next_log(self):
-        if self.log:
-            self.log.pop(0)
+        if not self.logs:
+            self.waiting_for_continue = False
+            return ""
 
-        if not self.log:
-            self.waiting = False
+        if self.current_log_index < len(self.logs) - 1:
+            self.current_log_index += 1
+            return self.get_current_log()
 
-    def update(self):
-        if self.waiting:
+        self.logs = []
+        self.current_log_index = 0
+        self.waiting_for_continue = False
+
+        if self.pending_end:
+            self.battle_over = True
+            self.result = self.pending_end
+            self.pending_end = None
             return
 
-        if self.state == "player_start":
-            self.player_start()
+        if not self.battle_over:
+            self.advance_turn()
 
-        elif self.state == "player_action":
-            pass
+        return ""
 
-        elif self.state == "enemy_start":
-            self.enemy_start()
+    def can_player_act(self):
+        return (
+                self.turn == "player"
+                and not self.waiting_for_continue
+                and not self.battle_over
+        )
 
-        elif self.state == "enemy_action":
-            self.enemy_action()
+    def use_attack(self, index):
+        if self.turn != "player":
+            return
 
-        elif self.state == "cleanup":
-            self.cleanup()
+        if self.waiting_for_continue:
+            return
 
-    def start_battle(self):
-        self.add_log(f"{self.enemy.name} appeared!")
-        self.add_log(self.enemy.description)
-        self.add_log("what will you do?")
-        self.waiting = True
-        self.state = "player_start"
+        if index < 0 or index >= len(self.player.attacks):
+            return
 
-    def player_start(self):
-        logs, disabled = self.player.process_status()
-        self.player.reduce_cooldowns()
+        attack = self.player.attacks[index]
+        self.player_attack(attack)
 
-        for log in logs:
-            self.add_log(log)
+    def waiting(self):
+        return self.waiting_for_continue or len(self.logs) > 0
+
+    def process_cast(self, entity):
+        if entity.pending_action is None:
+            return False
+
+        # still casting
+        if entity.cast_timer > 0:
+            entity.cast_timer -= 1
+
+            if entity.cast_timer > 0:
+                self.logs.append(
+                    f"{entity.name} continues casting {entity.pending_action.name}..."
+                )
+
+                self.waiting_for_continue = True
+                return True
+
+        # CAST FINISHES HERE
+        attack = entity.pending_action
+
+        # IMPORTANT:
+        # clear pending BEFORE attack.use()
+        entity.pending_action = None
+        entity.cast_timer = 0
+
+        target = self.enemy if entity == self.player else self.player
+
+        damage, logs = attack.use(entity, target)
+
+        self.add_logs(logs)
+
+        self.waiting_for_continue = True
+
+        self.check_battle_end()
+
+        return True
+
+    # checks who has the turn
+    def start_turn(self, entity):
+        logs, disabled = entity.process_status()
 
         if logs:
-            self.waiting = True
+            self.add_logs(logs)
+            self.waiting_for_continue = True
+
+        return disabled
+
+    def advance_turn(self):
+        if self.battle_over:
             return
 
-        if not self.player.is_alive():
-            self.state = "cleanup"
+        # swap turn first
+        if self.turn == "player":
+            self.turn = "enemy"
+            entity = self.enemy
+
+        else:
+            self.turn = "player"
+            entity = self.player
+
+        # CASTING HAS PRIORITY
+        if self.process_cast(entity):
             return
+
+        # normal status processing
+        logs, disabled = entity.process_status()
+
+        if logs:
+            self.add_logs(logs)
+            self.waiting_for_continue = True
 
         if disabled:
-            self.state = "enemy_start"
+            self.waiting_for_continue = True
             return
 
-        self.state = "player_action"
+        # enemy acts automatically
+        if entity == self.enemy:
+            self.enemy_turn()
 
+
+    # the player action
     def player_attack(self, attack):
-        if self.state != "player_action" or self.waiting:
+        if self.turn != "player":
             return
 
-        if not self.player.is_alive():
-            self.state = "cleanup"
-            self.waiting = True
+        if self.waiting_for_continue:
             return
 
+        if not attack.is_ready():
+            return
+
+        # START CASTING
+        if attack.cast_time > 0:
+            self.player.pending_action = attack
+            self.player.cast_timer = attack.cast_time
+            self.player.cast_timer -= 1
+
+            self.logs.append(
+                f"{self.player.name} starts casting {attack.name}!"
+            )
+
+            self.player.reduce_cooldowns()
+
+            self.waiting_for_continue = True
+            return
+
+        # NORMAL ATTACK
         damage, logs = attack.use(self.player, self.enemy)
 
-        for log in logs:
-            self.add_log(log)
+        self.add_logs(logs)
 
-        if not self.enemy.is_alive():
-            self.state = "cleanup"
-            self.waiting = True
+        self.waiting_for_continue = True
+
+        self.check_battle_end()
+
+    # This is the enemies turn
+
+    def enemy_turn(self):
+        if self.battle_over:
             return
 
-        self.waiting = True
-        self.state = "enemy_start"
-
-    def enemy_start(self):
-        if not self.enemy.is_alive():
-            self.state = "cleanup"
-            return
-
-        logs, disabled = self.enemy.process_status()
-
-        self.enemy.reduce_cooldowns()
-
-        for log in logs:
-            self.add_log(log)
-
-        if logs:
-            self.waiting = True
-            return
-
-        if not self.enemy.is_alive():
-            self.state = "cleanup"
-            return
+        disabled = self.start_turn(self.enemy)
 
         if disabled:
-            self.state = "player_start"
+            self.waiting_for_continue = True
             return
 
-        self.state = "enemy_action"
+        # checks if attacks are usable
+        available_attacks = [
+            attack for attack in self.enemy.attacks
+            if attack.is_ready()
+        ]
 
-    def enemy_action(self):
-        if not self.enemy.is_alive():
-            self.state = "cleanup"
+        # safety measure, in case enemy runs out of attacks
+        if not available_attacks:
+            self.logs.append(f"{self.enemy.name} cannot act!")
+            self.waiting_for_continue = True
             return
 
-        # this is gonna be weighted or AI later
-        attack = self.enemy.attacks[0]
+        # random attack from available
+        attack = random.choice(available_attacks)
+
+        if attack.cast_time > 0:
+            self.enemy.pending_action = attack
+            self.enemy.cast_timer = attack.cast_time + 1
+
+            self.logs.append(
+                f"{self.enemy.name} starts casting {attack.name}!"
+            )
+
+            self.enemy.reduce_cooldowns()
+
+            self.waiting_for_continue = True
+            return
 
         damage, logs = attack.use(self.enemy, self.player)
 
-        for log in logs:
-            self.add_log(log)
+        self.add_logs(logs)
 
-        self.waiting = True
+        self.waiting_for_continue = True
 
-        if not self.player.is_alive():
-            self.state = "cleanup"
-            return
+        self.check_battle_end()
 
-        self.state = "player_start"
 
-    def cleanup(self):
-        if not self.enemy.is_alive() and self.player.is_alive():
-            self.player.stats["battles_won"] += 1
+    # End battle phase
+
+    def check_battle_end(self):
 
         if not self.player.is_alive():
-            self.add_log("Player died!")
-            self.waiting = True
-            self.state = "end"
+            self.logs.append(f"{self.player.name} was defeated!")
+            self.waiting_for_continue = True
+            self.pending_end = "lose"
             return
 
-        if not self.enemy.is_alive():
-            self.stats.battles_won += 1
-            self.add_log(f"{self.enemy.name} has fallen!")
-            self.waiting = True
-
-            gold = random.randint(*self.enemy.money_drop)
-            self.player.currency.add(gold)
-
-            self.add_log(f"You gained {gold} gold!")
-
-            healed = self.player.post_battle_heal()
-            self.add_log(f"You recovered {healed} HP after the fight!")
-
-            self.player.post_battle_cleanup()
-
-            self.state = "end"
+        elif not self.enemy.is_alive():
+            self.logs.append(f"{self.enemy.name} was defeated!")
+            self.waiting_for_continue = True
+            self.pending_end = "win"
             return

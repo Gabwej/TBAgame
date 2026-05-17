@@ -28,6 +28,9 @@ class Entity:
         self.crit_multiplier = crit_multiplier
         self.dodge_chance = dodge_chance
 
+        self.pending_action = None
+        self.cast_timer = 0
+
         self.resistances = {
             "physical": 1.0,
             "burn": 1.0,
@@ -84,12 +87,6 @@ class Entity:
                     can_crit=False, attacker=None, stats=None, cannot_miss=False, damage_type="physical"):
 
         logs = []
-
-
-        # checks if you dodged
-        if attacker and not cannot_miss and random.random() < self.dodge_chance:
-            logs.append(f"{self.name} dodged the attack!")
-            return 0, logs
 
         # checks defense
         if ignore_defense:

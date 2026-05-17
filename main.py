@@ -1,7 +1,6 @@
 from sys import exit
 import pygame
 from assets.images import load_all_sprites
-from ui.ui_base import Base
 from ui.intro import Intro
 from assets.sounds import SoundManager
 
@@ -16,8 +15,7 @@ clock = pygame.time.Clock()
 load_all_sprites()
 SoundManager.load()
 
-#current_state = Intro()
-current_state = Base()
+current_state = Intro()
 print(current_state, type(current_state))
 
 # this is the loop that is actively updating everything every frame
@@ -34,9 +32,11 @@ while True:
         if new_state:
             current_state = new_state
 
-    # draws elements
+    new_state = current_state.update()
+    if new_state:
+        current_state = new_state
 
-    current_state.update()
+    # draws elements
     current_state.draw(screen)
 
     # updates the game

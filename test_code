@@ -98,3 +98,10 @@ class BuffEffect(Effect):
     #     "poison": 1.5
     # }
 },
+
+
+# REMOVE, test
+        test_btn = Button((100, 100, 200, 80), "ICON TEST", lambda: None)
+        test_btn.icon = Assets.icons[27][11]
+
+        self.buttons.append(test_btn)

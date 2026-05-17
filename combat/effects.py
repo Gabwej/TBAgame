@@ -37,8 +37,8 @@ class DamageEffect(Effect):
 
 # special selfheal type attack
 class HealEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[21][1]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(21, 1)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -53,8 +53,8 @@ class HealEffect(Effect):
 
 # This attack gives stacks of poison (that will later do things in the status effect stage in battles)
 class PoisonEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[22][8]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(22, 8)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -72,8 +72,8 @@ class PoisonEffect(Effect):
 
 # The classic burn effect! this one is higher damage but gets effected by defense
 class BurnEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[0][0]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(0, 0)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -91,8 +91,8 @@ class BurnEffect(Effect):
 
 # the annoying bleed! small damage that is a linear damage curve
 class BleedEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[13][4]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(13,4)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -109,8 +109,8 @@ class BleedEffect(Effect):
 
 # generally weaker damage but also makes you weaker
 class WitherEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[16][6]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(16, 6)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -131,8 +131,8 @@ class WitherEffect(Effect):
         target.attack_debuff = max(0, target.attack_debuff - 1)
 
 class BuffEffect(Effect):
-    def __init__(self, stat, amount, turns, icon=None):
-        super().__init__(icon)
+    def __init__(self, stat, amount, turns, icon_id=None):
+        super().__init__(icon_id)
         self.stat = stat
         self.amount = amount
         self.turns = turns
@@ -144,8 +144,8 @@ class BuffEffect(Effect):
 # the stun effects
 
 class StunEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[23][9]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(23, 9)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -154,8 +154,8 @@ class StunEffect(Effect):
 
 
 class FreezeEffect(Effect):
-    def __init__(self, amount, icon=Assets.icons[4][15]):
-        super().__init__(icon)
+    def __init__(self, amount, icon_id=(4, 15)):
+        super().__init__(icon_id)
         self.amount = amount
 
     def apply(self, user, target, attack):
@@ -164,8 +164,8 @@ class FreezeEffect(Effect):
 
 
 class LifeStealEffect(Effect):
-    def __init__(self, percent, icon=None):
-        super().__init__(icon)
+    def __init__(self, percent, icon_id=None):
+        super().__init__(icon_id)
         self.percent = percent
 
     def apply(self, user, target, attack):
