@@ -1,5 +1,6 @@
 from combat.attacks import ATTACKS
 from entities import enemy
+from ui.event_ui import EventUI
 from ui.tools import Button, Panel, ImageObject
 from assets.images import Assets
 from ui.ending import EndScreen
@@ -167,31 +168,15 @@ class CharacterPicker:
         self.selected_character = character_id
         self.select_panel(panel_index, color)
 
-# update later when characters are done and battle system works
+# update later when characters are done and battle system works ,update in progress :)
     def start_game(self):
         from entities.characters import create_player
 
         player = create_player(self.selected_character)
 
-        enemy_data = ENEMIES["Slime"]
+        event_index = 0
 
-        enemy = Enemy(
-            name=enemy_data["name"],
-            hp=enemy_data["hp"],
-            attack=enemy_data["attack"],
-            defense=enemy_data["defense"],
-            sprite=enemy_data["sprite"],
-            description = enemy_data["description"]
-        )
-
-        enemy.attacks = [
-            ATTACKS[name].copy()
-            for name in enemy_data["attacks"]
-        ]
-
-        battle = Battle(player, enemy)
-
-        return BattleBase(battle)
+        return EventUI(player)
 
         # return EndScreen(player, "lose")
 

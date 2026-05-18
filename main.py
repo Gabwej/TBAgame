@@ -16,7 +16,6 @@ load_all_sprites()
 SoundManager.load()
 
 current_state = Intro()
-print(current_state, type(current_state))
 
 # this is the loop that is actively updating everything every frame
 while True:

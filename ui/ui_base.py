@@ -2,7 +2,7 @@ from ui.tools import Button, Panel, ImageObject
 from assets.images import Assets
 from ui.intro import Intro
 
-# this is the base for the rest of the games ui
+# this is the base for the rest of the games ui, lie ts does nothing
 class Base:
     def __init__(self):
         self.hover_panel = None

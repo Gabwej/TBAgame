@@ -294,12 +294,29 @@ class BattleBase:
         self.refresh_buttons()
 
         if self.battle.battle_over:
-            # win should later only be used for next event function
-            if self.battle.result == "win":
-                return EndScreen(self.battle.player, "win")
+            if hasattr(self.battle, "return_ui"):
+                if self.battle.result == "win":
+                    self.battle.return_ui.after_battle_win()
+                    return self.battle.return_ui
 
-            elif self.battle.result == "lose":
-                return EndScreen(self.battle.player, "lose")
+                elif self.battle.result == "lose":
+                    return EndScreen(
+                        self.battle.player,
+                        "lose"
+                    )
+
+            else:
+                if self.battle.result == "win":
+                    return EndScreen(
+                        self.battle.player,
+                        "win"
+                    )
+
+                elif self.battle.result == "lose":
+                    return EndScreen(
+                        self.battle.player,
+                        "lose"
+                    )
 
 
     def draw(self, screen):

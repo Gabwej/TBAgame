@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-fourth commit&#10;* I am unsure about what i added this commit&#10;* Added battle ui with modes: like main and attack (prolly gonna use it for dialog later as well)&#10;* fixed buttons not working (connected to next button)&#10;&#10;-note-&#10;- I have been working on this for about a day now... That being said, the battle system actually works now (its a bit wonky tho)&#10;- rn effect damage does damage twice per turn (i dont have the time rn to fix)&#10;- will fix up battle a bit and maybe fix dialog and progression system if i have the time">
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(">
+      <change afterPath="$PROJECT_DIR$/combat/battlecreation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events/event_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events/story.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/event_ui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/entity_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/entity_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/battle_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/battle_base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/intro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +121,8 @@
       <workItem from="1778402781269" duration="16647000" />
       <workItem from="1778865381501" duration="12241000" />
       <workItem from="1778927799097" duration="27235000" />
-      <workItem from="1779013716885" duration="14779000" />
+      <workItem from="1779013716885" duration="33488000" />
+      <workItem from="1779112362434" duration="6300000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -282,7 +285,14 @@
       <option name="presentableId" value="LOCAL−00023" />
       <updated>1779016438877</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL−00024" summary="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(">
+      <option name="closed" value="true" />
+      <created>1779031100565</created>
+      <option name="number" value="LOCAL−00024" />
+      <option name="presentableId" value="LOCAL−00024" />
+      <updated>1779031100565</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,14 +322,15 @@
     <MESSAGE value="twenty-second commit&#10;* added actual character stats&#10;* fixed attack stat (now in dmg-calc with scaling)&#10;&#10;-note-&#10;- finna make the enemies now&#10;- will prolly need to add more attacks :(" />
     <MESSAGE value="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this" />
     <MESSAGE value="twenty-fourth commit&#10;* I am unsure about what i added this commit&#10;* Added battle ui with modes: like main and attack (prolly gonna use it for dialog later as well)&#10;* fixed buttons not working (connected to next button)&#10;&#10;-note-&#10;- I have been working on this for about a day now... That being said, the battle system actually works now (its a bit wonky tho)&#10;- rn effect damage does damage twice per turn (i dont have the time rn to fix)&#10;- will fix up battle a bit and maybe fix dialog and progression system if i have the time" />
-    <option name="LAST_COMMIT_MESSAGE" value="twenty-fourth commit&#10;* I am unsure about what i added this commit&#10;* Added battle ui with modes: like main and attack (prolly gonna use it for dialog later as well)&#10;* fixed buttons not working (connected to next button)&#10;&#10;-note-&#10;- I have been working on this for about a day now... That being said, the battle system actually works now (its a bit wonky tho)&#10;- rn effect damage does damage twice per turn (i dont have the time rn to fix)&#10;- will fix up battle a bit and maybe fix dialog and progression system if i have the time" />
+    <MESSAGE value="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ui/intro.py</url>
-          <line>170</line>
+          <line>171</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -328,7 +339,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Game$main_ui.coverage" NAME="main_ui Coverage Results" MODIFIED="1778866931592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779030505034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779121109367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1777152680595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
