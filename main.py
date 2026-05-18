@@ -2,7 +2,7 @@ from sys import exit
 import pygame
 from assets.images import load_all_sprites
 from ui.intro import Intro
-from assets.sounds import SoundManager
+from assets.sounds import SoundManager, MusicManager
 
 pygame.init()
 pygame.mixer.init()
@@ -30,6 +30,8 @@ while True:
         new_state = current_state.handle_input(event)
         if new_state:
             current_state = new_state
+
+        MusicManager.handle_event(event)
 
     new_state = current_state.update()
     if new_state:

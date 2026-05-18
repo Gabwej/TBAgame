@@ -91,7 +91,7 @@ from combat.effects import DamageEffect, BurnEffect, PoisonEffect
 ATTACKS = {
     "Slash": Attack(
         name="Slash",
-        description="Put in some power? (10 dmg). \n0 cooldown, 0 cast time",
+        description="Put in some power?\n(10 dmg). \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, scaling=0.8),
         ],
@@ -100,7 +100,7 @@ ATTACKS = {
     ),
     "Heavy Slash": Attack(
         name="Heavy Slash",
-        description="Overhead baby. (25 dmg) \n3 cooldown, 0 cast time",
+        description="Do you even lift bro?\n(25 dmg)\n\n3 cooldown, 0 cast time",
         effects=[
             DamageEffect(25),
         ],
@@ -110,18 +110,18 @@ ATTACKS = {
     ),
     "Flesh Wound": Attack(
         name="Flesh Wound",
-        description="This but a... (2 bleed) \n1 cooldown, 0 cast time",
+        description="This but a scratch!\n(4 bleed)\n\n3 cooldown, 0 cast time",
         effects=[
-            BleedEffect(2),
+            BleedEffect(4),
         ],
-        cooldown=1,
+        cooldown=3,
         start_cooldown=1,
         icon=(6, 1),
         sound=None  # sound, maybe later
     ),
     "Defensive Stance": Attack(
         name="Defensive Stance",
-        description="Lock arms and pray. (10 def) \n4 cooldown, 0 cast time",
+        description="Lock arms and pray. \n(10 def:2) \n\n4 cooldown, 0 cast time",
         effects=[
             BuffEffect("defense", 10, 2),
         ],
@@ -132,7 +132,7 @@ ATTACKS = {
     ),
     "Quick Shot": Attack(
         name="Quick Shot",
-        description="If only you aimed... (10 dmg) \n0 cooldown, 0 cast time",
+        description="If only you aimed... \n(10 dmg) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, scaling=0.8),
         ],
@@ -141,21 +141,21 @@ ATTACKS = {
     ),
     "Piercing Shot": Attack(
         name="Piercing Shot",
-        description="Very sharp. (5 dmg, 3 bleed) \n2 cooldown, 0 cast time",
+        description="Very sharp. \n(5 dmg, 3 bleed) \n\n3 cooldown, 0 cast time",
         effects=[
             DamageEffect(5,1.0),
             BleedEffect(3),
         ],
-        cooldown=2,
+        cooldown=3,
         cannot_miss=True,  #  ignores dodge
         icon=(16,5),
         sound=None  # sound, maybe later
     ),
     "Heavy Shot": Attack(
         name="Heavy Shot",
-        description="Uses blunt arrows? (25 dmg, 1 stun). \n3 cooldown, 0 cast time",
+        description="Uses blunt arrows? \n(20 dmg, 1 stun). \n\n3 cooldown, 0 cast time",
         effects=[
-            DamageEffect(25, 1.5),
+            DamageEffect(20, 1.5),
             StunEffect(1),
         ],
         cooldown=3,
@@ -165,7 +165,7 @@ ATTACKS = {
     ),
     "Pocket Walnuts": Attack(
         name="Pocket Walnuts",
-        description="Eat some pocket loot. (15 hp, 5 atk) \n3 cooldown, 0 cast time",
+        description="Common floor loot. \n(15 hp, 5 atk) \n\n3 cooldown, 0 cast time",
         effects=[
             HealEffect(15),
             BuffEffect("attack", 5, 3),
@@ -178,7 +178,7 @@ ATTACKS = {
     ),
     "Stick Slap": Attack(
         name="Stick Slap",
-        description="Bonk em! (5 dmg) \n0 cooldown, 0 cast time",
+        description="Bonk em! \n(5 dmg) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(5, scaling=0.8),
         ],
@@ -188,7 +188,7 @@ ATTACKS = {
     ),
     "Fireball": Attack(
         name="Fireball",
-        description="I cast fireball! (15 dmg, 2 burn). \n1 cooldown, 1 cast time",
+        description="I dont care how small the room is!\n(15 dmg, 2 burn). \n\n1 cooldown, 1 cast time",
         effects=[
             DamageEffect(15, 1.3),
             BurnEffect(2),
@@ -200,13 +200,13 @@ ATTACKS = {
     ),
     "Magic Missile": Attack(
         name="Magic Missile",
-        description="I cast: (3x shots 5-10 dmg) \n3 cooldown, 1 cast time",
+        description="Lightning bolt! Magic missile! \n(3x shots 5-10 dmg) \n\n4 cooldown, 1 cast time",
         effects=[
-            DamageEffect(10, 0.4),
+            DamageEffect(8, 0.4),
             DamageEffect(7, 0.4),
             DamageEffect(5, 0.5),
         ],
-        cooldown=3,
+        cooldown=4,
         start_cooldown=2,
         cast_time=1,
         cannot_miss=False,  #  ignores dodge
@@ -215,7 +215,7 @@ ATTACKS = {
     ),
     "Simple Heal": Attack(
         name="Simple Heal",
-        description="Channel the spirits. (20 hp, 5 def) \n5 cooldown, 0 cast time",
+        description="Channel the spirits. \n(20 hp, 5 def) \n\n5 cooldown, 0 cast time",
         effects=[
             HealEffect(20),
             BuffEffect("defense", 5, 3)
@@ -227,7 +227,7 @@ ATTACKS = {
     ),
     "Simple Stab": Attack(
         name="Simple Stab",
-        description="Stab em! (10 dmg, 1 bleed) \n0 cooldown, 0 cast time",
+        description="Stab em! \n(10 dmg, 1 bleed) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, 1.0),
             BleedEffect(1),
@@ -237,7 +237,7 @@ ATTACKS = {
     ),
     "Coated Stab": Attack(
         name="Coated Stab",
-        description="Like stab but bad. (10 dmg, 2 poison) \n2 cooldown, 0 cast time",
+        description="Like stab but worse. For them... \n(10 dmg, 2 poison) \n\n2 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, 0.9),
             PoisonEffect(2),
@@ -248,7 +248,7 @@ ATTACKS = {
     ),
     "Smoke Bomb": Attack(
         name="Smoke Bomb",
-        description="Hey whats this? (10 dmg, 2 stun) \n3 cooldown, 0 cast time",
+        description="Hot potato! \n(10 dmg, 2 stun) \n\n3 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, 0.5),
             StunEffect(2),
@@ -262,9 +262,9 @@ ATTACKS = {
     ),
     "Bri'ish Stab": Attack(
         name="Bri'ish Stab",
-        description="Do em like the torieys! (20 dmg, 4 poison) \n6 cooldown, 2 cast time",
+        description="Do em like the torieys! \n(30 dmg, 4 poison) \n\n6 cooldown, 2 cast time",
         effects=[
-            DamageEffect(20, 1.5),
+            DamageEffect(30, 1.5),
             PoisonEffect(4),
         ],
         cooldown=6,
@@ -275,7 +275,7 @@ ATTACKS = {
     ),
     "Bite": Attack(
         name="Bite",
-        description="You bite. (7 dmg) \n0 cooldown, 0 cast time",
+        description="You bite. \n(7 dmg) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(7, 1),
         ],
@@ -284,7 +284,7 @@ ATTACKS = {
     ),
     "Evil Bite": Attack(
         name="Evil Bite",
-        description="Like Bite but evil. (15 dmg, 2 bleed) \n2 cooldown, 0 cast time",
+        description="Like Bite but evil I guess. \n(15 dmg, 2 bleed) \n\n2 cooldown, 0 cast time",
         effects=[
             DamageEffect(15, 1.3),
             BleedEffect(2),
@@ -297,59 +297,62 @@ ATTACKS = {
     ),
     "Vampire Bite": Attack(
         name="Vampire Bite",
-        description="Call me dracula. (35 dmg, 25% lifesteal) \n4 cooldown, 1 cast time",
+        description="Daylight makes me feel like Dracula \n(27 dmg, 25% lifesteal) \n\n4 cooldown, 1 cast time",
         effects=[
-            DamageEffect(35, 0.9),
+            DamageEffect(27, 0.9),
             LifeStealEffect(0.25),
         ],
         cooldown=4,
-        start_cooldown=1,
+        start_cooldown=2,
         cast_time=1,
         icon=(21,11),
         sound=None  # sound, maybe later
     ),
     "Cross Slash": Attack(
         name="Cross Slash",
-        description="Perfect symetry. (20 dmg, 2 bleed) \n3 cooldown, 1 cast time",
+        description="Perfect symetry. \n(30 dmg, 2 bleed) \n\n3 cooldown, 1 cast time",
         effects=[
-            DamageEffect(20, 1.4),
+            DamageEffect(30, 1.2),
             BleedEffect(2),
         ],
         cooldown=3,
+        start_cooldown= 2,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
         icon=(16,12),
         sound=None  # sound, maybe later
     ),
-    "Cold Touch": Attack(
-        name="Cold Touch",
-        description="Freezing man. (3 atk, 2 Freeze) \n5 cooldown, 1 cast time",
+    "Ice Pillar": Attack(
+        name="Ice Pillar",
+        description="good for offence AND defence. \n(30 dmg, 6 def:4, 1 Freeze) \n\n5 cooldown, 1 cast time",
         effects=[
-            FreezeEffect(2),
-            BuffEffect("attack", 3, 4),
+            DamageEffect(30, 0.9),
+            BuffEffect("defense", 6, 4),
+            FreezeEffect(1),
+
         ],
         cooldown=5,
-        start_cooldown=2,
+        start_cooldown=3,
         cast_time=1,
         cannot_miss=True,
         icon=(4,5),
         sound=None  # sound, maybe later
     ),
-    "Brittle Bones": Attack(
-        name="Brittle Bones",
-        description="Drink some milk. (10 dmg, 3 Wither) \n2 cooldown, 0 cast time",
+    "Withering Arrow": Attack(
+        name="Withering Arrow",
+        description="The arrow consumes.. \n(25 dmg, 3 Wither) \n\n2 cooldown, 0 cast time",
         effects=[
-            DamageEffect(10, 0.5),
+            DamageEffect(25, 1.4),
             WitherEffect(3),
         ],
         cooldown=2,
         start_cooldown=4,
-        icon=(15,6),
+        icon=(15,1),
         sound=None  # sound, maybe later
     ),
-    "Pibble Throw": Attack(
-        name="Pibble Throw",
-        description="Rock put. (20 dmg, 1 stun) \n2 cooldown, 1 cast time",
+    "Pebble Throw": Attack(
+        name="Pebble Throw",
+        description="Go get em buddy! \n(20 dmg, 1 stun) \n\n2 cooldown, 1 cast time",
         effects=[
             DamageEffect(20),
             StunEffect(1),
@@ -362,7 +365,7 @@ ATTACKS = {
     ),
     "Piercing Blood": Attack(
         name="Piercing Blood",
-        description="Call me Choso? (30 dmg, 5 bleed) \n4 cooldown, 1 cast time",
+        description="As for now hes my brother..\n(30 dmg, 5 bleed) \n\n4 cooldown, 1 cast time",
         effects=[
             DamageEffect(30, 0.9),
             BleedEffect(5),
@@ -374,9 +377,9 @@ ATTACKS = {
         icon=(21,7),
         sound=None  # sound, maybe later
     ),
-    "Empty Lilac": Attack(
-        name="Empty Lilac",
-        description="I am the honored one! (100 dmg, 4 bleed, 1 stun) \n10 cooldown, 3 cast time",
+    "Hollow Purple": Attack(
+        name="Hollow Purple",
+        description="Throughout heaven and earth.. \n(100 dmg, 4 bleed, 1 stun) \n\n10 cooldown, 4 cast time",
         effects=[
             DamageEffect(100, 2),
             BleedEffect(4),
@@ -384,14 +387,14 @@ ATTACKS = {
         ],
         cooldown=10,
         start_cooldown=5,
-        cast_time=3,
+        cast_time=4,
         cannot_miss=True,  #  ignores dodge
         icon=(19,0),
         sound=None  # sound, maybe later
     ),
     "Golem Summon": Attack(
         name="Golem Summon",
-        description="He protecc. (20 def) \n6 cooldown, 2 cast time",
+        description="He protecc. \n(20 def:5) \n\n6 cooldown, 2 cast time",
         effects=[
             BuffEffect("defense", 20, 5),
         ],
@@ -406,8 +409,8 @@ ATTACKS = {
         description="In order to create something.. (40 dmg, 50% lifesteal, 15 hp) \n6 cooldown, 2 cast time",
         effects=[
             HealEffect(15),
-            DamageEffect(30, scaling=1.3),
-            LifeStealEffect(0.5),  # 30% of damage dealt returned as HP
+            DamageEffect(40, scaling=1.3),
+            LifeStealEffect(0.5),
         ],
         cooldown=6,
         start_cooldown=3,
@@ -418,24 +421,24 @@ ATTACKS = {
     ),
     "Ultra Blast": Attack(
         name="Ultra Blast",
-        description="Very vague.. (30 dmg, 3 burn) \n4 cooldown, 0 cast time",
+        description="Very vague.. like cartoony even.. \n(30 dmg, 3 burn) \n\n3 cooldown, 0 cast time",
         effects=[
             DamageEffect(30),
             BurnEffect(3),
         ],
-        cooldown=4,
+        cooldown=3,
         start_cooldown=2,
         icon=(2,14),
         sound=None # sound, maybe later
     ),
     "Back Stab": Attack(
         name="Back Stab",
-        description="Hit em from behind! (2 bleed, 4 poison) \n4 cooldown, 1 cast time",
+        description="Hit em from behind! \n(2 bleed, 4 poison) \n\n3 cooldown, 1 cast time",
         effects=[
-            PoisonEffect(4),
+            PoisonEffect(6),
             BleedEffect(2),
         ],
-        cooldown=4,
+        cooldown=3,
         start_cooldown=2,
         cast_time=1,
         icon=(22,9),
@@ -443,7 +446,7 @@ ATTACKS = {
     ),
     "Roundhouse Kick": Attack(
         name="Roundhouse Kick",
-        description="Im up down, left, right! (35 dmg, 2 stun) \n4 cooldown, 1 cast time",
+        description="Up Down Up Down Left Right Left Right. \n(35 dmg, 2 stun) \n\n4 cooldown, 1 cast time",
         effects=[
             DamageEffect(35, 1.1),
             StunEffect(2),
@@ -456,11 +459,11 @@ ATTACKS = {
     ),
     "Black Flash": Attack(
         name="Black Flash",
-        description="Reach full potential. (10 dmg, 40 atk, 10 def) \n10 cooldown, 2 cast time",
+        description="Unleash the sparks of black, reach full potential. \n(10 dmg, 30 atk:5, 20 hp) \n\n10 cooldown, 2 cast time",
         effects=[
             DamageEffect(10, 0.5),
-            BuffEffect("attack", 40, 3),
-            BuffEffect("defense", 10, 3),
+            BuffEffect("attack", 30, 5),
+            HealEffect(20),
         ],
         cooldown=10,
         start_cooldown=5,
@@ -471,12 +474,13 @@ ATTACKS = {
     ),
     "Trash Talk": Attack(
         name="Trash Talk",
-        description="Rude dude.. (5 wither, 1 stun) \n3 cooldown, 1 cast time",
+        description="Bro you have a weapon, use it? \n(10 atk:3, 5 wither, 1 stun) \n\n4 cooldown, 1 cast time",
         effects=[
+            BuffEffect("attack", 10, 3),
             WitherEffect(5),
             StunEffect(1),
         ],
-        cooldown=3,
+        cooldown=4,
         start_cooldown=0,
         cast_time=1,
         cannot_miss=True,  #  ignores dodge
@@ -485,20 +489,20 @@ ATTACKS = {
     ),
     "Acid Ocean": Attack(
         name="Acid Ocean",
-        description="Call upon the waves (11 poison) \n10 cooldown, 3 cast time",
+        description="Call upon the sulfuric waves! \n(11 poison) \n\n10 cooldown, 2 cast time",
         effects=[
             PoisonEffect(11),
         ],
         cooldown=10,
         start_cooldown=5,
-        cast_time=3,
+        cast_time=2,
         cannot_miss=True,  #  ignores dodge
         icon=(12,5),
         sound=None  # sound, maybe later
     ),
     "Wombo Combo": Attack(
         name="Wombo Combo",
-        description="Im left, Im right (5 atk, 4 wither, 3x 10 dmg) \n4 cooldown, 1 cast time",
+        description="Im left, im right, im left, im right \n(5 atk, 4 wither, 3x 10 dmg) \n\n4 cooldown, 1 cast time",
         effects=[
             BuffEffect("attack", 5, 3),
             WitherEffect(4),
@@ -515,7 +519,7 @@ ATTACKS = {
     ),
     "Blob": Attack(
         name="Blob",
-        description="Throw goo! (3 dmg) \n0 cooldown, 0 cast time",
+        description="Throw goo! \n(3 dmg) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(3, 1.5),
         ],
@@ -525,7 +529,7 @@ ATTACKS = {
     ),
     "Stare": Attack(
         name="Stare",
-        description="Mama always told me.. (5 dmg, 1 stun) \n3 cooldown, 0 cast time",
+        description="Mama always told me.. \n(5 dmg, 1 stun) \n\n3 cooldown, 0 cast time",
         effects=[
             DamageEffect(5),
             StunEffect(1),
@@ -535,7 +539,7 @@ ATTACKS = {
     ),
     "Body Slam": Attack(
         name="Body Slam",
-        description="No weapon, no problem (10 dmg) \n0 cooldown, 0 cast time",
+        description="No weapon, no problem \n(10 dmg) \n\n0 cooldown, 0 cast time",
         effects=[
             DamageEffect(10, 1.5),
         ],
@@ -543,11 +547,11 @@ ATTACKS = {
     ),
     "Natures Gift": Attack(
         name="Natures Gift",
-        description="A soothing melody (20 hp) \n3 cooldown, 0 cast time",
+        description="A soothing melody \n(30 hp) \n\n4 cooldown, 0 cast time",
         effects=[
-            HealEffect(20),
+            HealEffect(30),
         ],
-        cooldown=3,
+        cooldown=4,
         start_cooldown=1,
         icon=(23,5),
         sound=None  # sound, maybe later
@@ -572,7 +576,7 @@ ATTACKS = {
     ),
     "Spore Cloud": Attack(
         name="Spore Cloud",
-        description="Open a window.. (3 poison, 1 stun) \n3 cooldown, 0 cast time",
+        description="Open a window.. \n(3 poison, 1 stun) \n\n3 cooldown, 0 cast time",
         effects=[
             PoisonEffect(3),
             StunEffect(1),
@@ -590,7 +594,7 @@ ATTACKS = {
     ),
     "Ice Cold Gaze": Attack(
         name="Ice Cold Gaze",
-        description="Chills the core (2 Freeze, 1 Wither) \n4 cooldown, 1 cast time",
+        description="Chills the core \n(2 Freeze, 1 Wither) \n\n4 cooldown, 1 cast time",
         effects=[
             WitherEffect(1),
             FreezeEffect(2),

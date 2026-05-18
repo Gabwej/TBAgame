@@ -1,3 +1,4 @@
+from assets.sounds import MusicManager
 from combat.attacks import ATTACKS
 from combat.battle import Battle
 
@@ -8,7 +9,7 @@ from ui.battle_base import BattleBase
 
 # this is lwk the lifeblood of the battle system, cant have fights without seamless and easy battle creation
 # imports all the important enemy data for the fight to properly work
-def start_event_battle(player, enemy_name, return_ui):
+def start_event_battle(player, enemy_name, return_ui, background=None):
 
     enemy_data = ENEMIES[enemy_name]
 
@@ -58,10 +59,11 @@ def start_event_battle(player, enemy_name, return_ui):
     ]
 
     battle = Battle(player, enemy)
+    MusicManager.fade_to("sounds/battle.mp3", volume=1.0)
 
     # IMPORTANT
     battle.return_ui = return_ui
-
+    battle.background = background
     battle.mode = "battle"
 
     return BattleBase(battle)

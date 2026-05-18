@@ -61,8 +61,10 @@ class Background:
         ]
 
         self.panels = [
-            Panel((65, 100, 870, 200), text="Long before time had a name this land was full of mystical beings. "
-                                            "\nYou are on a journey through this vast kingdom where you hope to find your life's purpose",
+            Panel((65, 40, 870, 320), text= "You awaken beneath a pale sky in a world that feels hauntingly familiar, yet your memories drift beyond reach like fragments of a forgotten dream."
+                                             "\nNames, places, even your own past have vanished without explanation. Only a lingering sense of loss remains."
+                                             "\nTravel across vast landscapes, encounter those shaped by this fractured world, and uncover the truth behind your disappearance"
+                                             "\nSomewhere beyond the horizon lies the answer to your forgotten life... and the reason you were brought here.",
                   radius=12)
         ]
 

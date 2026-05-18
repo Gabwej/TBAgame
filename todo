@@ -1,13 +1,14 @@
 To do:
-- create an inventory and shop mechanic, plus money (money done)
-- add background music for different scenarios (added just not implemented yet)
+- create an inventory and shop mechanic, plus money (money done, prolly should fix a simple inv...)
 - add sound effects for attacks (player and enemy), item use and death sounds (wont happen)
 - add in more ui to battle (health bars, status effects in some way ect.)
 - solve buff duration time being off
 - solve effects triggering dmg twice
+- add in new event: "new_attack", which lets you choose an attack to remove for a new one (or skip it)
 
 smaller things:
-- fix stats for event and battle count
 - add more enemies
 - fix actual encounter plan (yeah, that's gonna take hours...)
-- use panel on hover for attacks, maybe inv if i add that
+- use panel on hover for inv if i add that
+- fix run button (hard-locks game rn, also shouldn't be available until like half health or item use))
+- reset stats after battle, like start_cooldown, hp and current cooldown

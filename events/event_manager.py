@@ -70,7 +70,7 @@ class EventManager:
             result += "\n\n" + reward_text
 
         self.current_text = result
-
+        self.player.stats["events"] += 1
         self.phase = "result"
 
     # this function is what is used to go to the next battle or event

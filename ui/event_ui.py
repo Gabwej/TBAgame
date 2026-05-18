@@ -1,3 +1,4 @@
+from assets.sounds import MusicManager
 from ui.tools import Button, Panel, ImageObject
 from assets.images import get_sprite
 from combat.battlecreation import start_event_battle
@@ -18,6 +19,8 @@ class EventUI:
         self.images = []
 
         self.build_ui()
+
+        MusicManager.play_loop("sounds/theme.mp3")
 
     def build_ui(self):
 
@@ -173,7 +176,8 @@ class EventUI:
             return start_event_battle(
                 self.manager.player,
                 event["enemy"],
-                self
+                self,
+                event.get("background")
             )
 
         self.build_ui()
@@ -184,6 +188,9 @@ class EventUI:
 
         # moves you to the next event after battle
         self.manager.event_index = event["next"]
+
+        # changes back music to theme music
+        MusicManager.fade_to("sounds/theme.mp3", volume=1.0)
 
         self.manager.load_event()
 

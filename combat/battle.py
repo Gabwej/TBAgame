@@ -20,6 +20,7 @@ class Battle:
         self.battle_over = False
         self.result = None
         self.pending_end = None
+        self.background = None
 
 
     # stores all the logs, aka dialog in the fight (makes smoother ui)
@@ -48,9 +49,15 @@ class Battle:
         self.current_log_index = 0
         self.waiting_for_continue = False
 
-        if self.pending_end:
+        if self.pending_end in ("win", "lose"):
             self.battle_over = True
             self.result = self.pending_end
+            self.pending_end = None
+            return
+
+        if self.pending_end == "run":
+            self.battle_over = True
+            self.result = "run"
             self.pending_end = None
             return
 
@@ -103,11 +110,8 @@ class Battle:
                 self.waiting_for_continue = True
                 return True
 
-        # CAST FINISHES HERE
         attack = entity.pending_action
 
-        # IMPORTANT:
-        # clear pending BEFORE attack.use()
         entity.pending_action = None
         entity.cast_timer = 0
 
@@ -264,6 +268,7 @@ class Battle:
 
         elif not self.enemy.is_alive():
             self.logs.append(f"{self.enemy.name} was defeated!")
+            self.player.stats["battles_won"] += 1
             self.waiting_for_continue = True
             self.pending_end = "win"
             return

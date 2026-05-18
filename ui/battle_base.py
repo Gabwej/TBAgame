@@ -1,7 +1,7 @@
-from combat.attacks import Attack
+import pygame
 from ui.ending import EndScreen
 from ui.tools import Button, Panel, ImageObject
-from assets.images import Assets, get_sprite, resolve_icon
+from assets.images import  get_sprite, resolve_icon
 
 
 class BattleBase:
@@ -16,8 +16,10 @@ class BattleBase:
         self.buttons = []
         self.panels = []
 
+        background = self.battle.background or "graphics/summer5.png"
+
         self.images = [
-            ImageObject("graphics/landscape1.png", (0, 0), (600, 400)),
+            ImageObject(background, (0, 0), (600, 400)),
             ImageObject(get_sprite(self.battle.player.sprite), (20, 240), (128, 128)),
             ImageObject(get_sprite(self.battle.enemy.sprite), (440, 240), (128, 128)),
         ]
@@ -57,6 +59,7 @@ class BattleBase:
                     lambda idx=i: self.use_attack(idx),
                     locked=not attack.is_ready()
                 )
+                btn.hover_data = attack.description
                 self.buttons.append(btn)
 
             # fill empty slots if fewer than 4 attacks
@@ -173,7 +176,6 @@ class BattleBase:
                 )
 
             ]
-            print("ENEMY DESC:", repr(self.battle.enemy.description))
 
         elif self.mode == "run":
             self.panels = [
@@ -283,6 +285,36 @@ class BattleBase:
 
             self.buttons[4].locked = False
 
+    def update_hover(self):
+
+        mouse_pos = pygame.mouse.get_pos()
+
+        hovered_data = None
+
+        for button in self.buttons:
+
+            if not hasattr(button, "hover_data"):
+                continue
+
+            if button.rect.collidepoint(mouse_pos):
+                hovered_data = button.hover_data
+                break
+
+        if hovered_data is None:
+            self.hover_panel = None
+            self.current_hover_data = None
+            return
+
+        if hovered_data == self.current_hover_data:
+            return
+
+        self.current_hover_data = hovered_data
+
+        self.hover_panel = Panel(
+            (620, 260, 360, 220),
+            text=hovered_data
+        )
+
     def handle_input(self, event):
         for button in self.buttons:
             new_state = button.handle_event(event)
@@ -292,6 +324,7 @@ class BattleBase:
 
     def update(self):
         self.refresh_buttons()
+        self.update_hover()
 
         if self.battle.battle_over:
             if hasattr(self.battle, "return_ui"):
@@ -331,3 +364,7 @@ class BattleBase:
 
         for button in self.buttons:
             button.draw(screen)
+
+        if self.hover_panel:
+            self.hover_panel.update()
+            self.hover_panel.draw(screen)

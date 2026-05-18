@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(">
-      <change afterPath="$PROJECT_DIR$/combat/battlecreation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/events/event_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/events/story.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/event_ui.py" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)">
+      <change afterPath="$PROJECT_DIR$/ui/encounter_base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sounds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/battlecreation.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battlecreation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/event_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/event_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/battle_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/battle_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/event_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/event_ui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/intro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui_base.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,32 +57,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.battle_base.executor&quot;: &quot;Run&quot;,
-    &quot;Python.button.executor&quot;: &quot;Run&quot;,
-    &quot;Python.images.executor&quot;: &quot;Run&quot;,
-    &quot;Python.intro.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main_ui.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tools.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ui_base.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gabbe/PycharmProjects/Game/sounds/attacks&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.battle_base.executor": "Run",
+    "Python.button.executor": "Run",
+    "Python.images.executor": "Run",
+    "Python.intro.executor": "Run",
+    "Python.main.executor": "Debug",
+    "Python.main_ui.executor": "Run",
+    "Python.sounds.executor": "Run",
+    "Python.tools.executor": "Run",
+    "Python.ui_base.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Gabbe/PycharmProjects/Game/sounds/attacks",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Gabbe\PycharmProjects\Game\sounds\attacks" />
@@ -122,7 +125,7 @@
       <workItem from="1778865381501" duration="12241000" />
       <workItem from="1778927799097" duration="27235000" />
       <workItem from="1779013716885" duration="33488000" />
-      <workItem from="1779112362434" duration="6300000" />
+      <workItem from="1779112362434" duration="20673000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -292,7 +295,14 @@
       <option name="presentableId" value="LOCAL−00024" />
       <updated>1779031100565</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL−00025" summary="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)">
+      <option name="closed" value="true" />
+      <created>1779121800813</created>
+      <option name="number" value="LOCAL−00025" />
+      <option name="presentableId" value="LOCAL−00025" />
+      <updated>1779121800813</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,25 +333,32 @@
     <MESSAGE value="twenty-third commit&#10;* added a bunch of enemies&#10;&#10;-note-&#10;- not done, its kind of boring to do this" />
     <MESSAGE value="twenty-fourth commit&#10;* I am unsure about what i added this commit&#10;* Added battle ui with modes: like main and attack (prolly gonna use it for dialog later as well)&#10;* fixed buttons not working (connected to next button)&#10;&#10;-note-&#10;- I have been working on this for about a day now... That being said, the battle system actually works now (its a bit wonky tho)&#10;- rn effect damage does damage twice per turn (i dont have the time rn to fix)&#10;- will fix up battle a bit and maybe fix dialog and progression system if i have the time" />
     <MESSAGE value="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(" />
+    <MESSAGE value="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)" />
+    <option name="LAST_COMMIT_MESSAGE" value="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ui/intro.py</url>
-          <line>171</line>
+          <line>173</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ui/battle_base.py</url>
+          <line>213</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Game$main_ui.coverage" NAME="main_ui Coverage Results" MODIFIED="1778866931592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
+    <SUITE FILE_PATH="coverage/Game$sounds.coverage" NAME="sounds Coverage Results" MODIFIED="1779130759666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assets" />
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779121109367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779141314297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1777152680595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1779125182175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$battle_base.coverage" NAME="battle_base Coverage Results" MODIFIED="1779020446506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$button.coverage" NAME="button Coverage Results" MODIFIED="1777119826890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
