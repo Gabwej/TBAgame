@@ -352,7 +352,35 @@ ENEMIES = {
     # }
 },
 
+"enemy_id": {
+    "name": "Enemy Name",
 
+    "hp": 200,
+    "attack": 10,
+    "defense": 5,
+
+    "crit_chance": 0.1,
+    "crit_multiplier": 1.5,
+    "dodge_chance": 0.05,
+
+    "tier": 3,
+
+    "money_drop": (5, 15),
+
+    "attacks": [
+        "Test Attack",
+    ],
+
+    "sprite": ("monster3",6),
+
+    "description": "Put description here.",
+
+    # optional
+    # "resistances": {
+    #     "burn": 0.5,
+    #     "poison": 1.5
+    # }
+},
 
 }
 
@@ -368,8 +396,12 @@ ENEMY_TIERS = {
     ],
 
     3: [
-
+        "enemy_id"
     ],
+
+    4: [
+
+    ]
 
 }
 

@@ -42,9 +42,9 @@ class BuffEffect(Effect):
 
 # base for attack
 
-    "Attack name": Attack(
-        name="Attack name",
-        description="Does a small amount of physical damage. \n0 cooldown, 0 cast time",
+    "Test Attack": Attack(
+        name="Test Attack",
+        description="Chills the core \n(2 Freeze, 1 Wither) \n\n4 cooldown, 1 cast time",
         effects=[
             DamageEffect(15),
             BurnEffect(2),
@@ -62,7 +62,7 @@ class BuffEffect(Effect):
         start_cooldown=0,
         cast_time=0,
         cannot_miss=False,  #  ignores dodge
-        icon=Assets.icons[0][0],
+        icon=(0,0),
         sound=None  # sound, maybe later
     ),
 
@@ -71,7 +71,7 @@ class BuffEffect(Effect):
     "enemy_id": {
     "name": "Enemy Name",
 
-    "hp": 100,
+    "hp": 200,
     "attack": 10,
     "defense": 5,
 
@@ -79,16 +79,15 @@ class BuffEffect(Effect):
     "crit_multiplier": 1.5,
     "dodge_chance": 0.05,
 
-    "tier": 1,
+    "tier": 3,
 
     "money_drop": (5, 15),
 
     "attacks": [
-        "Slash",
-        "Heavy Slash",
+        "Test Attack",
     ],
 
-    "sprite": Assets.sprites["monster1"][0],
+    "sprite": ("monster3",6),
 
     "description": "Put description here.",
 

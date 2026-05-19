@@ -43,7 +43,7 @@ class HealEffect(Effect):
 
     def apply(self, user, target, attack):
         healed = min(self.amount, target.max_hp - target.hp)
-        target.hp += healed
+        user.hp = min(user.max_hp, user.hp + healed)
 
         if hasattr(user, "stats"):
             user.stats["total_healing"] += healed

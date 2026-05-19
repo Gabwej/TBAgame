@@ -99,7 +99,7 @@ EVENTS = [
 {
     "type": "battle",
 
-    "enemy": "Slime",
+    "enemy": "enemy_id",
 
     "background": "graphics/ocean1.png",
 

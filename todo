@@ -12,6 +12,7 @@ smaller things:
 - fix actual encounter plan (yeah, that's gonna take hours...)
 - reset stats after battle, like start_cooldown, hp and current cooldown
 - music on game start (easy)
-- healing items sometimes gives "enemy heals", not sure if its getting healing or not
+- rn heal gives enemy health :(
 - add hover panels to character select (quick desc and how the playstyle is intended to be
     (brawler tank, ranger, crit and multihit*, mage, high cast time attacks, rouge, poison buildup)
+- items dont give reward logs

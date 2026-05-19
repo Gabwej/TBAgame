@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)">
-      <change afterPath="$PROJECT_DIR$/items/item_base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/items/item_list.py" afterDir="false" />
+    <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="(version 0.1.2, pre-release)&#10;* added inventory (skipping shops, can do events for items, and pay for items as event choices ig)&#10;* Fixed up the items, now they work with current system, will add/ tweak later (they should be rare - and are not nearly worth it rn, like vial)&#10;* fixed escape in battle + escape item (for harder enemies when escape button locks, image like elementals or dragons if I add those sprites)&#10;&#10;-note-&#10;- check todo for what i have left&#10;- at the pace im goin' ill prolly be done tomorrow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/event_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/event_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combat/effects.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/effects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/characters.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/characters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/entity_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/entity_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/story.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items/items.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_code" beforeDir="false" afterPath="$PROJECT_DIR$/test_code" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/battle_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/battle_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/event_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/event_ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/tools.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +125,7 @@
       <workItem from="1778927799097" duration="27235000" />
       <workItem from="1779013716885" duration="33488000" />
       <workItem from="1779112362434" duration="20673000" />
-      <workItem from="1779174704061" duration="15627000" />
+      <workItem from="1779174704061" duration="26906000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -303,14 +302,20 @@
       <option name="presentableId" value="LOCAL−00025" />
       <updated>1779121800813</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL−00026" summary="(version 0.1.2, pre-release)&#10;* added inventory (skipping shops, can do events for items, and pay for items as event choices ig)&#10;* Fixed up the items, now they work with current system, will add/ tweak later (they should be rare - and are not nearly worth it rn, like vial)&#10;* fixed escape in battle + escape item (for harder enemies when escape button locks, image like elementals or dragons if I add those sprites)&#10;&#10;-note-&#10;- check todo for what i have left&#10;- at the pace im goin' ill prolly be done tomorrow">
+      <option name="closed" value="true" />
+      <created>1779192346109</created>
+      <option name="number" value="LOCAL−00026" />
+      <option name="presentableId" value="LOCAL−00026" />
+      <updated>1779192346109</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First commit" />
     <MESSAGE value="Second commit&#10;* created base for the pygame display&#10;- need to create fundamental files that store parts of the game" />
     <MESSAGE value="Third commit&#10;* created module to extract sprites&#10;- going to start building fundamental files that store parts of the game and interactable buttons" />
     <MESSAGE value="Fourth commit&#10;* fixed sprite sizes and flipped enemy sprites" />
@@ -335,7 +340,8 @@
     <MESSAGE value="twenty-fourth commit&#10;* I am unsure about what i added this commit&#10;* Added battle ui with modes: like main and attack (prolly gonna use it for dialog later as well)&#10;* fixed buttons not working (connected to next button)&#10;&#10;-note-&#10;- I have been working on this for about a day now... That being said, the battle system actually works now (its a bit wonky tho)&#10;- rn effect damage does damage twice per turn (i dont have the time rn to fix)&#10;- will fix up battle a bit and maybe fix dialog and progression system if i have the time" />
     <MESSAGE value="twenty-fifth commit&#10;* fixed up battle ui a bit (icons implemented and such)&#10;* some backend logic fixed, a mess rn&#10;&#10;-note-&#10;- I am trying to rush completion due to deadline coming up&#10;- will try to add progression system and dialog mode for ui&#10;- if i have time i will add in my panel_on_hover, prolly wont have time though :(" />
     <MESSAGE value="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)" />
-    <option name="LAST_COMMIT_MESSAGE" value="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)" />
+    <MESSAGE value="(version 0.1.2, pre-release)&#10;* added inventory (skipping shops, can do events for items, and pay for items as event choices ig)&#10;* Fixed up the items, now they work with current system, will add/ tweak later (they should be rare - and are not nearly worth it rn, like vial)&#10;* fixed escape in battle + escape item (for harder enemies when escape button locks, image like elementals or dragons if I add those sprites)&#10;&#10;-note-&#10;- check todo for what i have left&#10;- at the pace im goin' ill prolly be done tomorrow" />
+    <option name="LAST_COMMIT_MESSAGE" value="(version 0.1.2, pre-release)&#10;* added inventory (skipping shops, can do events for items, and pay for items as event choices ig)&#10;* Fixed up the items, now they work with current system, will add/ tweak later (they should be rare - and are not nearly worth it rn, like vial)&#10;* fixed escape in battle + escape item (for harder enemies when escape button locks, image like elementals or dragons if I add those sprites)&#10;&#10;-note-&#10;- check todo for what i have left&#10;- at the pace im goin' ill prolly be done tomorrow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -345,6 +351,16 @@
           <line>173</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/combat/attacks.py</url>
+          <line>609</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/entities/entity_list.py</url>
+          <line>354</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -353,7 +369,7 @@
     <SUITE FILE_PATH="coverage/Game$sounds.coverage" NAME="sounds Coverage Results" MODIFIED="1779130759666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assets" />
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$item_list.coverage" NAME="item_list Coverage Results" MODIFIED="1779189715369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/items" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779191937844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779208100403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1779125182175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

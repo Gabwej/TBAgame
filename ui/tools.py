@@ -20,6 +20,7 @@ class Button:
         self.hovered = False
         self.locked = locked
         self.was_hovered = False
+        self.center_icon = False
 
         # makes color correcting easier
         self.color = color
@@ -94,8 +95,13 @@ class Button:
         # draw icon if exists
         if self.icon:
             icon_rect = self.icon.get_rect()
-            icon_rect.centery = self.rect.centery
-            icon_rect.x = self.rect.x + 10
+
+            if self.center_icon:
+                icon_rect = self.icon.get_rect(center=self.rect.center)
+
+            else:
+                icon_rect.centery = self.rect.centery
+                icon_rect.x = self.rect.x + 10
 
             screen.blit(self.icon, icon_rect)
             text_x_offset = 16  
@@ -210,3 +216,107 @@ class ImageObject:
     def draw(self, screen):
         if self.visible:
             screen.blit(self.image, self.rect)
+
+class HealthBar:
+
+    def __init__(
+        self,
+        rect,
+        entity,
+        bg_color=(40, 40, 40),
+        healthy_color=(50, 220, 50),
+        low_color=(220, 50, 50),
+        outline=(128,128,0)
+    ):
+
+        self.rect = pygame.Rect(rect)
+
+        self.entity = entity
+
+        self.bg_color = bg_color
+
+        self.healthy_color = healthy_color
+        self.low_color = low_color
+
+        self.outline = outline
+
+        self.font = pygame.font.Font('graphics/RetroByte.ttf', 32)
+
+    def draw_outlined_text(
+        self,
+        screen,
+        text,
+        pos,
+        text_color=	(192,192,192),
+        outline_color=(0,0,0)
+    ):
+
+        base = self.font.render(text, True, text_color)
+
+        outline = self.font.render(text, True, outline_color)
+
+        x, y = pos
+
+        for ox, oy in [
+            (-2,0),
+            (2,0),
+            (0,-2),
+            (0,2)
+        ]:
+            screen.blit(outline, (x + ox, y + oy))
+
+        screen.blit(base, pos)
+
+    def draw(self, screen):
+
+        # background
+        pygame.draw.rect(screen, self.bg_color, self.rect)
+
+        hp_percent = max(0, self.entity.hp / self.entity.max_hp)
+
+        # LOW HP = RED
+        fill_color = (
+            self.low_color
+            if hp_percent <= 0.25
+            else self.healthy_color
+        )
+
+        fill_width = int(self.rect.width * hp_percent)
+
+        fill_rect = pygame.Rect(
+            self.rect.x,
+            self.rect.y,
+            fill_width,
+            self.rect.height
+        )
+
+        pygame.draw.rect(screen, fill_color, fill_rect)
+
+        # outline
+        pygame.draw.rect(
+            screen,
+            self.outline,
+            self.rect,
+            4
+        )
+
+        # hp text
+        text = f"{self.entity.hp}/{self.entity.max_hp}"
+
+        text_surface = self.font.render(text, True, (255,255,255))
+
+        text_x = (
+            self.rect.centerx
+            - text_surface.get_width() // 2
+        )
+
+        text_y = (
+            self.rect.centery
+            - text_surface.get_height() // 2
+        )
+
+        self.draw_outlined_text(
+            screen,
+            text,
+            (text_x, text_y)
+        )

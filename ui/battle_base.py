@@ -1,6 +1,6 @@
 import pygame
 from ui.ending import EndScreen
-from ui.tools import Button, Panel, ImageObject
+from ui.tools import Button, Panel, ImageObject, HealthBar
 from assets.images import  get_sprite, resolve_icon
 
 
@@ -15,6 +15,18 @@ class BattleBase:
 
         self.buttons = []
         self.panels = []
+
+        self.player_hp_bar = HealthBar(
+            (20, 20, 180, 40),
+            self.battle.player
+        )
+
+        self.enemy_hp_bar = HealthBar(
+            (400, 20, 180, 40),
+            self.battle.enemy
+        )
+
+        self.status_buttons = []
 
         background = self.battle.background or "graphics/summer5.png"
 
@@ -274,6 +286,58 @@ class BattleBase:
     def input_blocked_by_logs(self):
         return self.battle.waiting_for_continue
 
+    def build_status_buttons(self):
+        self.status_buttons = []
+
+        effect_icons = {
+            "poison": (22, 8),
+            "burn": (0, 0),
+            "bleed": (13, 4),
+            "wither": (16, 6),
+            "stun": (23, 9),
+            "freeze": (4, 15),
+        }
+
+        entities = [
+            ("player", self.battle.player, 10),
+            ("enemy", self.battle.enemy, 430),
+        ]
+
+        for side, entity, start_x in entities:
+            active_effects = []
+            for effect, stacks in entity.status_effects.items():
+                if stacks > 0:
+                    active_effects.append((effect, stacks))
+
+            # rows grow upward
+            for i, (effect, stacks) in enumerate(active_effects):
+                row = i // 4
+                col = i % 4
+
+                x = start_x + (col * 42)
+                # every new row moves UP
+                y = 340 - (row * 42)
+                icon = resolve_icon(
+                    effect_icons.get(effect)
+                )
+
+                button = Button(
+                    (x, y, 36, 36),
+                    "",
+                    lambda: None,
+                    locked=False
+                )
+
+                button.icon = icon
+                button.center_icon = True
+
+                button.hover_data = (
+                    f"{effect.title()}\n"
+                    f"Stacks: {stacks}"
+                )
+
+                self.status_buttons.append(button)
+
     def refresh_buttons(self):
 
         # MAIN MODE
@@ -340,6 +404,12 @@ class BattleBase:
                 hovered_data = button.hover_data
                 break
 
+        for button in self.status_buttons:
+
+            if button.rect.collidepoint(mouse_pos):
+                hovered_data = button.hover_data
+                break
+
         if hovered_data is None:
             self.hover_panel = None
             self.current_hover_data = None
@@ -370,6 +440,7 @@ class BattleBase:
 
     def update(self):
         self.refresh_buttons()
+        self.build_status_buttons()
         self.update_hover()
 
         if self.battle.battle_over:
@@ -406,6 +477,7 @@ class BattleBase:
     def draw(self, screen):
         screen.fill((0, 0, 50))
 
+
         for image in self.images:
             image.draw(screen)
 
@@ -415,6 +487,12 @@ class BattleBase:
 
         for button in self.buttons:
             button.draw(screen)
+
+        for button in self.status_buttons:
+            button.draw(screen)
+
+        self.player_hp_bar.draw(screen)
+        self.enemy_hp_bar.draw(screen)
 
         if self.hover_panel:
             self.hover_panel.update()

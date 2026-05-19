@@ -14,6 +14,7 @@ clock = pygame.time.Clock()
 
 load_all_sprites()
 SoundManager.load()
+MusicManager.play_loop("sounds/theme.mp3")
 
 current_state = Intro()
 
