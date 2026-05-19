@@ -23,9 +23,14 @@ class Battle:
         self.background = None
 
 
-    # stores all the logs, aka dialog in the fight (makes smoother ui)
+    # creates all the logs, aka dialog in the fight (makes smoother ui)
     def add_logs(self, new_logs):
-        self.logs.extend(new_logs)
+        if isinstance(new_logs, str):
+            self.logs.append(new_logs)
+        else:
+            for log in new_logs:
+                if isinstance(log, str):
+                    self.logs.append(log)
 
     def get_current_log(self):
         if not self.logs:
@@ -206,6 +211,49 @@ class Battle:
         self.check_battle_end()
 
     # This is the enemies turn
+
+    def run_battle(self):
+
+        if self.waiting_for_continue:
+            return
+
+        self.logs.append(
+            f"{self.player.name} Fled the battle!"
+        )
+
+        self.waiting_for_continue = True
+        self.pending_end = "run"
+
+    def use_item(self, item_id):
+        if self.turn != "player" or self.waiting_for_continue:
+            return
+
+        if item_id not in self.player.inventory:
+            return
+
+        entry = self.player.inventory[item_id]
+        item = entry["item"]
+
+        # 1. use text always first
+        self.add_logs([item.use_text])
+
+        # 2. execute item effect properly
+        result = item.use(self.player, self.enemy, self)
+
+        # 3. FIX: unpack correctly
+        if isinstance(result, tuple):
+            damage, logs = result
+        else:
+            logs = []
+
+        # 4. add effect logs
+        if logs:
+            self.add_logs(logs)
+
+        # 5. remove item
+        self.player.remove_item(item_id, 1)
+
+        self.waiting_for_continue = True
 
     def enemy_turn(self):
         if self.battle_over:

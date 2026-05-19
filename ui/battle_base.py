@@ -33,7 +33,7 @@ class BattleBase:
                 Button((20, 400, 270, 80), "Attack", self.open_attack),
                 Button((310, 400, 270, 80), "Inventory", self.inventory_mode),
                 Button((20, 500, 270, 80), "Check", self.check_mode),
-                Button((310, 500, 270, 80), "Run", self.run_action, locked=True),
+                Button((310, 500, 270, 80), "Run", self.escape_battle, locked=True),
                 Button((665, 500, 270, 80), "Next", self.next_log,
                        locked=not self.battle.waiting_for_continue),
             ]
@@ -84,12 +84,54 @@ class BattleBase:
 
         elif self.mode == "inventory":
             self.buttons = [
-                Button((20, 400, 270, 80), "Did", lambda: None, locked=True),
-                Button((310, 400, 270, 80), "Not", lambda: None, locked=True),
-                Button((20, 500, 270, 80), "Have", lambda: None, locked=True),
-                Button((310, 500, 270, 80), "Time...", lambda: None, locked=True),
-                Button((665, 500, 270, 80), "Back", self.back_to_main, locked=False),
+                Button((20, 400, 270, 80), "None", lambda: None, locked=True),
+                Button((310, 400, 270, 80), "None", lambda: None, locked=True),
+                Button((20, 500, 270, 80), "None", lambda: None, locked=True),
+                Button((310, 500, 270, 80), "None", lambda: None, locked=True),
             ]
+
+            positions = [
+                (610, 10, 185, 80),
+                (805, 10, 185, 80),
+                (610, 95, 185, 80),
+                (805, 95, 185, 80),
+                (610, 180, 185, 80),
+                (805, 180, 185, 80),
+                (610, 265, 185, 80),
+                (805, 265, 185, 80),
+            ]
+            inventory_items = self.battle.player.get_inventory_items()
+
+            for i in range(len(inventory_items)):
+                if i < len(inventory_items):
+                    data = inventory_items[i]
+                    item = data["item"]
+                    amount = data["amount"]
+
+                    button = Button(
+                        positions[i],
+                        f"{item.name} [{amount}]",
+                        lambda iid=item.item_id: self.use_inventory_item(iid),
+                        locked=self.battle.waiting_for_continue
+                    )
+                    button.hover_data = item.description
+
+                else:
+                    button = Button(
+                        positions[i],
+                        "None",
+                        lambda: None,
+                        locked=True
+                    )
+                self.buttons.append(button)
+
+            self.buttons.append(
+                Button(
+                    (665, 500, 270, 80),
+                    "Back",
+                    self.back_to_main
+                )
+            )
 
         elif self.mode == "check":
             self.buttons = [
@@ -100,15 +142,6 @@ class BattleBase:
                 Button((665, 500, 270, 80), "Back", self.back_to_main, locked=False),
             ]
 
-        elif self.mode == "run":
-            self.buttons = [
-                Button((20, 400, 270, 80), "None", lambda: None, locked=True),
-                Button((310, 400, 270, 80), "None", lambda: None, locked=True),
-                Button((20, 500, 270, 80), "None", lambda: None, locked=True),
-                Button((310, 500, 270, 80), "None", lambda: None, locked=True),
-                # should not be locked later, actual run action!
-                Button((665, 500, 270, 80), "Escape!", lambda: None, locked=True),
-            ]
 
     def build_panels(self):
 
@@ -151,7 +184,7 @@ class BattleBase:
 
                 Panel(
                     (600, 0, 400, 600),
-                    text="Inventory not implemented."
+                    text="No items.."
                 )
             ]
 
@@ -177,17 +210,6 @@ class BattleBase:
 
             ]
 
-        elif self.mode == "run":
-            self.panels = [
-                Panel((0, 380, 600, 220),
-                      color=(139, 69, 19),
-                      outline=(160, 82, 45)),
-
-                Panel(
-                    (600, 0, 400, 600),
-                    text="You used the Joestar Secret Technique!"
-                )
-            ]
 
 
 
@@ -216,6 +238,15 @@ class BattleBase:
         self.build_buttons()
         self.build_panels()
 
+    def escape_battle(self):
+
+        self.battle.run_battle()
+
+        self.mode = "main"
+
+        self.build_buttons()
+        self.build_panels()
+
     def use_attack(self, index):
         self.battle.player_attack(self.battle.player.attacks[index])
 
@@ -225,6 +256,15 @@ class BattleBase:
         self.build_panels()
 
         return None
+
+    def use_inventory_item(self, item_id):
+        self.battle.use_item(item_id)
+
+        # ALWAYS return to main after action
+        self.mode = "main"
+        self.build_buttons()
+        self.build_panels()
+        self.refresh_buttons()
 
     def next_log(self):
         self.battle.next_log()
@@ -310,10 +350,16 @@ class BattleBase:
 
         self.current_hover_data = hovered_data
 
-        self.hover_panel = Panel(
-            (620, 260, 360, 220),
-            text=hovered_data
-        )
+        if self.mode == "inventory":
+            self.hover_panel = Panel(
+                (620, 330, 360, 160),
+                text=hovered_data
+            )
+        else:
+            self.hover_panel = Panel(
+                (620, 260, 360, 220),
+                text=hovered_data
+            )
 
     def handle_input(self, event):
         for button in self.buttons:
@@ -332,6 +378,10 @@ class BattleBase:
                     self.battle.return_ui.after_battle_win()
                     return self.battle.return_ui
 
+                elif self.battle.result == "run":
+                    self.battle.return_ui.after_battle_run()
+                    return self.battle.return_ui
+
                 elif self.battle.result == "lose":
                     return EndScreen(
                         self.battle.player,
@@ -339,6 +389,7 @@ class BattleBase:
                     )
 
             else:
+                # this guarantees that if the encounters run out, the game does not crash, but instead goes to end screen instead
                 if self.battle.result == "win":
                     return EndScreen(
                         self.battle.player,

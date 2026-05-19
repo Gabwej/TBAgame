@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="585dcb8e-d667-4963-a677-0a877071bb1a" name="Changes" comment="twenty-sixth commit (Technically version 0.1, pre-release)&#10;* added progression system (eventmanager) and battle creation (guess which file...)&#10;* added dialog events (huge gem alert!)&#10;* added in some encounters (I WILL ABOLISH THIS LATER, not the system duh, just change it completely)&#10;&#10;-note-&#10;- THIS VERSION ACTUALLY RUNS (massive? yeah)&#10;- couldnt be happier&#10;- also check todo for what im planning to add later (like in a few hours maybe?)">
-      <change afterPath="$PROJECT_DIR$/ui/encounter_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/items/item_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/items/item_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sounds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/attacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/attacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combat/battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combat/battlecreation.py" beforeDir="false" afterPath="$PROJECT_DIR$/combat/battlecreation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/entities/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events/event_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/event_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/story.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items/items.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/todo" beforeDir="false" afterPath="$PROJECT_DIR$/todo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/battle_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/battle_base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/event_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/event_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/intro.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/intro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,8 @@
     "Python.button.executor": "Run",
     "Python.images.executor": "Run",
     "Python.intro.executor": "Run",
-    "Python.main.executor": "Debug",
+    "Python.item_list.executor": "Run",
+    "Python.main.executor": "Run",
     "Python.main_ui.executor": "Run",
     "Python.sounds.executor": "Run",
     "Python.tools.executor": "Run",
@@ -126,6 +126,7 @@
       <workItem from="1778927799097" duration="27235000" />
       <workItem from="1779013716885" duration="33488000" />
       <workItem from="1779112362434" duration="20673000" />
+      <workItem from="1779174704061" duration="15627000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <option name="closed" value="true" />
@@ -344,11 +345,6 @@
           <line>173</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ui/battle_base.py</url>
-          <line>213</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -356,7 +352,8 @@
     <SUITE FILE_PATH="coverage/Game$main_ui.coverage" NAME="main_ui Coverage Results" MODIFIED="1778866931592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$sounds.coverage" NAME="sounds Coverage Results" MODIFIED="1779130759666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/assets" />
     <SUITE FILE_PATH="coverage/Game$images.coverage" NAME="images Coverage Results" MODIFIED="1777143430991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779141314297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Game$item_list.coverage" NAME="item_list Coverage Results" MODIFIED="1779189715369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/items" />
+    <SUITE FILE_PATH="coverage/Game$main.coverage" NAME="main Coverage Results" MODIFIED="1779191937844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$intro.coverage" NAME="intro Coverage Results" MODIFIED="1777722604740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Game$ui_base.coverage" NAME="ui_base Coverage Results" MODIFIED="1779125182175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ui" />
     <SUITE FILE_PATH="coverage/Game$tools.coverage" NAME="tools Coverage Results" MODIFIED="1777150802954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

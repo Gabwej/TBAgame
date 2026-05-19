@@ -1,6 +1,7 @@
 import random
 
 from events.story import EVENTS
+from items.item_list import ITEMS
 
 
 class EventManager:
@@ -132,6 +133,19 @@ class EventManager:
 
                 reward_lines.append(
                     f"{stat.upper()} +{value}"
+                )
+
+            elif effect["type"] == "item":
+
+                item_id = effect["item"]
+
+                item = ITEMS[item_id]
+                amount = effect.get("amount", 1)
+
+                self.player.add_item(item, amount)
+
+                self.current_text += (
+                    f"\n\nObtained {item.name} x{amount}!"
                 )
 
         return "\n".join(reward_lines)

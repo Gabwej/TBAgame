@@ -35,21 +35,28 @@ class Player(Entity):
             "events": 0
         }
 
-    def add_item(self, item, count=1):
-        if item.item_id in self.inventory:
-            self.inventory[item.item_id]["count"] += count
-        else:
-            self.inventory[item.item_id] = {
+    def add_item(self, item, amount=1):
+        item_id = item.item_id
+
+        if item_id not in self.inventory:
+            self.inventory[item_id] = {
                 "item": item,
-                "count": count
+                "amount": 0
             }
 
-    def remove_item(self, item_id, count=1):
-        if item_id in self.inventory:
-            self.inventory[item_id]["count"] -= count
+        self.inventory[item_id]["amount"] += amount
 
-            if self.inventory[item_id]["count"] <= 0:
-                del self.inventory[item_id]
+    def remove_item(self, item_id, amount=1):
+        if item_id not in self.inventory:
+            return
+
+        self.inventory[item_id]["amount"] -= amount
+
+        if self.inventory[item_id]["amount"] <= 0:
+            del self.inventory[item_id]
 
     def get_item(self, item_id):
         return self.inventory.get(item_id, None)
+
+    def get_inventory_items(self):
+        return list(self.inventory.values())

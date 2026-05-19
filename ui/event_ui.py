@@ -166,6 +166,20 @@ class EventUI:
 
         self.build_ui()
 
+    def after_battle_run(self):
+
+        event = self.manager.get_event()
+
+        self.manager.event_index = event["next"]
+
+        self.manager.load_event()
+
+        MusicManager.fade_to(
+            "sounds/theme.mp3",
+            volume=1.0
+        )
+        self.build_ui()
+
     def next_event(self):
 
         self.manager.next_event()

@@ -15,7 +15,14 @@ EVENTS = [
 
             "result": "The forest comes into focus. The air feels unusually still.",
 
-            "effects": [],
+            "effects": [
+                {"type": "item", "item": "potion", "amount": 1},
+                {"type": "item", "item": "cleanse", "amount": 1},
+                {"type": "item", "item": "bomb", "amount": 1},
+                {"type": "item", "item": "escape_rope", "amount": 1},
+                {"type": "item", "item": "mystery_vial", "amount": 1},
+                {"type": "item", "item": "adrenaline_shot", "amount": 1},
+            ],
 
             "next": 1
         }
@@ -69,7 +76,8 @@ EVENTS = [
 
             "result": "He studies you silently. 'You are not from here.' he utters with a sturdy voice",
 
-            "effects": [],
+            "effects": [
+            ],
 
             "next_pool": [3, 4]
         },
