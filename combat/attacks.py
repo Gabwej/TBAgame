@@ -607,28 +607,6 @@ ATTACKS = {
         sound=None  # sound, maybe later
     ),
 
-    "Test Attack": Attack(
-        name="Test Attack",
-        description="I really hope no one gets this \n(everything) \n\n10 cooldown, 0 cast time",
-        effects=[
-            DamageEffect(10),
-            BurnEffect(2),
-            PoisonEffect(3),
-            BleedEffect(2),
-            WitherEffect(2),
-            FreezeEffect(1),
-            StunEffect(1),
-            HealEffect(10),
-            BuffEffect("attack", 5, 3),
-            BuffEffect("defense", 3, 2),
-            LifeStealEffect(0.3),  # 30% of damage dealt returned as HP
-        ],
-        cooldown=10,
-        start_cooldown=0,
-        cast_time=0,
-        cannot_miss=False,  #  ignores dodge
-        icon=(0,0),
-        sound=None  # sound, maybe later
-    ),
+
 
 }

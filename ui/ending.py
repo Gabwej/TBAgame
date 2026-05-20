@@ -16,10 +16,10 @@ def build_game_over_text(player, result):
         f"{intro}\n\n"
         "These were your stats:\n\n"
         f"Character played as: {player.name}\n"
-        f"Total damage done: {player.stats.get("total_damage", 0)}\n"
-        f"Total health healed: {player.stats.get("total_healing", 0)}\n"
-        f"Battles won: {player.stats.get("battles_won", 0)}\n"
-        f"Events experienced: {player.stats.get("events", 0)}\n"
+        f"Total damage done: {player.stats.get('total_damage', 0)}\n"
+        f"Total health healed: {player.stats.get('total_healing', 0)}\n"
+        f"Battles won: {player.stats.get('battles_won', 0)}\n"
+        f"Events experienced: {player.stats.get('events', 0)}\n"
     )
 
 class EndScreen:

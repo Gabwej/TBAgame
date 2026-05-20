@@ -1,7 +1,9 @@
 import random
 
+from entities import player
 from events.story import EVENTS
 from items.item_list import ITEMS
+from ui.ending import EndScreen
 from ui.new_attack_ui import ChooseAttackEvent
 
 
@@ -24,6 +26,7 @@ class EventManager:
 
         # initialize first event
         self.load_event()
+        self.end_state = None
 
     # self-explanatory, gets event from story
     def get_event(self):
@@ -73,7 +76,7 @@ class EventManager:
         self.phase = "result"
 
     # this function is what is used to go to the next battle or event
-    def next_event(self):
+    def next_event(self, event_manager=None):
 
         event = self.get_event()
 
@@ -115,6 +118,19 @@ class EventManager:
                 )
                 reward_lines.append(
                     f"Healed {value} HP"
+                )
+
+            elif effect["type"] == "damage":
+
+                value = effect["value"]
+
+                self.player.hp = max(
+                    1,
+                    self.player.hp - value
+                )
+
+                reward_lines.append(
+                    f"Took {value} damage"
                 )
 
             # This code is what gives stats to the players, important! Otherwise choices dont seem to matter

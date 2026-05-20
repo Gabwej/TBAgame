@@ -109,7 +109,7 @@ class BuffEffect(Effect):
 
     "background": "graphics/summer3.png",
 
-    "encounter_sprite": ("player", 4),
+    "encounter_sprite": None,
 
     "options": [
 
@@ -122,40 +122,28 @@ class BuffEffect(Effect):
             ),
 
             "effects": [
-                {"type": "item", "item": "potion", "amount": 2}
             ],
 
             "next": 1
         },
 
-        {
-            "text": "Ignore it",
 
-            "result": (
-                "You continue walking.\n"
-                "The forest feels colder."
-            ),
-
-            "effects": [
-                {"type": "stat", "stat": "attack", "value": 1}
-            ],
-
-            "next": 1
-        }
     ]
-}
+},
+
 
 {
     "type": "battle",
 
     "enemy": "Goblin Scout",
 
-    "background": "graphics/forest2.png",
+    "background": "graphics/CHOOSE.png",
 
     "encounter_sprite": ("monster2", 0),
 
     "next": 2
-}
+},
+
 
 {
     "type": "dialog",

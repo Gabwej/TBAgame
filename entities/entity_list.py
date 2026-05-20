@@ -189,7 +189,7 @@ ENEMIES = {
     "crit_multiplier": 5,
     "dodge_chance": 0.05,
 
-    "tier": 1,
+    "tier": 3,
 
     "money_drop": (5, 15),
 
@@ -352,35 +352,6 @@ ENEMIES = {
     # }
 },
 
-"enemy_id": {
-    "name": "Enemy Name",
-
-    "hp": 200,
-    "attack": 10,
-    "defense": 5,
-
-    "crit_chance": 0.1,
-    "crit_multiplier": 1.5,
-    "dodge_chance": 0.05,
-
-    "tier": 3,
-
-    "money_drop": (5, 15),
-
-    "attacks": [
-        "Test Attack",
-    ],
-
-    "sprite": ("monster3",6),
-
-    "description": "Put description here.",
-
-    # optional
-    # "resistances": {
-    #     "burn": 0.5,
-    #     "poison": 1.5
-    # }
-},
 
 }
 
@@ -388,7 +359,7 @@ ENEMIES = {
 # used for random encounters later
 ENEMY_TIERS = {
     1: [
-        "Slime", "Eye", "Treant", "Goblin grunt", "Spore hatchling", "Zombie", "Elder", "Halfling bowman"
+        "Slime", "Eye", "Treant", "Goblin grunt", "Spore hatchling", "Zombie", "Halfling bowman"
     ],
 
     2: [
@@ -396,7 +367,7 @@ ENEMY_TIERS = {
     ],
 
     3: [
-        "enemy_id"
+        "Elder"
     ],
 
     4: [
