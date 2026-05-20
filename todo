@@ -1,8 +1,6 @@
 To do:
 - add sound effects for attacks (player and enemy), item use and death sounds (wont happen)
-- add in more ui to battle (health bars, status effects in some way ect.)
 - solve buff duration time being off
-- solve effects triggering dmg twice
 - add in new event: "new_attack", which lets you choose an attack to remove for a new one (or skip it)
     * important make separate events depending on who is played (maybe you meet a cloaked man,
       next is new_attack and you get for rouge)
@@ -10,9 +8,5 @@ To do:
 smaller things:
 - add more enemies
 - fix actual encounter plan (yeah, that's gonna take hours...)
-- reset stats after battle, like start_cooldown, hp and current cooldown
-- music on game start (easy)
-- rn heal gives enemy health :(
 - add hover panels to character select (quick desc and how the playstyle is intended to be
     (brawler tank, ranger, crit and multihit*, mage, high cast time attacks, rouge, poison buildup)
-- items dont give reward logs

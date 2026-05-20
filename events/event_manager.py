@@ -2,6 +2,7 @@ import random
 
 from events.story import EVENTS
 from items.item_list import ITEMS
+from ui.new_attack_ui import ChooseAttackEvent
 
 
 class EventManager:
@@ -29,15 +30,12 @@ class EventManager:
         return EVENTS[self.event_index]
 
     def load_event(self):
-
         event = self.get_event()
 
         self.phase = "intro"
-
         self.selected_option = None
 
         self.current_text = event.get("text", "")
-
 
     # tells the game that its choice time, locks next button
     def choose_option(self, index):
@@ -77,26 +75,27 @@ class EventManager:
     # this function is what is used to go to the next battle or event
     def next_event(self):
 
-        if self.phase != "result":
-            return
+        event = self.get_event()
 
-        option = self.selected_option
+        # NORMAL DIALOG FLOW
+        if event["type"] == "dialog":
 
-        if option is None:
-            return
+            if self.phase != "result":
+                return
 
-        # progression, goes forward in current event, used if the event is more than one
-        if "next" in option:
-            self.event_index = option["next"]
+            option = self.selected_option
 
-        # used to go to next event pool, aka a random event in a group
-        elif "next_pool" in option:
-            self.event_index = random.choice(
-                option["next_pool"]
-            )
+            if option is None:
+                return
 
-        else:
-            self.event_index += 1
+            if "next" in option:
+                self.event_index = option["next"]
+
+            elif "next_pool" in option:
+                self.event_index = random.choice(option["next_pool"])
+
+            else:
+                self.event_index += 1
 
         self.load_event()
 
@@ -135,17 +134,14 @@ class EventManager:
                     f"{stat.upper()} +{value}"
                 )
 
+
             elif effect["type"] == "item":
-
                 item_id = effect["item"]
-
                 item = ITEMS[item_id]
                 amount = effect.get("amount", 1)
-
                 self.player.add_item(item, amount)
-
-                self.current_text += (
-                    f"\n\nObtained {item.name} x{amount}!"
+                reward_lines.append(
+                    f"Obtained {item.name} x{amount}"
                 )
 
         return "\n".join(reward_lines)

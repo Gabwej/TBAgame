@@ -72,7 +72,7 @@ CHARACTERS = {
     "dodge_chance": 0.15,
 
     "attacks": [
-        "Test Attack",
+        "Hollow Purple",
         #"Simple Stab",
         "Coated Stab",
         "Smoke Bomb",

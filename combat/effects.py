@@ -6,7 +6,7 @@ class Effect:
     def __init__(self, icon=None):
         self.icon = icon
 
-    def apply(self, user, target):
+    def apply(self, user, target, attack):
         pass
 
     def tick(self, target):
@@ -42,13 +42,14 @@ class HealEffect(Effect):
         self.amount = amount
 
     def apply(self, user, target, attack):
-        healed = min(self.amount, target.max_hp - target.hp)
+        healed = min(self.amount, user.max_hp - user.hp)
+
         user.hp = min(user.max_hp, user.hp + healed)
 
         if hasattr(user, "stats"):
             user.stats["total_healing"] += healed
 
-        return 0, [f"{target.name} heals {healed} HP!"]
+        return 0, [f"{user.name} heals {healed} HP!"]
 
 
 # This attack gives stacks of poison (that will later do things in the status effect stage in battles)

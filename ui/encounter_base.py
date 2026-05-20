@@ -30,3 +30,18 @@ def battle_event(
         "background": background,
         "encounter_sprite": sprite
     }
+
+def attack_event(
+    attack,
+    next_id,
+    background=None,
+    sprite=None
+):
+
+    return {
+        "type": "attack",
+        "attack": attack,
+        "next": next_id,
+        "background": background,
+        "encounter_sprite": sprite
+    }

@@ -45,7 +45,12 @@ class BattleBase:
                 Button((20, 400, 270, 80), "Attack", self.open_attack),
                 Button((310, 400, 270, 80), "Inventory", self.inventory_mode),
                 Button((20, 500, 270, 80), "Check", self.check_mode),
-                Button((310, 500, 270, 80), "Run", self.escape_battle, locked=True),
+                Button(
+                    (310, 500, 270, 80),
+                    "Run",
+                    self.escape_battle,
+                    locked=self.battle.enemy.tier >= 3
+                ),
                 Button((665, 500, 270, 80), "Next", self.next_log,
                        locked=not self.battle.waiting_for_continue),
             ]
@@ -355,7 +360,11 @@ class BattleBase:
             self.buttons[2].locked = waiting
 
             # Run
-            self.buttons[3].locked = waiting
+            # Run
+            self.buttons[3].locked = (
+                    waiting
+                    or self.battle.enemy.tier >= 3
+            )
 
             # Next
             self.buttons[4].locked = not waiting

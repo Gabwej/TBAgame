@@ -60,3 +60,26 @@ class Player(Entity):
 
     def get_inventory_items(self):
         return list(self.inventory.values())
+
+    def reset_after_battle(self):
+
+        # restore hp
+        self.hp = self.max_hp
+
+        # clear status effects
+        self.status_effects.clear()
+
+        # clear buffs
+        self.buffs.clear()
+
+        # reset temporary modifiers
+        self.attack_debuff = 0
+        self.defense_debuff = 0
+
+        # reset casting
+        self.pending_action = None
+        self.cast_timer = 0
+
+        # reset attack cooldowns
+        for attack in self.attacks:
+            attack.current_cooldown = attack.start_cooldown

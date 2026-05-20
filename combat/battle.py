@@ -21,6 +21,7 @@ class Battle:
         self.result = None
         self.pending_end = None
         self.background = None
+        self.pending_action_execution = None
 
 
     # creates all the logs, aka dialog in the fight (makes smoother ui)
@@ -65,6 +66,15 @@ class Battle:
             self.result = "run"
             self.pending_end = None
             return
+
+        # execute delayed action after logs finish
+        if self.pending_action_execution:
+            action = self.pending_action_execution
+            self.pending_action_execution = None
+
+            action()
+
+            return ""
 
         if not self.battle_over:
             self.advance_turn()
@@ -155,6 +165,8 @@ class Battle:
             self.turn = "player"
             entity = self.player
 
+            self.tick_cooldowns()
+
         # CASTING HAS PRIORITY
         if self.process_cast(entity):
             return
@@ -169,6 +181,23 @@ class Battle:
         if disabled:
             self.waiting_for_continue = True
             return
+
+        # if player has no usable attacks
+        if entity == self.player:
+
+            available_attacks = [
+                atk for atk in self.player.attacks
+                if atk.is_ready()
+            ]
+
+            if not available_attacks:
+                self.logs.append(
+                    f"{self.player.name} has no available attacks!"
+                )
+
+                self.waiting_for_continue = True
+
+                return
 
         # enemy acts automatically
         if entity == self.enemy:
@@ -202,13 +231,24 @@ class Battle:
             return
 
         # NORMAL ATTACK
-        damage, logs = attack.use(self.player, self.enemy)
 
-        self.add_logs(logs)
+        self.logs.append(
+            f"{self.player.name} uses {attack.name}!"
+        )
+
+        def execute():
+
+            damage, logs = attack.use(self.player, self.enemy)
+
+            self.add_logs(logs)
+
+            self.waiting_for_continue = True
+
+            self.check_battle_end()
+
+        self.pending_action_execution = execute
 
         self.waiting_for_continue = True
-
-        self.check_battle_end()
 
     # This is the enemies turn
 
@@ -222,6 +262,7 @@ class Battle:
         )
 
         self.waiting_for_continue = True
+        self.player.reset_after_battle()
         self.pending_end = "run"
 
     def use_item(self, item_id):
@@ -259,12 +300,6 @@ class Battle:
         if self.battle_over:
             return
 
-        disabled = self.start_turn(self.enemy)
-
-        if disabled:
-            self.waiting_for_continue = True
-            return
-
         # checks if attacks are usable
         available_attacks = [
             attack for attack in self.enemy.attacks
@@ -279,8 +314,6 @@ class Battle:
 
         # random attack from available
         attack = random.choice(available_attacks)
-
-        self.tick_cooldowns()
 
         if attack.cast_time > 0:
             self.enemy.pending_action = attack
@@ -318,5 +351,6 @@ class Battle:
             self.logs.append(f"{self.enemy.name} was defeated!")
             self.player.stats["battles_won"] += 1
             self.waiting_for_continue = True
+            self.player.reset_after_battle()
             self.pending_end = "win"
             return
